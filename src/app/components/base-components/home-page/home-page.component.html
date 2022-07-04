@@ -1,0 +1,63 @@
+<div class="content-wrapper" [ngClass]="(detectDeviceService.isDesktop()) ? 'desktop': 'mobile'">
+
+    <ng-container *ngIf="!detectDeviceService.isDesktop(); else desktop">
+        <div class="content-mobile" [ngClass]="(!isExtend) ? 'default': 'extend'">
+
+            <ng-container *ngIf="!isExtend; else extend">
+                <mat-grid-list cols="1" rowHeight="220px">
+                    <mat-grid-tile>
+                        <div class="banner">
+                            <img src="assets/banners/home_banner.png">
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+                <mat-grid-list class="content-sections" cols="1" rowHeight="330px">
+                    <mat-grid-tile *ngFor="let section of sections">
+                        <div class="content-section">
+                            <app-cards-section [section]="section"></app-cards-section>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </ng-container>
+
+            <ng-template #extend>
+                <mat-grid-list class="content-sections" cols="2" rowHeight="330px">
+                    <mat-grid-tile>
+                        <div class="banner">
+                            <img src="assets/banners/home_banner.png">
+                        </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile rowspan="3">
+                        <div class="content-section">
+                            <mat-grid-list cols="1" rowHeight="330px">
+                                <mat-grid-tile *ngFor="let section of sections">
+                                    <div class="content-section">
+                                        <app-cards-section [section]="section"></app-cards-section>
+                                    </div>
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </div>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>3</mat-grid-tile>
+
+                </mat-grid-list>
+            </ng-template>
+
+        </div>
+    </ng-container>
+
+    <ng-template #desktop>
+        <p>PC</p>
+
+        <mat-grid-list class="test" cols="2" rowHeight="315px">
+            <mat-grid-tile>1</mat-grid-tile>
+            <mat-grid-tile rowspan="2">2</mat-grid-tile>
+            <mat-grid-tile>3</mat-grid-tile>
+        </mat-grid-list>
+
+    </ng-template>
+
+</div>

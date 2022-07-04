@@ -1,0 +1,12 @@
+<div class="section-wrapper" xLayout="column" fxLayoutAlign="start center">
+    <h1>{{section.tag}}</h1>
+    <mat-grid-list cols="3" rowHeight="1:1">
+        <mat-grid-tile *ngFor="let image of section.images">
+            <div class="card">
+                <app-card [image]="image"></app-card>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <button mat-flat-button class="more-button">more</button>
+    <mat-divider></mat-divider>
+</div>
