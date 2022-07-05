@@ -1,4 +1,58 @@
 .slide-menu-body {
-
+    width: 100%;
+    height: 100%;
     
+    mat-toolbar {
+        padding-left: 10%;
+        padding-right: 10%;
+        height: 56px;
+
+        /* .logo {} */
+
+        .header-spacer {
+            flex: 1 1 auto;
+        }
+
+    }
+
+    mat-divider {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 5px;
+
+    }
+
+    .items-list {
+        width: 95%;
+        height: 30%;
+
+        .item-button {
+            width: 100%;
+            height: 25%;
+            padding: 0px;
+
+            .button-space {
+                padding-left: 7.5%;
+                padding-right: 7.5%;
+
+                .space {
+                    width: 10%;
+
+                }
+
+                h3 {
+                    margin: 0;
+                    font-family: 'Roboto';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 14px;
+
+                }
+
+            }
+
+        }
+
+    }
+
 }

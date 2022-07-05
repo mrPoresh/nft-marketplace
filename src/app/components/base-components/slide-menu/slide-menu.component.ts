@@ -11,6 +11,7 @@ import { BasePageComponentWithDialogs } from '../base-page/base-page.component';
 export class SlideMenuComponent extends BasePageComponentWithDialogs implements OnInit {
 
   @Input() isExtend!: boolean;
+  @Input() isLogged!: boolean;
   @Output() closeEvent = new EventEmitter();
 
   constructor(
