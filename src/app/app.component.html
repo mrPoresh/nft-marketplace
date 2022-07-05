@@ -1,19 +1,23 @@
 <div class="body-wrapper">
+    <mat-sidenav-container>
+        <mat-sidenav class="nav-menu" [ngClass]="(!isExtend) ? 'default': 'extend'" #sidenav disableClose> <!-- found way to change action with backdrop -->
+            <app-slide-menu [isExtend]="isExtend" (closeEvent)="closeFromMenu()"></app-slide-menu>
+        </mat-sidenav>
 
-    <mat-toolbar class="header-container" color="primary">
-        <button mat-icon-button class="menu-icon">
-            <mat-icon>menu</mat-icon>
-        </button>
+        <mat-sidenav-content>
+            <mat-toolbar class="header-container" color="primary">
+                <app-slide-menu-button (clicked)="menuAction($event)"></app-slide-menu-button>
+        
+                <span class="header-spacer"></span>
+        
+                <div class="header-content">
+                    <button mat-flat-button class="header-buttons" color="accent">Login</button>
+                </div>
+            </mat-toolbar>
 
-        <span class="header-spacer"></span>
-
-        <div class="header-content">
-            <button mat-flat-button class="header-buttons" color="accent">Login</button>
-        </div>
-    </mat-toolbar>
-
-    <div class="content">
-        <app-home-page></app-home-page>
-    </div>
-
+            <div class="content">
+                <app-home-page [isExtend]="isExtend" [isDesktop]="isDesktop"></app-home-page>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>

@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
-import { DetectDeviceService } from 'src/app/utils/detect-device.service';
+import { Component, OnInit, Input } from '@angular/core';
 
 export interface Section {
   tag: string,
@@ -30,16 +28,15 @@ export class HomePageComponent implements OnInit {
     },
   ];
 
-  public isExtend = false;
+  //public isExtend = false;
 
-  constructor(
-    public detectDeviceService: DetectDeviceService,
-  ) {}
+  @Input() isExtend!: boolean;
+  @Input() isDesktop!: boolean;
+
+  constructor() {}
 
   ngOnInit() {
-    if (window.screen.width > 450) {
-      this.isExtend = true;
-    }
+
   }
 
 }

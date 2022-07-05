@@ -1,6 +1,6 @@
-<div class="content-wrapper" [ngClass]="(detectDeviceService.isDesktop()) ? 'desktop': 'mobile'">
+<div class="content-wrapper" [ngClass]="(isDesktop) ? 'desktop': 'mobile'">
 
-    <ng-container *ngIf="!detectDeviceService.isDesktop(); else desktop">
+    <ng-container *ngIf="!isDesktop; else desktop">
         <div class="content-mobile" [ngClass]="(!isExtend) ? 'default': 'extend'">
 
             <ng-container *ngIf="!isExtend; else extend">

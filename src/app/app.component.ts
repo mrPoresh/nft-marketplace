@@ -1,27 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { from, of } from 'rxjs';
-
 import { Alchemy, getNftMetadata, getNftsForCollection, getNftsForOwner, initializeAlchemy, Network } from '@alch/alchemy-sdk'
+import { MatSidenav } from '@angular/material/sidenav';
+
 import { DetectDeviceService } from './utils/detect-device.service';
+
+import { topMenuAction } from './components/base-components/slide-menu/slide-menu-button/slide-menu-button.component';
+import { BasePageComponent } from './components/base-components/base-page/base-page.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends BasePageComponent implements OnInit {
   title = 'nft-marketplace';
 
   public isExtend = false;
+  public isDesktop = false;
+
+  @ViewChild('sidenav') sidenav!: MatSidenav;
 
   constructor(
     public detectDeviceService: DetectDeviceService,
-  ) {}
+  ) {
+    super()
+  }
 
   ngOnInit() {
     if (window.screen.width > 450) {
       this.isExtend = true;
     }
+
+    this.isDesktop = this.detectDeviceService.isDesktop();
+    console.log(this.isDesktop)
+  }
+
+  menuAction(value: topMenuAction) {
+    if (value === topMenuAction.TOP) {
+      this.sidenav.open();
+    }
+    else if (value === topMenuAction.BACK) {
+      this.sidenav.close();
+    }
+    
+  }
+
+  closeFromMenu() {
+    this.sidenav.close();
   }
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit , Input, Output} from '@angular/core';
 
-import { Section } from '../../home-page/home-page.component';
+import { Section } from '../../../home-page/home-page.component';
 
 @Component({
   selector: 'app-cards-section',
