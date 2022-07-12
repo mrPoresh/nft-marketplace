@@ -11,12 +11,12 @@
                 <span class="header-spacer"></span>
         
                 <div class="header-content">
-                    <button mat-flat-button class="header-buttons" color="accent">Login</button>
+                    <button mat-flat-button class="header-buttons" color="accent" routerLink="/login">Login</button>
                 </div>
             </mat-toolbar>
 
             <div class="content">
-                <app-home-page [isExtend]="isExtend" [isDesktop]="isDesktop"></app-home-page>
+                <router-outlet></router-outlet>
             </div>
         </mat-sidenav-content>
     </mat-sidenav-container>

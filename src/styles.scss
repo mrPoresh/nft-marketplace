@@ -117,3 +117,7 @@ $app-first-light-theme: mat-light-theme($app-first-primary, $app-first-accent, $
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.fullPrimaryBackdropBackground {
+  background-color: mat-color($app-first-primary) !important;
+}

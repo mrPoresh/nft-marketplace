@@ -1,0 +1,24 @@
+<div class="login-body" fxLayout="column" fxLayoutAlign="start center">
+    <img class="logo" src="assets/icons/large_logo.png">
+    
+    <div id="login-form">
+        <form name="loginForm" [formGroup]="loginForm"  fxLayout="column" fxLayoutAlign="center center">
+            <mat-form-field appearance="legacy">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="some@email.com">
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Password</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <div class="buttons">
+                <button mat-flat-button color="primary">Login</button>  <!-- add uppercase -->
+                <button mat-flat-button>Reset Password</button>
+                <button mat-stroked-button color="primary">Connect Wallet</button>
+            </div>
+        </form>
+    </div>
+
+</div>

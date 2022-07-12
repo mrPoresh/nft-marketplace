@@ -10,6 +10,8 @@ import { topMenuAction } from './components/base-components/slide-menu/slide-men
 import { BasePageComponent } from './components/base-components/base-page/base-page.component';
 import { LoggedStatus } from './services/auth/login.models';
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,12 +24,14 @@ export class AppComponent extends BasePageComponent implements OnInit {
   public isDesktop = false;
 
   public isLogged = false; /* test */
+  public accounts: any;
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
   constructor(
     public detectDeviceService: DetectDeviceService,
     public loginStatusService: LoginStatusService,
+    /* public alchemy: AlchemyMainService, */
   ) {
     super()
   }
@@ -42,6 +46,10 @@ export class AppComponent extends BasePageComponent implements OnInit {
     this.loginStatusService.getLoginStatus().pipe(
       filter(status => status.isLogged === LoggedStatus.logged),  //only if logged
     ).subscribe((res) => console.log("User Status ->", res));
+
+/*     this.alchemy.connectMetamask(); */
+
+
   }
 
   menuAction(value: topMenuAction) {

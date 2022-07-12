@@ -1,5 +1,12 @@
-export const MIX_DIALOG_CONFIG = {
+/* export const MIX_DIALOG_CONFIG = {   original
     maxWidth: '90vw',
+    maxHeight: '80vh',
+    height: '100%',
+    width: '100%',
+} */
+
+export const MIX_DIALOG_CONFIG = {  
+    maxWidth: '70vw',
     maxHeight: '80vh',
     height: '100%',
     width: '100%',
