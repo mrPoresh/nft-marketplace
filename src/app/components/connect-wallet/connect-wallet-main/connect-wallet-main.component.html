@@ -1,0 +1,9 @@
+<div class="login-wrapper">
+    <ng-container *ngIf="!isExtend; else extend">
+        <app-connect-wallet></app-connect-wallet>
+    </ng-container>
+
+    <ng-template #extend>
+        <app-connect-wallet-route></app-connect-wallet-route>
+    </ng-template>
+</div>

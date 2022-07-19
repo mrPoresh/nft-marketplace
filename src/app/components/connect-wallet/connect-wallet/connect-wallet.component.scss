@@ -1,0 +1,71 @@
+.connect-wallet-body {
+    width: 100%;
+    background-color: #ffffff;
+
+    .header-button {
+        width: 100%;
+        height: 60px;
+
+    }
+
+    .logo {
+        padding-top: 25px;
+    }
+
+    h3 {
+        margin: 0;
+        padding-top: 25px;
+
+        font-size: 16px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+    }
+
+    h5 {
+        width: 90%;
+        margin: 0;
+        padding-top: 10px;
+
+        color: #979797;
+        text-align: center;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .buttons {
+        width: 90%;
+
+        .option-button {
+            width: 100%;
+            height: 50px;
+            margin-top: 15px;
+            background: #F2F3F7;
+
+
+        }
+    }
+
+}
+
+.button-space {
+    padding-left: 2.5%;
+
+    .space {
+        width: 10%;
+
+    }
+
+    h4 {
+        margin: 0;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+
+    }
+
+}

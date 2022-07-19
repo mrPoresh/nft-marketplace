@@ -35,6 +35,7 @@ export class LoginDialogRouteComponent implements OnInit {
       this.router.navigate([dialogRef.componentInstance.redirectUrl]);
     });
   }
+  
 }
 @Component({
   selector: 'app-login-dialog',

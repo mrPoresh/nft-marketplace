@@ -10,6 +10,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: '', loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule) },
+  { path: 'connect-wallet', loadChildren: () => import('./components/connect-wallet/connect-wallet.module').then(m => m.ConnectWalletModule) },
   { path: '**', redirectTo: '/' },
 ];
 
