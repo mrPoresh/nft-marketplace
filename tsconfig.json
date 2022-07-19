@@ -16,6 +16,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
     "target": "es2017",
     "module": "es2020",
     "lib": [
@@ -38,5 +40,5 @@
       "path": ["./node_modules/path-browserify"], 
       "zlib": ["./node_modules/browserify-zlib"],
     }
-  }
+  },
 }

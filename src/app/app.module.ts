@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedMaterialModule } from './modules/shared-material.module';
 
+import { WindowProviderService } from './utils/window-provider.service';  /*  */
+
 import { AppComponent } from './app.component';
 import { BaseComponent } from './components/base-components/base/base.component';
 import { BasePageComponent, BasePageComponentWithDialogs } from './components/base-components/base-page/base-page.component';
@@ -40,7 +42,7 @@ import { SlideMenuButtonComponent } from './components/base-components/slide-men
     BrowserAnimationsModule,
     SharedMaterialModule,
   ],
-  providers: [],
+  providers: [WindowProviderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
