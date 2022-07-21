@@ -8,6 +8,12 @@ import { SharedMaterialModule } from 'src/app/modules/shared-material.module';
 import { LoginMainComponent } from './login/login-main/login-main.component';
 import { LoginComponent } from './login/login/login.component';
 import { LoginDialogComponent, LoginDialogRouteComponent } from './login/login-dialog/login-dialog.component';
+import { SignupMainComponent } from './signup/signup-main/signup-main.component';
+import { SignupDialogComponent, SignupDialogRouteComponent } from './signup/signup-dialog/signup-dialog.component';
+import { SignupFormComponent } from './signup/signup-form/signup-form.component';
+import { SignupStepOneComponent } from './signup/signup-step-one/signup-step-one.component';
+import { SignupStepTwoComponent } from './signup/signup-step-two/signup-step-two.component';
+import { SignupStepThreeComponent } from './signup/signup-step-three/signup-step-three.component';
 
 
 @NgModule({
@@ -16,6 +22,13 @@ import { LoginDialogComponent, LoginDialogRouteComponent } from './login/login-d
     LoginComponent,
     LoginDialogComponent,
     LoginDialogRouteComponent,
+    SignupMainComponent,
+    SignupDialogComponent,
+    SignupDialogRouteComponent,
+    SignupFormComponent,
+    SignupStepOneComponent,
+    SignupStepTwoComponent,
+    SignupStepThreeComponent,
   ],
   imports: [
     CommonModule,

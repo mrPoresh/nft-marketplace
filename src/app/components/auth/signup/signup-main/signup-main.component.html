@@ -1,0 +1,9 @@
+<div class="login-wrapper">
+    <ng-container *ngIf="!isExtend; else extend">
+        <app-signup-form></app-signup-form>
+    </ng-container>
+
+    <ng-template #extend>
+        <app-signup-dialog-route></app-signup-dialog-route>
+    </ng-template>
+</div>
