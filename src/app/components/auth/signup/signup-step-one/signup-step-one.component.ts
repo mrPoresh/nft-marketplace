@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -19,6 +19,8 @@ export class SignupStepOneComponent extends BasePageComponentWithDialogs impleme
     password: new FormControl('', [ Validators.required, Validators.minLength(7) ]),
   });
 
+  @Output() isCompleted = new EventEmitter<boolean>();
+
   constructor(
     errorDialog: MatDialog,
     private formBuilder: FormBuilder,
@@ -33,6 +35,7 @@ export class SignupStepOneComponent extends BasePageComponentWithDialogs impleme
   onSubmit(registerForm1: FormGroup) {
     if (this.formSubmited || !this.registerForm1.valid) return;
     console.log("Form 1 ->", registerForm1);
+    this.isCompleted.next(true);
   }
 
 }

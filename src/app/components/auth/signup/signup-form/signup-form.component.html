@@ -7,7 +7,7 @@
             </div>
 
             <div class="header" *ngSwitchCase="1" fxLayout="column" fxLayoutAlign="start center">
-                <img class="logo" src="assets/icons/acc_data.png">
+                <img class="logo" src="assets/icons/acc_user_info.png">
                 <h4>User info</h4>
             </div>
 
@@ -21,15 +21,15 @@
     <mat-divider></mat-divider>
 
     <mat-horizontal-stepper [linear]="isLinear" labelPosition="bottom" #stepper>    <!-- add icons changing ! -->
-        <mat-step>
-            <app-signup-step-one></app-signup-step-one>
+        <mat-step [completed]="isCompleted1">
+            <app-signup-step-one (isCompleted)="completeStepOne($event)"></app-signup-step-one>
         </mat-step>
 
-        <mat-step >
+        <mat-step [completed]="isCompleted2">
             <app-signup-step-two></app-signup-step-two>
         </mat-step>
 
-        <mat-step>
+        <mat-step [completed]="isCompleted3">
             <app-signup-step-three></app-signup-step-three>
         </mat-step>
     </mat-horizontal-stepper>
