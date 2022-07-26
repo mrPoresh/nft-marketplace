@@ -21,15 +21,15 @@
     <mat-divider></mat-divider>
 
     <mat-horizontal-stepper [linear]="isLinear" labelPosition="bottom" #stepper>    <!-- add icons changing ! -->
-        <mat-step [completed]="isCompleted1">
-            <app-signup-step-one (isCompleted)="completeStepOne($event)"></app-signup-step-one>
+        <mat-step [stepControl]="step1.registerForm1" [completed]="isCompleted1" [editable]="isEditable">
+            <app-signup-step-one #step1 (isCompleted)="completeStepOne($event)"></app-signup-step-one>
         </mat-step>
 
-        <mat-step [completed]="isCompleted2">
-            <app-signup-step-two></app-signup-step-two>
+        <mat-step [stepControl]="step2.registerForm2" [completed]="isCompleted2" [editable]="isEditable">
+            <app-signup-step-two #step2 (isCompleted)="completeStepTwo($event)"></app-signup-step-two>
         </mat-step>
 
-        <mat-step [completed]="isCompleted3">
+        <mat-step [completed]="isCompleted3" [editable]="isEditable">
             <app-signup-step-three></app-signup-step-three>
         </mat-step>
     </mat-horizontal-stepper>
