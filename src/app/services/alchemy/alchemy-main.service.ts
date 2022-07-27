@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 
 import Web3 from "web3";
@@ -59,3 +59,4 @@ export class AlchemyMainService {
   }
 
 }
+ */

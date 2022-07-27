@@ -8,7 +8,7 @@ import { LoginStatusService } from './services/auth/login-status.service';
 import { topMenuAction } from './components/base-components/slide-menu/slide-menu-button/slide-menu-button.component';
 import { BasePageComponent } from './components/base-components/base-page/base-page.component';
 import { LoggedStatus } from './services/auth/login.models';
-import { AlchemyMainService } from './services/alchemy/alchemy-main.service';
+/* import { AlchemyMainService } from './services/alchemy/alchemy-main.service'; */
 
 
 
@@ -19,7 +19,7 @@ import { AlchemyMainService } from './services/alchemy/alchemy-main.service';
 })
 export class AppComponent extends BasePageComponent implements OnInit {
   title = 'nft-marketplace';
-  id = 'ETHEREUM:0x6ede7f3c26975aad32a475e1021d8f6f39c89d82:41256998051628345422135008486692978525895218265513029176440545919372353339397';
+  /* id = 'ETHEREUM:0x6ede7f3c26975aad32a475e1021d8f6f39c89d82:41256998051628345422135008486692978525895218265513029176440545919372353339397'; */
 
   public isExtend = false;
   public isDesktop = false;
@@ -32,7 +32,7 @@ export class AppComponent extends BasePageComponent implements OnInit {
   constructor(
     public detectDeviceService: DetectDeviceService,
     public loginStatusService: LoginStatusService,
-    public alchemy: AlchemyMainService,
+    /* public alchemy: AlchemyMainService, */
   ) {
     super()
   }

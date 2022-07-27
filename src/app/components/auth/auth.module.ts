@@ -14,6 +14,10 @@ import { SignupFormComponent } from './signup/signup-form/signup-form.component'
 import { SignupStepOneComponent } from './signup/signup-step-one/signup-step-one.component';
 import { SignupStepTwoComponent } from './signup/signup-step-two/signup-step-two.component';
 import { SignupStepThreeComponent } from './signup/signup-step-three/signup-step-three.component';
+import { LostPasswordMainComponent } from './lost-password/lost-password-main/lost-password-main.component';
+import { LostPasswordDialogComponent, LostPasswordDialogRouteComponent } from './lost-password/lost-password-dialog/lost-password-dialog.component';
+import { LostPasswordComponent } from './lost-password/lost-password/lost-password.component';
+
 
 
 @NgModule({
@@ -29,6 +33,11 @@ import { SignupStepThreeComponent } from './signup/signup-step-three/signup-step
     SignupStepOneComponent,
     SignupStepTwoComponent,
     SignupStepThreeComponent,
+    LostPasswordMainComponent,
+    LostPasswordComponent,
+    LostPasswordDialogComponent,
+    LostPasswordDialogRouteComponent,
+
   ],
   imports: [
     CommonModule,
