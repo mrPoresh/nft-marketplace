@@ -5,43 +5,43 @@
         <app-slide-menu-button (clicked)="callLinkClickedParent()"></app-slide-menu-button>
     </mat-toolbar>
 
-    <ng-container *ngIf="!isLogged; else logged">
-        
-        <!-- singup and loggin button -->
+    <!-- <ng-container *ngIf="!isLogged; else logged">
 
     </ng-container>
 
     <ng-template #logged>
-
-        <!-- icon and info stuff -->
         
-    </ng-template>
+    </ng-template>   -->
 
     <mat-divider></mat-divider>
 
-    <div class="items-list" fxLayout="column" fxLayoutAlign="start center">
-        <button mat-flat-button class="item-button">
-            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="icon">home</mat-icon><span class="space"></span><h3>Home</h3>
-            </div>
-        </button>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenavDeep>
+            <app-explore-menu (closeEvent)="close()"></app-explore-menu>
+        </mat-sidenav>
 
-        <button mat-flat-button class="item-button">
-            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="icon">explore</mat-icon><span class="space"></span><h3>Explore</h3>
+        <mat-sidenav-content>
+            <div class="items-list" fxLayout="column" fxLayoutAlign="start center">
+                <button mat-flat-button class="item-button" routerLink="/">     <!-- (click)="callLinkClickedParent()" -->
+                    <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-icon class="icon">home</mat-icon><span class="space"></span><h3>Home</h3>
+                    </div>
+                </button>
+        
+                <app-explore-menu-button (clicked)="menuAction($event)"></app-explore-menu-button>
+        
+                <button mat-flat-button class="item-button">
+                    <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-icon class="icon">supervised_user_circle</mat-icon><span class="space"></span><h3>FAQ</h3>
+                    </div>
+                </button>
+        
+                <button mat-flat-button class="item-button">
+                    <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-icon class="icon">rowing</mat-icon><span class="space"></span><h3>Support</h3>
+                    </div>
+                </button>
             </div>
-        </button>
-
-        <button mat-flat-button class="item-button">
-            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="icon">supervised_user_circle</mat-icon><span class="space"></span><h3>FAQ</h3>
-            </div>
-        </button>
-
-        <button mat-flat-button class="item-button">
-            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="icon">rowing</mat-icon><span class="space"></span><h3>Support</h3>
-            </div>
-        </button>
-    </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>

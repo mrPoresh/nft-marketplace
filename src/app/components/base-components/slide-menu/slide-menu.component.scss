@@ -23,35 +23,58 @@
 
     }
 
-    .items-list {
-        width: 95%;
-        height: 30%;
+    mat-sidenav-container {
+        width: 100%;
+        height: 100%;
+        background-color: #FFFFFF;
 
-        .item-button {
+        mat-sidenav {
             width: 100%;
-            height: 25%;
-            padding: 0px;
 
-            .button-space {
-                padding-left: 7.5%;
-                padding-right: 7.5%;
-
-                .space {
-                    width: 10%;
-
-                }
-
-                h3 {
-                    margin: 0;
-                    font-family: 'Roboto';
-                    font-style: normal;
-                    font-weight: 500;
-                    font-size: 14px;
-
-                }
-
+            app-explore-menu {
+                width: 100%;
             }
+            
+        }
 
+        mat-sidenav-content {
+
+            .items-list {
+                width: 95%;
+                height: 30%;
+
+                app-explore-menu-button {
+                    width: 100%;
+                }
+        
+                .item-button {
+                    width: 100%;
+                    height: 25%;
+                    padding: 0px;
+        
+                    .button-space {
+                        padding-left: 7.5%;
+                        padding-right: 7.5%;
+        
+                        .space {
+                            width: 10%;
+        
+                        }
+        
+                        h3 {
+                            margin: 0;
+                            font-family: 'Roboto';
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 14px;
+        
+                        }
+        
+                    }
+        
+                }
+        
+            }
         }
 
     }

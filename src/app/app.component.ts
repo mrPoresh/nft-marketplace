@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { filter } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 
@@ -27,6 +27,8 @@ export class AppComponent extends BasePageComponent implements OnInit {
   public isLogged = false; /* test */
   public accounts: any;
 
+  @Output() closeEvent = new EventEmitter();
+
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
   constructor(
@@ -54,6 +56,8 @@ export class AppComponent extends BasePageComponent implements OnInit {
 
   }
 
+  /* *----------* Menu Service *----------* */
+
   menuAction(value: topMenuAction) {
     if (value === topMenuAction.TOP) {
       this.sidenav.open();
@@ -64,8 +68,15 @@ export class AppComponent extends BasePageComponent implements OnInit {
     
   }
 
-  closeFromMenu() {
+  /* backDrop() { ?
+    console.log("back Drop");
+    this.sidenav.close();
+  } */
+
+  close() {
     this.sidenav.close();
   }
+
+   /* *-----------------------------------* */
 
 }

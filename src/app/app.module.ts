@@ -19,6 +19,8 @@ import { CardsSectionComponent } from './components/base-components/cards/cards-
 import { CardComponent } from './components/base-components/cards/card/card.component';
 import { SlideMenuComponent } from './components/base-components/slide-menu/slide-menu.component';
 import { SlideMenuButtonComponent } from './components/base-components/slide-menu/slide-menu-button/slide-menu-button.component';
+import { ExploreMenuComponent } from './components/base-components/slide-menu/explore-menu/explore-menu.component';
+import { ExploreMenuButtonComponent } from './components/base-components/slide-menu/explore-menu/explore-menu-button/explore-menu-button.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { SlideMenuButtonComponent } from './components/base-components/slide-men
     CardComponent,
     SlideMenuComponent,
     SlideMenuButtonComponent,
+    ExploreMenuComponent,
+    ExploreMenuButtonComponent,
   ],
   imports: [
     BrowserModule,

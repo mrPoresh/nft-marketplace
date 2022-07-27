@@ -1,24 +1,45 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+export interface MenuControl {
+  mainMenu: boolean,
+  exploreMenu: boolean,
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ToggleMenuBackService {
 
-  private _showBack = new BehaviorSubject<boolean>(false);
+  private _showBack = new BehaviorSubject<MenuControl>({ 
+    mainMenu: false,
+    exploreMenu: false, 
+  });
 
   constructor() { }
 
-  showBack() {
-    this._showBack.next(true);
+  showMain() {
+    this._showBack.next({ 
+      mainMenu: true,
+      exploreMenu: false,
+    });
   }
 
-  hideBack() {
-    this._showBack.next(false);
+  showAll() {
+    this._showBack.next({ 
+      mainMenu: true,
+      exploreMenu: true,
+    });
   }
 
-  attach(): Observable<boolean> {
+  hideAll() {
+    this._showBack.next({ 
+      mainMenu: false,
+      exploreMenu: false,
+    });
+  }
+
+  attach(): Observable<MenuControl> {
     return this._showBack.asObservable();
   }
   

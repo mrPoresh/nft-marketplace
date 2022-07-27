@@ -1,7 +1,7 @@
 <div class="body-wrapper">
-    <mat-sidenav-container>
-        <mat-sidenav class="nav-menu" [ngClass]="(!isExtend) ? 'default': 'extend'" #sidenav disableClose> <!-- found way to change action with backdrop -->
-            <app-slide-menu [isExtend]="isExtend" [isLogged]="isLogged" (closeEvent)="closeFromMenu()"></app-slide-menu>
+    <mat-sidenav-container >    <!-- (backDropClick)="backDrop()" ?-->
+        <mat-sidenav class="nav-menu" [ngClass]="(!isExtend) ? 'default': 'extend'" #sidenav> <!-- found way to change action with backdrop -->
+            <app-slide-menu [isExtend]="isExtend" [isLogged]="isLogged" (closeEvent)="close()"></app-slide-menu>
         </mat-sidenav>
 
         <mat-sidenav-content>
