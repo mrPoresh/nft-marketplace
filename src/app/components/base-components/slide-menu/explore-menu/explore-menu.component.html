@@ -1,2 +1,65 @@
-<app-explore-menu-button (clicked)="callLinkClickedParent()"></app-explore-menu-button>
-<p>explore-menu works!</p>
+<div class="explore-menu" fxLayout="column" fxLayoutAlign="start center">
+    <app-explore-menu-button (clicked)="callLinkClickedParent()"></app-explore-menu-button>
+
+    <div class="button-list" fxLayout="column" fxLayoutAlign="start center">
+        <button mat-flat-button>
+            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                <img src="assets/icons/menu/view_compact.png"><span class="space"></span><h3>All NFT</h3>
+            </div>
+        </button>
+
+        <button mat-flat-button>            
+            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                <img src="assets/icons/menu/filter_hdr.png"><span class="space"></span><h3>New</h3>
+            </div>
+        </button>
+
+        <button mat-flat-button>            
+            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                <img src="assets/icons/menu/whatshot.png"><span class="space"></span><h3>Top</h3>
+            </div>
+        </button>
+
+        <button mat-flat-button>            
+            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                <img src="assets/icons/menu/brush.png"><span class="space"></span><h3>Art</h3>
+            </div>
+        </button>
+
+        <button mat-flat-button>            
+            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                <img src="assets/icons/menu/burst_mode.png"><span class="space"></span><h3>Collectibles</h3>
+            </div>
+        </button>
+
+        <button mat-flat-button>            
+            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                <img src="assets/icons/menu/sports_basketball.png"><span class="space"></span><h3>Sport</h3>
+            </div>
+        </button>
+
+        <button mat-flat-button>            
+            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                <img src="assets/icons/menu/queue_music.png"><span class="space"></span><h3>Music</h3>
+            </div>
+        </button>
+
+        <button mat-flat-button>            
+            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                <img src="assets/icons/menu/image.png"><span class="space"></span><h3>Photography</h3>
+            </div>
+        </button>
+
+        <button mat-flat-button>            
+            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                <img src="assets/icons/menu/style.png"><span class="space"></span><h3>Tranding cards</h3>
+            </div>
+        </button>
+
+        <button mat-flat-button>            
+            <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                <img src="assets/icons/menu/other.png"><span class="space"></span><h3>Other</h3>
+            </div>
+        </button>
+    </div>
+</div>

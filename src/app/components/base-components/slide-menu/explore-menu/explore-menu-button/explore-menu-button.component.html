@@ -1,12 +1,12 @@
 <div class="explore-menu-button" fxLayout="column" fxLayoutAlign="start center">
-    <button mat-flat-button class="explore-button" (click)="openMenu()" *ngIf="!isShowBackButton else showbackbutton">
+    <button mat-flat-button class="explore-button" (click)="openMenu()" [ngClass]="(!isShowBackButton) ? 'default': 'extend'" *ngIf="!isShowBackButton else showbackbutton">
         <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
             <mat-icon class="icon">explore</mat-icon><span class="space"></span><h3>Explore</h3>
         </div>
     </button>
 
     <ng-template #showbackbutton>
-        <button mat-flat-button class="explore-button" (click)="goBack()">
+        <button mat-flat-button class="explore-button" [ngClass]="(!isShowBackButton) ? 'default': 'extend'" (click)="goBack()">
             <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
                 <mat-icon class="icon">arrow_left</mat-icon><span class="space"></span><h3>Explore</h3>
             </div>

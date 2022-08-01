@@ -1,0 +1,47 @@
+.explore-menu {
+    width: 80%;
+    height: 100%;
+
+    app-explore-menu-button {
+        width: 100%;
+    }
+
+    .button-list {
+        width: 100%;
+        padding-top: 20px;  /* test */
+
+        button {
+            width: 100%;
+            margin-top: 5px;
+            padding: 0px;
+
+            .button-space {
+                width: 100%;
+                padding: 0px;
+
+                img {
+
+                }
+
+                .space {
+                    width: 5%;
+
+                }
+
+                h3 {
+                    margin: 0;
+                    font-family: 'Roboto';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: #A1A4B2;
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

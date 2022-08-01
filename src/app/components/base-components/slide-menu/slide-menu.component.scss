@@ -30,11 +30,10 @@
 
         mat-sidenav {
             width: 100%;
-
-            app-explore-menu {
-                width: 100%;
-            }
             
+            app-explore-menu {
+                height: 100%;
+            }
         }
 
         mat-sidenav-content {
@@ -45,6 +44,7 @@
 
                 app-explore-menu-button {
                     width: 100%;
+                    height: 25%;
                 }
         
                 .item-button {
@@ -74,6 +74,14 @@
         
                 }
         
+            }
+
+            .connect-wallet-button {
+                width: 80%;
+                margin-bottom: 7%;
+
+                color: #3C71CE;
+                border-color: #3C71CE;
             }
         }
 

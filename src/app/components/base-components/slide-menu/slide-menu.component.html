@@ -17,10 +17,10 @@
 
     <mat-sidenav-container>
         <mat-sidenav #sidenavDeep>
-            <app-explore-menu (closeEvent)="close()"></app-explore-menu>
+            <app-explore-menu fxLayout="column" fxLayoutAlign="start center" (closeEvent)="close()"></app-explore-menu>
         </mat-sidenav>
 
-        <mat-sidenav-content>
+        <mat-sidenav-content fxLayout="column" fxLayoutAlign="space-between center">
             <div class="items-list" fxLayout="column" fxLayoutAlign="start center">
                 <button mat-flat-button class="item-button" routerLink="/">     <!-- (click)="callLinkClickedParent()" -->
                     <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
@@ -28,7 +28,7 @@
                     </div>
                 </button>
         
-                <app-explore-menu-button (clicked)="menuAction($event)"></app-explore-menu-button>
+                <app-explore-menu-button fxLayout="column" fxLayoutAlign="center center" (clicked)="menuAction($event)"></app-explore-menu-button>
         
                 <button mat-flat-button class="item-button">
                     <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
@@ -42,6 +42,8 @@
                     </div>
                 </button>
             </div>
+
+            <button class="connect-wallet-button" mat-stroked-button>CONNECT WALLET</button>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>
