@@ -8,8 +8,7 @@ import { LoginStatusService } from './services/auth/login-status.service';
 import { topMenuAction } from './components/base-components/slide-menu/slide-menu-button/slide-menu-button.component';
 import { BasePageComponent } from './components/base-components/base-page/base-page.component';
 import { LoggedStatus } from './services/auth/login.models';
-/* import { AlchemyMainService } from './services/alchemy/alchemy-main.service'; */
-
+import { AlchemyMainService } from './services/alchemy/alchemy-main.service';
 
 
 @Component({
@@ -20,6 +19,24 @@ import { LoggedStatus } from './services/auth/login.models';
 export class AppComponent extends BasePageComponent implements OnInit {
   title = 'nft-marketplace';
   /* id = 'ETHEREUM:0x6ede7f3c26975aad32a475e1021d8f6f39c89d82:41256998051628345422135008486692978525895218265513029176440545919372353339397'; */
+
+  /* test values */
+
+  public collectionTestEthId = 'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544'  /* Azuki */
+  public nftAddressPlusId = 'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544:6322'; /* Azuki */
+  public ownerOfnftAddressPlusId = 'ETHEREUM:0xe915bcc9bd87d92d442bde0d2390bff23485dde4';
+
+  public randomNFTboy = 'ETHEREUM:0xd9a3ea0acdb41a12e871482a8eef99a017e38bf4'
+
+  public arrayOfNFTs = [
+    'ETHEREUM:0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7:23221', 
+    'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544:6322', 
+    'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544:3703',
+    'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544:6094',
+    'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544:3833',
+  ];
+
+  /* ---------- */
 
   public isExtend = false;
   public isDesktop = false;
@@ -34,7 +51,7 @@ export class AppComponent extends BasePageComponent implements OnInit {
   constructor(
     public detectDeviceService: DetectDeviceService,
     public loginStatusService: LoginStatusService,
-    /* public alchemy: AlchemyMainService, */
+    public alchemy: AlchemyMainService,
   ) {
     super()
   }
@@ -50,10 +67,18 @@ export class AppComponent extends BasePageComponent implements OnInit {
       filter(status => status.isLogged === LoggedStatus.logged),  //only if logged
     ).subscribe((res) => console.log("User Status ->", res));
 
-/*     this.alchemy.init().then(() => 
-      this.alchemy.getBalance().subscribe((res) => console.log("Balance ->", res))
-    ); */
+    this.alchemy.init().then(() => {
+      this.alchemy.getMixCollections().subscribe((res) => console.log('Get Mix Collections', res));
+      this.alchemy.getCollectionById(this.collectionTestEthId).subscribe((res) => console.log('Get Collection By Id', res));
+      this.alchemy.getCollectionsByOwner(this.randomNFTboy).subscribe((res) => console.log('Get Collections By User Address', res));
+      this.alchemy.refreshCollectionMetaData(this.collectionTestEthId).subscribe(() => console.log('Colletion meta Refreshed'));
 
+      this.alchemy.getMixItems().subscribe((res) => console.log('Get Mixed Items', res));
+      this.alchemy.getItemById(this.nftAddressPlusId).subscribe((res) => console.log('Get Nft by Id', res));
+      /* this.alchemy.getItemsByIds(this.arrayOfNFTs).subscribe((res) => console.log("Get Items By IDs", res)); */
+      this.alchemy.checkItemRestriction(this.nftAddressPlusId, this.ownerOfnftAddressPlusId).subscribe((res) => console.log('Get Item Status', res));
+    });
+    
   }
 
   /* *----------* Menu Service *----------* */
