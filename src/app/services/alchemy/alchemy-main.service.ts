@@ -18,11 +18,23 @@ import type {
   GetItemByIdRequest,
   GetItemByIdsRequest,
   CheckItemRestrictionRequest,
+  GetItemRoyaltiesByIdRequest,
+  GetItemsByCollectionRequest,
+  GetItemsByCreatorRequest,
+  GetItemsByOwnerRequest,
+  GetItemsByOwnerWithOwnershipRequest,
+  GetOrderBidsByItemRequest,
+  GetOrderBidsByMakerRequest,
+  GetOrderByIdRequest,
+  GetOrdersAllRequest,
+  GetSellOrdersRequest,
+  GetSellOrdersByItemRequest,
+  GetSellOrdersByMakerRequest,
 } from "@rarible/api-client/build/apis"
 
 import type { RestrictionCheckForm, ItemIds } from "@rarible/api-client/build/models";
 
-import { Blockchain } from "@rarible/api-client/build/models";
+import { Blockchain, OrderStatus } from "@rarible/api-client/build/models";
 /* ------------------- */
 
 import { WindowProviderService } from 'src/app/utils/window-provider.service';
@@ -43,7 +55,7 @@ export class AlchemyMainService {
   }
 
   async init() {
-    if (this.ethereum) {
+   /*  if (this.ethereum) { */
 /*       await this.ethereum.request({ method: "eth_requestAccounts"});  // unlock metamask
       console.log('ethereum ->', this.ethereum);
 
@@ -59,10 +71,10 @@ export class AlchemyMainService {
       this.raribleSdk = createRaribleSdk(undefined /* ethWallet */, "prod");
       console.log("raribleSdk ->", this.raribleSdk);
 
-    } else {
-      this.winRef.window.alert("Need Metamsk");
+    /* } else { */
+      /* this.winRef.window.alert("Need Metamsk"); */
 
-    }
+   /*  } */
 
   }
 
@@ -80,7 +92,7 @@ export class AlchemyMainService {
   getCollectionById(address: any) {
     const options: GetCollectionByIdRequest = {
       collection: address
-    };
+    }
     return from(this.raribleSdk.apis.collection.getCollectionById(options));
   }
 
@@ -94,12 +106,12 @@ export class AlchemyMainService {
     return from(this.raribleSdk.apis.collection.getCollectionsByOwner(options));
   }
 
-  refreshCollectionMetaData(address: any) {
+/*   refreshCollectionMetaData(address: any) {
     const options: RefreshCollectionMetaRequest = {
       collection: address,
     }
     return from(this.raribleSdk.apis.collection.refreshCollectionMeta(options))
-  }
+  } */
 
   /* ++++++++++ Item Flow ++++++++++ */
 
@@ -118,7 +130,7 @@ export class AlchemyMainService {
   getItemById(address: any) {
     const options: GetItemByIdRequest = {
       itemId: address,
-    };
+    }
     return from(this.raribleSdk.apis.item.getItemById(options));
   }
 
@@ -129,7 +141,7 @@ export class AlchemyMainService {
     return from(this.raribleSdk.apis.item.getItemByIds(options)); 
   } */
 
-  checkItemRestriction(address: any, owner: any) {
+  checkItemRestriction(address: string, owner: any) {
     const options: CheckItemRestrictionRequest = {
       itemId: address,
       restrictionCheckForm : {
@@ -138,6 +150,104 @@ export class AlchemyMainService {
       }
     }
     return from(this.raribleSdk.apis.item.checkItemRestriction(options));
+  }
+
+  getItemRoyaltiesById(address: string) {
+    const options: GetItemRoyaltiesByIdRequest = {
+      itemId: address
+    }
+    return from(this.raribleSdk.apis.item.getItemRoyaltiesById(options));
+  }
+
+  getItemsByCollection(address: string) {
+    const options: GetItemsByCollectionRequest = {
+      collection: address,
+    }
+    return from(this.raribleSdk.apis.item.getItemsByCollection(options))
+  }
+
+  getItemsByCreator(address: string) {
+    const options: GetItemsByCreatorRequest = {
+      creator: address,
+      blockchains: [Blockchain.ETHEREUM],
+    }
+    return from(this.raribleSdk.apis.item.getItemsByCreator(options));
+  }
+
+  getItemsByOwner(address: string) {
+    const options: GetItemsByOwnerRequest = {
+      owner: address,
+      blockchains: [Blockchain.ETHEREUM],
+    }
+    return from(this.raribleSdk.apis.item.getItemsByOwner(options));
+  }
+
+  getItemsByOwnerWithOwnership(address: string) {
+    const options: GetItemsByOwnerWithOwnershipRequest = {
+      owner: address
+    }
+    return from(this.raribleSdk.apis.item.getItemsByOwnerWithOwnership(options))
+  }
+
+  /* ++++++++++ OrderControllerApi ++++++++++ */
+
+  getOrderBidsByItem(address: string) {
+    const options: GetOrderBidsByItemRequest = {
+      itemId: address,
+      status: [OrderStatus.ACTIVE],
+      /* other params */
+    }
+    return from(this.raribleSdk.apis.order.getOrderBidsByItem(options));
+  }
+
+  getOrderBidsByMaker(address: string) {
+    const options: GetOrderBidsByMakerRequest = {
+      maker: address,
+      status: [OrderStatus.ACTIVE],
+      /* other params */
+    }
+    return from(this.raribleSdk.apis.order.getOrderBidsByMaker(options));
+  }
+
+  getOrderById(address: string) {
+    const options: GetOrderByIdRequest = {
+      id: address,
+    }
+    return from(this.raribleSdk.apis.order.getOrderById(options));
+  }
+
+  getOrdersAll() {
+    const options: GetOrdersAllRequest = {
+      blockchains: [Blockchain.ETHEREUM],
+      status: [OrderStatus.ACTIVE],
+      size: 100,
+    }
+    return from(this.raribleSdk.apis.order.getOrdersAll(options));
+  }
+
+  /* getOrdersByIds */
+
+  getSellOrders() {
+    const options: GetSellOrdersRequest = {
+      blockchains: [Blockchain.ETHEREUM],
+      size: 50,
+    }
+    return from(this.raribleSdk.apis.order.getSellOrders(options));
+  }
+
+  getSellOrdersByItem(address: string) {
+    const options: GetSellOrdersByItemRequest = {
+      itemId: address,
+      status: [OrderStatus.ACTIVE],
+    }
+    return from(this.raribleSdk.apis.order.getSellOrdersByItem(options));
+  }
+
+  getSellOrdersByMaker(address: string) {
+    const options: GetSellOrdersByMakerRequest = {
+      maker: address,
+    }
+    return from(this.raribleSdk.apis.order.getSellOrdersByMaker(options));
   }
 
 }
