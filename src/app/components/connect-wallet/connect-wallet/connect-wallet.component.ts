@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
+import { DetectDeviceService } from 'src/app/utils/detect-device.service';
 
 @Component({
   selector: 'app-connect-wallet',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnectWalletComponent implements OnInit {
 
-  constructor() { }
+  isDesktop = false;
 
-  ngOnInit(): void {
+  constructor(
+    public detectDeviceService: DetectDeviceService,
+    public loginSDK: SdkLoginService,
+  ) { }
+
+  ngOnInit() {
+    this.isDesktop = this.detectDeviceService.isDesktop();
+  }
+
+  async connectMetamask() {
+    await this.loginSDK.loginWithMetamask()
   }
 
 }

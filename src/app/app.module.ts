@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedMaterialModule } from './modules/shared-material.module';
 
 import { WindowProviderService } from './utils/window-provider.service';  /*  */
+import { RaribleSDKMain } from './services/rarible-sdk-services/rarible-sdk-main.service';
 
 import { AppComponent } from './app.component';
 import { BaseComponent } from './components/base-components/base/base.component';
@@ -21,6 +22,7 @@ import { SlideMenuComponent } from './components/base-components/slide-menu/slid
 import { SlideMenuButtonComponent } from './components/base-components/slide-menu/slide-menu-button/slide-menu-button.component';
 import { ExploreMenuComponent } from './components/base-components/slide-menu/explore-menu/explore-menu.component';
 import { ExploreMenuButtonComponent } from './components/base-components/slide-menu/explore-menu/explore-menu-button/explore-menu-button.component';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,10 @@ import { ExploreMenuButtonComponent } from './components/base-components/slide-m
     BrowserAnimationsModule,
     SharedMaterialModule,
   ],
-  providers: [WindowProviderService],
+  providers: [
+    WindowProviderService,
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
