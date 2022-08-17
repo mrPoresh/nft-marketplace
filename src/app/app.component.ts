@@ -57,7 +57,7 @@ export class AppComponent extends BasePageComponent implements OnInit {
     super()
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     if (window.screen.width > 450) {
       this.isExtend = true;
     }
