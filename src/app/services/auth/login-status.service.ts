@@ -11,7 +11,7 @@ export class LoginStatusService {
   private userInfo = new BehaviorSubject<UserInfo>({
     isLogged: LoggedStatus.voidState, 
     isLoggedFirebase: LoggedStatus.voidState, 
-    isLoggedMetamask: LoggedStatus.voidState,
+    isLoggedWallet: LoggedStatus.voidState,
   });
 
   constructor() { }

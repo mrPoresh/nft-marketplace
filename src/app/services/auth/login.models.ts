@@ -12,5 +12,10 @@ export interface UserInfo {
     //currency?: string;
     //fullInfo?: UserInfoResponse;
     isLoggedFirebase?: LoggedStatus;
-    isLoggedMetamask?: LoggedStatus;
+    isLoggedWallet?: LoggedStatus;
+    walletAddress?: UserWalletAddress;
+}
+
+export interface UserWalletAddress {
+    address?: [string]
 }

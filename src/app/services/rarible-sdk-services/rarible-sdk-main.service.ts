@@ -41,24 +41,12 @@ import { WindowProviderService } from 'src/app/utils/window-provider.service';
 export class RaribleSDKMain {
 
   public raribleSdk: IRaribleSdk; 
-  public web3: Web3;
 
-  ethereum: any;
 
   constructor(
     public winRef: WindowProviderService,
   ) {
-    this.ethereum = winRef.window.ethereum;
     this.raribleSdk = createRaribleSdk(undefined, "prod");
-  }
-
-  initWeb3(provider: any | undefined) {
-    if (provider) {
-      this.web3 = new Web3(provider);
-      console.log("Init web3", this.web3);
-
-    }
-
   }
 
   initSDKwithProvider(provider: any) {
