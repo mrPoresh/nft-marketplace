@@ -26,19 +26,7 @@ export class ConnectWalletComponent implements OnInit {
 
     this.loginSDK.getConenctionOptions().subscribe((res) => {
       this.options = res;
-      console.log("Connect Options ->", this.options);
     });
-
-    this.loginSDK.connector.connection.subscribe((res) => {
-      console.log("Status in Component >>>", res);
-
-      if (res.status == "connected") {
-        console.log("Redy to work");
-        this.loginSDK.getBalance("ETHEREUM:" + res.connection.address).subscribe((res) => console.log("Balance >>>", res.toString()));
-      } else {
-        console.log("Stand By")
-      }
-    })
     
   }
 

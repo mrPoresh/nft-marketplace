@@ -58,6 +58,8 @@ export class SdkLoginService extends RaribleSDKMain {
     return from(this.connector.getOptions());
   }
 
+  /* auth */
+
   async loginWithWallet(option: any) {
     this.state.setValue(this.connector.provider);
     await this.connector.connect(option);
@@ -71,5 +73,7 @@ export class SdkLoginService extends RaribleSDKMain {
       }
     });
   }
+
+  /*  */
 
 }

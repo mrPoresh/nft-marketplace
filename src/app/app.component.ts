@@ -3,12 +3,13 @@ import { filter } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 
 import { DetectDeviceService } from './utils/detect-device.service';
-import { LoginStatusService } from './services/auth/login-status.service';
+import { LoginStatusService } from './services/auth/login/login-status.service';
 
 import { topMenuAction } from './components/base-components/slide-menu/slide-menu-button/slide-menu-button.component';
 import { BasePageComponent } from './components/base-components/base-page/base-page.component';
-import { LoggedStatus } from './services/auth/login.models';
+import { LoggedStatus } from './services/auth/login/login.models';
 import { RaribleSDKMain } from './services/rarible-sdk-services/rarible-sdk-main.service';
+import { CheckSessionService } from './services/auth/check-session/check-session.service';
 
 
 @Component({
@@ -53,6 +54,7 @@ export class AppComponent extends BasePageComponent implements OnInit {
     public detectDeviceService: DetectDeviceService,
     public loginStatusService: LoginStatusService,
     public sdk: RaribleSDKMain,
+    public checkSessionService: CheckSessionService,
   ) {
     super()
   }
@@ -64,9 +66,7 @@ export class AppComponent extends BasePageComponent implements OnInit {
 
     this.isDesktop = this.detectDeviceService.isDesktop();
 
-    this.loginStatusService.getLoginStatus().pipe(
-      filter(status => status.isLogged === LoggedStatus.logged),  //only if logged
-    ).subscribe((res) => console.log("User Status ->", res));
+    /* this.checkSessionService.requestCheckUserInfo().subscribe((res) => console.log("App Comp", res)) */
 
     this.sdk.getItemsByOwner(this.randomNFTboy).subscribe((res) => console.log("res", res))
     
