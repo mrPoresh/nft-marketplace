@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { from } from 'rxjs';
+import { forkJoin, from, Observable, map } from 'rxjs';
 
 import Web3 from "web3"
 import { createRaribleSdk } from "@rarible/sdk"
@@ -9,25 +9,21 @@ import type {
   GetCollectionByIdRequest, 
   GetAllCollectionsRequest, 
   GetCollectionsByOwnerRequest,
-  RefreshCollectionMetaRequest,
   GetAllItemsRequest,
   GetItemByIdRequest,
-  GetItemByIdsRequest,
   CheckItemRestrictionRequest,
   GetItemRoyaltiesByIdRequest,
   GetItemsByCollectionRequest,
   GetItemsByCreatorRequest,
   GetItemsByOwnerRequest,
-  GetItemsByOwnerWithOwnershipRequest,
   GetOrderBidsByItemRequest,
-  GetOrderBidsByMakerRequest,
   GetOrderByIdRequest,
   GetOrdersAllRequest,
   GetSellOrdersRequest,
   GetSellOrdersByItemRequest,
   GetSellOrdersByMakerRequest,
 } from "@rarible/api-client/build/apis"
-import type { RestrictionCheckForm, ItemIds } from "@rarible/api-client/build/models";
+import type { RestrictionCheckForm } from "@rarible/api-client/build/models";
 import { Blockchain, OrderStatus } from "@rarible/api-client/build/models";
 import { IRaribleSdk } from '@rarible/sdk/build/domain';
 
@@ -47,11 +43,12 @@ export class RaribleSDKMain {
     public winRef: WindowProviderService,
   ) {
     this.raribleSdk = createRaribleSdk(undefined, "prod");
+    console.log("Connecting SDK without provider");
   }
 
   initSDKwithProvider(provider: any) {
     this.raribleSdk = createRaribleSdk(provider, "prod");
-    console.log("Connected SDK", this.raribleSdk);
+    console.log("Connecting SDK with provider");
   }
 
   /* ++++++++++ Collection Flow ++++++++++ */
@@ -75,7 +72,6 @@ export class RaribleSDKMain {
   getCollectionsByOwner(owner: any) {
     const options: GetCollectionsByOwnerRequest = {
       owner: owner,
-      blockchains: [Blockchain.ETHEREUM],
       continuation: undefined,
       size: undefined,
     }
@@ -110,13 +106,6 @@ export class RaribleSDKMain {
     return from(this.raribleSdk.apis.item.getItemById(options));
   }
 
-/*   getItemsByIds(ids: any) {
-    const options: GetItemByIdsRequest = {
-      itemIds: ids, //  array of ids
-    };
-    return from(this.raribleSdk.apis.item.getItemByIds(options)); 
-  } */
-
   checkItemRestriction(address: string, owner: any) {
     const options: CheckItemRestrictionRequest = {
       itemId: address,
@@ -135,17 +124,28 @@ export class RaribleSDKMain {
     return from(this.raribleSdk.apis.item.getItemRoyaltiesById(options));
   }
 
-  getItemsByCollection(address: string) {
+  getItemsByCollection(address: string, size: number) {
     const options: GetItemsByCollectionRequest = {
       collection: address,
+      size: size,
     }
     return from(this.raribleSdk.apis.item.getItemsByCollection(options))
+  }
+
+  getItemsByCollections(options) {
+    const data: Observable<any>[] = [];
+    options.forEach((item) => {
+      data.push(this.getItemsByCollection(item.address, item.size).pipe(
+        map((res) => res.items)
+      ));
+    });
+
+    return forkJoin(data);
   }
 
   getItemsByCreator(address: string) {
     const options: GetItemsByCreatorRequest = {
       creator: address,
-      blockchains: [Blockchain.ETHEREUM],
     }
     return from(this.raribleSdk.apis.item.getItemsByCreator(options));
   }
@@ -153,16 +153,8 @@ export class RaribleSDKMain {
   getItemsByOwner(address: string) {
     const options: GetItemsByOwnerRequest = {
       owner: address,
-      blockchains: [Blockchain.ETHEREUM],
     }
     return from(this.raribleSdk.apis.item.getItemsByOwner(options));
-  }
-
-  getItemsByOwnerWithOwnership(address: string) {
-    const options: GetItemsByOwnerWithOwnershipRequest = {
-      owner: address
-    }
-    return from(this.raribleSdk.apis.item.getItemsByOwnerWithOwnership(options))
   }
 
   /* ++++++++++ OrderControllerApi ++++++++++ */
@@ -174,15 +166,6 @@ export class RaribleSDKMain {
       /* other params */
     }
     return from(this.raribleSdk.apis.order.getOrderBidsByItem(options));
-  }
-
-  getOrderBidsByMaker(address: string) {
-    const options: GetOrderBidsByMakerRequest = {
-      maker: address,
-      status: [OrderStatus.ACTIVE],
-      /* other params */
-    }
-    return from(this.raribleSdk.apis.order.getOrderBidsByMaker(options));
   }
 
   getOrderById(address: string) {

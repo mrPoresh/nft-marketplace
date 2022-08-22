@@ -1,9 +1,9 @@
 <div class="section-wrapper">
     <h1>{{section.tag}}</h1>
     <mat-grid-list cols="3" rowHeight="1:1">
-        <mat-grid-tile *ngFor="let image of section.images">
+        <mat-grid-tile *ngFor="let data of section.data">
             <div class="card">
-                <app-card [image]="image"></app-card>
+                <app-card [data]="data"></app-card>
             </div>
         </mat-grid-tile>
     </mat-grid-list>
