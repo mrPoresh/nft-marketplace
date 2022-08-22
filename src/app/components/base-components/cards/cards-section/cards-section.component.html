@@ -1,12 +1,12 @@
 <div class="section-wrapper">
     <h1>{{section.tag}}</h1>
-    <mat-grid-list cols="3" rowHeight="1:1">
+    <mat-grid-list cols="3" rowHeight="180px" gutterSize="7px">    <!-- <<<--- extend -->   <!-- rowHeight="1:1" <<<--- small-->
         <mat-grid-tile *ngFor="let data of section.data">
-            <div class="card">
-                <app-card [data]="data"></app-card>
-            </div>
+            <app-card [data]="data"></app-card>
         </mat-grid-tile>
     </mat-grid-list>
+
     <button mat-flat-button class="more-button">more</button>
+
     <mat-divider></mat-divider>
 </div>

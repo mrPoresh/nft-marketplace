@@ -1,1 +1,6 @@
-<img class="card-image" src="{{data.meta.content[0].url}}">
+<mat-card fxLayout="column" fxLayoutAlign="start center">
+    <img mat-card-image src="{{data.meta.content[0].url}}">
+    <mat-card-content>
+        <h3>{{data.meta.name}}</h3>
+    </mat-card-content>
+</mat-card>
