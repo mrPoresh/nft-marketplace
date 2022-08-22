@@ -13,13 +13,13 @@
 
     <ng-container *ngIf="!isDesktop; else desktop">
         <div class="buttons" fxLayout="column" fxLayoutAlign="start center">    <!-- a little bit incorrect icons, :( -->
-            <button class="option-button" mat-flat-button>
+            <button class="option-button" (click)="disconect()" mat-flat-button>
                 <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
                     <img class="icon" src="assets/icons/coinbase_small.png"><span class="space"></span><h4>Coinbase wallet</h4>
                 </div>
             </button>
     
-            <button class="option-button" mat-flat-button>
+            <button class="option-button" (click)="connectWalletConnect()" mat-flat-button>
                 <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
                     <img class="icon" src="assets/icons/walletconnect_small.png"><span class="space"></span><h4>WalletConnect</h4>
                 </div>

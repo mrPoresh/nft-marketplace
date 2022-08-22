@@ -66,7 +66,7 @@ export class AppComponent extends BasePageComponent implements OnInit {
 
     this.isDesktop = this.detectDeviceService.isDesktop();
 
-    /* this.checkSessionService.requestCheckUserInfo().subscribe((res) => console.log("App Comp", res)) */
+    this.checkSessionService.requestCheckUserInfo().subscribe((res) => console.log("App Comp", res));
 
     this.sdk.getItemsByOwner(this.randomNFTboy).subscribe((res) => console.log("res", res))
     

@@ -22,6 +22,9 @@ import { SlideMenuComponent } from './components/base-components/slide-menu/slid
 import { SlideMenuButtonComponent } from './components/base-components/slide-menu/slide-menu-button/slide-menu-button.component';
 import { ExploreMenuComponent } from './components/base-components/slide-menu/explore-menu/explore-menu.component';
 import { ExploreMenuButtonComponent } from './components/base-components/slide-menu/explore-menu/explore-menu-button/explore-menu-button.component';
+import { ExploreCollectionsComponent } from './components/explore-collections/explore-collections.component';
+import { CollectionPageComponent } from './components/collection-page/collection-page.component';
+import { AssetPageComponent } from './components/asset-page/asset-page.component';
 
 
 @NgModule({
@@ -41,6 +44,9 @@ import { ExploreMenuButtonComponent } from './components/base-components/slide-m
     SlideMenuButtonComponent,
     ExploreMenuComponent,
     ExploreMenuButtonComponent,
+    ExploreCollectionsComponent,
+    CollectionPageComponent,
+    AssetPageComponent,
   ],
   imports: [
     BrowserModule,
