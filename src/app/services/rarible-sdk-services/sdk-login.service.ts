@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { WindowProviderService } from 'src/app/utils/window-provider.service';
-import { RaribleSDKMain } from './rarible-sdk-main.service';
+import { SDKMain } from './sdk-main.service';
 
 import { Web3Ethereum } from "@rarible/web3-ethereum";
 import { EthereumWallet } from "@rarible/sdk-wallet";
@@ -14,7 +14,7 @@ import { BehaviorSubject, from, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SdkLoginService extends RaribleSDKMain {
+export class SdkLoginService extends SDKMain {
 
   public connector; /*  */
 
@@ -66,6 +66,7 @@ export class SdkLoginService extends RaribleSDKMain {
   }
 
   logOut() {
+    this.state.setValue(undefined);
     this.connector.connection.subscribe((con) => {
       if (con.status === "connected") {
         con.disconnect();

@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedMaterialModule } from './modules/shared-material.module';
 
 import { WindowProviderService } from './utils/window-provider.service';  /*  */
-import { RaribleSDKMain } from './services/rarible-sdk-services/rarible-sdk-main.service';
+/* import { SDKMain } from './services/rarible-sdk-services/sdk-main.service'; */
 
 import { AppComponent } from './app.component';
 import { BaseComponent } from './components/base-components/base/base.component';

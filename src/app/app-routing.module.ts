@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'explore-collections', component: ExploreCollectionsComponent },
   { path: 'collection/:name/:address', component: CollectionPageComponent },
-  { path: 'assets/:address/:id', component: AssetPageComponent },
+  { path: 'token/:id', component: AssetPageComponent },
   { path: '', loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule) },
   { path: 'connect-wallet', loadChildren: () => import('./components/connect-wallet/connect-wallet.module').then(m => m.ConnectWalletModule) },
   { path: '**', redirectTo: '/' },

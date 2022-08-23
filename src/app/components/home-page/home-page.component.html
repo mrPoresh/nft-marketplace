@@ -4,15 +4,15 @@
         <div class="content-mobile" [ngClass]="(!isExtend) ? 'default': 'extend'">
 
             <ng-container *ngIf="!isExtend; else extend">
-<!--                 <mat-grid-list cols="1" rowHeight="220px">
+                 <mat-grid-list cols="1" rowHeight="220px">
                     <mat-grid-tile>
                         <img src="assets/banners/home_banner.png">
                     </mat-grid-tile>
-                </mat-grid-list> -->
+                </mat-grid-list>
  
                 <mat-grid-list cols="1" rowHeight="450px">
                     <mat-grid-tile *ngFor="let section of sections" [colspan]="1" [rowspan]="1">
-                        <app-cards-section [section]="section"></app-cards-section>
+                        <app-cards-section [section]="section" (_data)="onClick($event)"></app-cards-section>
                     </mat-grid-tile>
                 </mat-grid-list>
 

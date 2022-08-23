@@ -34,7 +34,7 @@ import { WindowProviderService } from 'src/app/utils/window-provider.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RaribleSDKMain {
+export class SDKMain {
 
   public raribleSdk: IRaribleSdk; 
 

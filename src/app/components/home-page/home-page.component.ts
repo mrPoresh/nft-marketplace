@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { DetectDeviceService } from 'src/app/utils/detect-device.service';
-import { RaribleSDKMain } from 'src/app/services/rarible-sdk-services/rarible-sdk-main.service';
+import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
 
 import { BasePageComponent } from '../base-components/base-page/base-page.component';
+import { topCollections } from 'src/app/services/rarible-sdk-services/sdk-models.models';
 
 export interface Section {
   tag: string,
@@ -24,18 +26,13 @@ export class HomePageComponent extends BasePageComponent implements OnInit {
     { tag: 'Art', data: undefined },
   ];
 
-  topCollections = [  /* time solution */
-    { address: 'ETHEREUM:0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d', size: 6 },
-    { address: 'ETHEREUM:0x209e639a0ec166ac7a1a4ba41968fa967db30221', size: 6 },
-    { address: 'ETHEREUM:0x39ee2c7b3cb80254225884ca001f57118c8f21b6', size: 6 },
-  ];
-
   isExtend = false;
   isDesktop = false;
 
   constructor(
     public detectDeviceService: DetectDeviceService,
-    public sdk: RaribleSDKMain,
+    public sdk: SDKMain,
+    public router: Router,
   ) { super() }
 
   ngOnInit() {
@@ -45,7 +42,7 @@ export class HomePageComponent extends BasePageComponent implements OnInit {
 
     this.isDesktop = this.detectDeviceService.isDesktop();
 
-    this.sdk.getItemsByCollections(this.topCollections).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
+    this.sdk.getItemsByCollections(topCollections).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
       res.forEach((item, index) => {
         this.sections[index].data = item;
       });
@@ -54,6 +51,11 @@ export class HomePageComponent extends BasePageComponent implements OnInit {
 
     });
     
+  }
+
+  onClick(data: any) {
+    console.log('Choosed nft >>>', data);
+    this.router.navigate(['token' + '/' + data.id]);
   }
 
 }

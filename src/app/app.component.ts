@@ -7,8 +7,6 @@ import { LoginStatusService } from './services/auth/login/login-status.service';
 
 import { topMenuAction } from './components/base-components/slide-menu/slide-menu-button/slide-menu-button.component';
 import { BasePageComponent } from './components/base-components/base-page/base-page.component';
-import { LoggedStatus } from './services/auth/login/login.models';
-import { RaribleSDKMain } from './services/rarible-sdk-services/rarible-sdk-main.service';
 import { CheckSessionService } from './services/auth/check-session/check-session.service';
 
 

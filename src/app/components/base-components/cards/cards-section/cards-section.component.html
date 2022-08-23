@@ -2,7 +2,7 @@
     <h1>{{section.tag}}</h1>
     <mat-grid-list cols="3" rowHeight="180px" gutterSize="7px">    <!-- <<<--- extend -->   <!-- rowHeight="1:1" <<<--- small-->
         <mat-grid-tile *ngFor="let data of section.data">
-            <app-card [data]="data"></app-card>
+            <app-card [data]="data" (_data)="onClick($event)"></app-card>
         </mat-grid-tile>
     </mat-grid-list>
 

@@ -1,4 +1,5 @@
-import { Component, OnInit , Input, Output} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 import { Section } from '../../../home-page/home-page.component';
 
@@ -10,11 +11,14 @@ import { Section } from '../../../home-page/home-page.component';
 export class CardsSectionComponent implements OnInit {
 
   @Input() section!: Section;
+  @Output() _data = new EventEmitter<any>();
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { }
 
+  onClick(data: any) {
+    this._data.emit(data);
   }
 
 }
