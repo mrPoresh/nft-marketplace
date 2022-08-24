@@ -6,6 +6,7 @@ import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service'
 
 import { BasePageComponent } from '../base-components/base-page/base-page.component';
 import { NFTsOptions } from 'src/app/services/rarible-sdk-services/sdk-models.models';
+import { DetectDeviceService } from 'src/app/utils/detect-device.service';
 
 
 @Component({
@@ -26,8 +27,13 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
   public nft_data!: any;
   public collection_data!: any;
 
+
+  public isExtend = false;
+  public isDesktop = false;
+
   constructor(
     public route: ActivatedRoute,
+    public detectDeviceService: DetectDeviceService, 
     public sdk: SDKMain,
   ) { 
     super();
@@ -38,13 +44,21 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
 
   ngOnInit() { 
 
+    this.isDesktop = this.detectDeviceService.isDesktop();
+
     if (window.screen.width > 450) {
+      this.isExtend = true;
+    }
+
+    /* console.log('ccc', this.isDesktop); */
+
+/*     if (window.screen.width > 450) {
       this.rowHeight = "10vh";
       this.cols = "8";
     } else {
       this.rowHeight = "60vh";
       this.cols = "1";
-    }
+    } */
 
     this.sdk.getItemById(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
       this.nft_data = res;

@@ -1,185 +1,144 @@
-.asset-body {
+.item-wrapper {
     width: 100%;
-    height: 2000px; /*  */
+    padding-top: 20px;
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    .item-body {
+        max-width: 1280px;
+        width: 90%;
 
-    .image-box {
-        height: 80vh;
+        .item-content {     /* for pic, sell opt, des, sell bid ord */
+            width: 100%;
 
-        flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
 
-        background-color: rgb(214, 49, 49);
+            .item-image {
+                flex: 50%;
+                padding: 20px;
 
-    }
+                img {
+                    object-fit: cover;
+                    max-width: 550px;
+                    width: 100%;
 
-    .menu-box {
-        height: 80vh;
-        flex-grow: 1;
+                    border-radius: 5%;
+                    margin: 30px;
+                }
 
-        display: flex;
-        justify-content: space-around;
-        align-items: flex-start;
+            }
 
-        background-color: rgb(123, 167, 167);
-
-        .menu {
-            height: 200px;
-            width: 200px;
-
-            z-index: 999;
-            top: 0;
-            position: sticky;
-            position: -webkit-sticky;
-            color: aliceblue;
-        }
-    }
-/* 
-    .info-box {
-        height: 40vh;
-
-        flex: 50%;
-
-        background-color: rgb(86, 150, 91);
-    }
-
-    .more-box {
-        height: 30vh;
-
-        flex: 100%;
-
-        background-color: rgb(67, 59, 173);
-    } */
-
-    
-}
-
-@media (max-width: 700px) {
-  .asset-body {
-    flex-direction: column;
-
-    .image-box {
-        height: 45vh;
-
-    }
-
-    .menu-box {
-        height: 45vh;
-
-    }
-
-  }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-/* .asset-full {
-    width: 100%;
-
-    .asset-body {
-        width: 70%;
-
-        img {
-            width: 80%;
-            max-width: 550px;
-            object-fit: cover;
-            border-radius: 5%;
-            
-        }
-
-        .a {
-            align-items: flex-start;
-
-            .sell-body {
+            .item-buy {
+                flex: 50%;
+                align-self: center;
+                padding: 20px;
                 width: 100%;
-                /
 
-                .sell-menu {
-                    width: 80%;
-                    height: 100%;
-                    margin-top: 10%;
+                .buy-card {
+                    max-width: 550px;
+                    min-width: 230px;
+                    width: 93%;
 
-                    .sell-head {
+                    .price-box {
                         width: 100%;
 
-                        h2 {
-                            margin-top: 15px;
-                            margin-bottom: 15px;
-                            font-size: 20px;
-                            font-family: 'Roboto';
-                            font-style: normal;
-                        }
+                        .box {
+                            width: 45%;
 
-                        h3 {
-                            margin: 0;
-                            font-size: 16px;
-                            font-family: 'Roboto';
-                            font-style: normal;
-                            color: #3C71CE;
-                        }
+                            background-color: #dadada;
+                            border-radius: 3%;
 
-                        h4 {
-                            margin: 0;
-                            font-size: 16px;
-                            font-family: 'Roboto';
-                            font-style: normal;
-                        }
+                            h3 {                        /* at this moment Ok */
+                                margin: 0;
+                                padding-top: 10px;
+                                padding-left: 10px;
 
-                    }
+                            }
 
-                    .sell-action {
-                        width: 100%;
-                        
+                            h2 {
+                                margin: 0;
+                                padding-top: 10px;
+                                padding-left: 10px;
 
-                        .sell-space {
-                            width: 100%;
-                            padding-bottom: 10px;
+                            }
 
-                            .sell-info {
-                                width: 45%;
-                                border-radius: 5%;
-                                background-color: #dddddd;
+                            p {
+                                margin: 0;
+                                padding-top: 10px;
+                                padding-left: 10px;
+                                padding-bottom: 10px;
 
-                                p {
-                                    margin: 0;
-                                    font-size: 12px;
-                                    font-family: 'Roboto';
-                                    font-style: normal;
-                                    color: #A1A4B2;
-            
-                                }
-                                
                             }
 
                         }
 
-                        mat-divider {
-                            width: 100%;
-                        }
-
-                        .buttons {
-                            width: 100%;
-                            padding-top: 10px;
-
-                            button {
-                                width: 100%;
-                                margin-top: 7px;
-                            }
-                        }
-
                     }
 
+                    .buttons-box {
+                        width: 100%;
+
+                        padding-top: 10px;
+
+                        button {
+                            width: 100%;
+                            margin-top: 10px;
+                        }
+                    }
+
+                }
+                
+            }
+
+            .item-info {
+                flex: 50%;
+                height: 50%;
+
+            }   
+
+            .item-history {
+                flex: 50%;
+                height: 50%;
+
+            }
+
+        }
+
+        .item-activity-history {
+            width: 100%;
+            height: 40vh;
+
+            background-color: rgb(95, 67, 172);
+        }
+
+        .item-more {
+            width: 100%;
+            height: 40vh;
+
+            background-color: rgb(162, 130, 212);
+        }
+
+    }
+
+}
+
+@media (max-width: 600px) {
+    .item-wrapper {
+
+        .item-body {
+
+            .item-content {
+                flex-direction: column;
+                flex-wrap: nowrap;
+
+                .item-image {
+                    flex: 50%;
+    
+                    img {
+                        /* max-width: 300px; */
+                        margin: 0;
+
+                    }
+    
                 }
 
             }
@@ -187,5 +146,5 @@
         }
 
     }
-
-} */
+    
+}

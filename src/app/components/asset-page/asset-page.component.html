@@ -1,14 +1,52 @@
-<div class="asset-body">
-    <div class="image-box">
+<div class="item-wrapper" fxLayout="column" fxLayoutAlign="start center">
+    <div class="item-body" fxLayout="column" fxLayoutAlign="start center">
+        <div class="item-content" *ngIf="nft_data">
+            <div class="item-image" fxLayout="column" fxLayoutAlign="center center">
+                <img src="{{nft_data.meta.content[0].url}}">
+            </div>
 
-    </div>
+            <div class="item-buy" fxLayout="column" fxLayoutAlign="center center">
+                <mat-card class="buy-card">
+                    <mat-card-content>
+                        <div class="price-box" fxLayout="row" fxLayoutAlign="space-between center">
+                            <div class="box">
+                                <h3>Price</h3>
+                                <h2>101 ETH</h2>
+                                <p>"value"</p>
+                            </div>
 
-    <div class="menu-box">
-        <div class="menu">
-            <p>some</p>
+                            <div class="box">
+                                <h3>Floor bid</h3>
+                                <h2>5 ETH</h2>
+                                <p>"some user"</p>
+                            </div>
+                        </div>
+
+                        <div class="buttons-box" fxLayout="column" fxLayoutAlign="start center">
+                                <button mat-raised-button color="primary">Buy now</button>
+                                <button mat-raised-button color="accent">Place Bid</button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div class="item-info">
+                <h1>3</h1>
+            </div>
+
+            <div class="item-history">
+                <h1>4</h1>
+            </div>
+        </div>
+        
+        <div class="item-activity-history">
+
+        </div>
+
+        <div class="item-more">
+
         </div>
     </div>
-
 </div>
 
 
