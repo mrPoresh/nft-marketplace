@@ -1,0 +1,191 @@
+.asset-body {
+    width: 100%;
+    height: 2000px; /*  */
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .image-box {
+        height: 80vh;
+
+        flex-grow: 1;
+
+        background-color: rgb(214, 49, 49);
+
+    }
+
+    .menu-box {
+        height: 80vh;
+        flex-grow: 1;
+
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+
+        background-color: rgb(123, 167, 167);
+
+        .menu {
+            height: 200px;
+            width: 200px;
+
+            z-index: 999;
+            top: 0;
+            position: sticky;
+            position: -webkit-sticky;
+            color: aliceblue;
+        }
+    }
+/* 
+    .info-box {
+        height: 40vh;
+
+        flex: 50%;
+
+        background-color: rgb(86, 150, 91);
+    }
+
+    .more-box {
+        height: 30vh;
+
+        flex: 100%;
+
+        background-color: rgb(67, 59, 173);
+    } */
+
+    
+}
+
+@media (max-width: 700px) {
+  .asset-body {
+    flex-direction: column;
+
+    .image-box {
+        height: 45vh;
+
+    }
+
+    .menu-box {
+        height: 45vh;
+
+    }
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* .asset-full {
+    width: 100%;
+
+    .asset-body {
+        width: 70%;
+
+        img {
+            width: 80%;
+            max-width: 550px;
+            object-fit: cover;
+            border-radius: 5%;
+            
+        }
+
+        .a {
+            align-items: flex-start;
+
+            .sell-body {
+                width: 100%;
+                /
+
+                .sell-menu {
+                    width: 80%;
+                    height: 100%;
+                    margin-top: 10%;
+
+                    .sell-head {
+                        width: 100%;
+
+                        h2 {
+                            margin-top: 15px;
+                            margin-bottom: 15px;
+                            font-size: 20px;
+                            font-family: 'Roboto';
+                            font-style: normal;
+                        }
+
+                        h3 {
+                            margin: 0;
+                            font-size: 16px;
+                            font-family: 'Roboto';
+                            font-style: normal;
+                            color: #3C71CE;
+                        }
+
+                        h4 {
+                            margin: 0;
+                            font-size: 16px;
+                            font-family: 'Roboto';
+                            font-style: normal;
+                        }
+
+                    }
+
+                    .sell-action {
+                        width: 100%;
+                        
+
+                        .sell-space {
+                            width: 100%;
+                            padding-bottom: 10px;
+
+                            .sell-info {
+                                width: 45%;
+                                border-radius: 5%;
+                                background-color: #dddddd;
+
+                                p {
+                                    margin: 0;
+                                    font-size: 12px;
+                                    font-family: 'Roboto';
+                                    font-style: normal;
+                                    color: #A1A4B2;
+            
+                                }
+                                
+                            }
+
+                        }
+
+                        mat-divider {
+                            width: 100%;
+                        }
+
+                        .buttons {
+                            width: 100%;
+                            padding-top: 10px;
+
+                            button {
+                                width: 100%;
+                                margin-top: 7px;
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+} */

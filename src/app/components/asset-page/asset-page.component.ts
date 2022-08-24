@@ -15,6 +15,11 @@ import { NFTsOptions } from 'src/app/services/rarible-sdk-services/sdk-models.mo
 })
 export class AssetPageComponent extends BasePageComponent implements OnInit {
 
+  public rowHeight!: string;
+  public cols!: string;
+
+  panelOpenState = false;
+
   public token_id!: any;
   public collection_id!: any;
 
@@ -32,6 +37,14 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
   }
 
   ngOnInit() { 
+
+    if (window.screen.width > 450) {
+      this.rowHeight = "10vh";
+      this.cols = "8";
+    } else {
+      this.rowHeight = "60vh";
+      this.cols = "1";
+    }
 
     this.sdk.getItemById(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
       this.nft_data = res;
