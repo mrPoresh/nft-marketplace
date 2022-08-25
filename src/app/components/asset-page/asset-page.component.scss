@@ -12,6 +12,7 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
+            justify-content: flex-start;
 
             .item-image {
                 flex: 50%;
@@ -23,7 +24,7 @@
                     width: 100%;
 
                     border-radius: 5%;
-                    margin: 30px;
+                    /* margin: 30px; */
                 }
 
             }
@@ -37,7 +38,7 @@
                 .buy-card {
                     max-width: 550px;
                     min-width: 230px;
-                    width: 93%;
+                    width: 92%;
 
                     .price-box {
                         width: 100%;
@@ -45,28 +46,31 @@
                         .box {
                             width: 45%;
 
-                            background-color: #dadada;
+                            background-color: #e7e7e7;
                             border-radius: 3%;
 
                             h3 {                        /* at this moment Ok */
                                 margin: 0;
-                                padding-top: 10px;
-                                padding-left: 10px;
+                                padding: 5px;
+
+                                font-size: 12px;
 
                             }
 
                             h2 {
                                 margin: 0;
-                                padding-top: 10px;
-                                padding-left: 10px;
+                                padding-right: 5px;
+                                padding-left: 5px;
+
+                                font-size: 15px;
 
                             }
 
                             p {
                                 margin: 0;
-                                padding-top: 10px;
-                                padding-left: 10px;
-                                padding-bottom: 10px;
+                                padding: 5px;
+
+                                font-size: 10px;
 
                             }
 
@@ -90,24 +94,37 @@
             }
 
             .item-info {
-                flex: 50%;
-                height: 50%;
+                flex: 25%;
+                padding: 20px;
+                min-width: 200px;
+
+                .item-info-box {
+                    /* width: 100%; */
+                }
 
             }   
 
             .item-history {
-                flex: 50%;
-                height: 50%;
+                flex: 25%;
+                padding: 20px;
+                min-width: 200px;
+
+                .item-history-box {
+                    /* width: 100%; */
+                }
 
             }
 
-        }
+            .item-activity-history {
+                flex: 50%;
+                padding: 20px;
+    
+                .item-activity-history-box {
+    
+                }
+                
+            }
 
-        .item-activity-history {
-            width: 100%;
-            height: 40vh;
-
-            background-color: rgb(95, 67, 172);
         }
 
         .item-more {
