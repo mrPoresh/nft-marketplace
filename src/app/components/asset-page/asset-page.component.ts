@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { takeUntil, map } from 'rxjs';
+import { takeUntil, map, BehaviorSubject } from 'rxjs';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
+import { DetectDeviceService } from 'src/app/utils/detect-device.service';
 
 import { BasePageComponent } from '../base-components/base-page/base-page.component';
 import { NFTsOptions } from 'src/app/services/rarible-sdk-services/sdk-models.models';
-import { DetectDeviceService } from 'src/app/utils/detect-device.service';
-
 
 @Component({
   selector: 'app-asset-page',
@@ -26,7 +26,7 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
 
   public nft_data!: any;
   public collection_data!: any;
-
+  public collections_nft!: any;
 
   public isExtend = false;
   public isDesktop = false;
@@ -42,6 +42,16 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
 
   }
 
+  config: SwiperConfigInterface = {
+    direction: 'horizontal',
+    navigation: true,
+    keyboard: true,
+  };
+
+  onSlideChange() {
+    console.log('slide change');
+  }
+
   ngOnInit() { 
 
     this.isDesktop = this.detectDeviceService.isDesktop();
@@ -49,16 +59,6 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
     if (window.screen.width > 450) {
       this.isExtend = true;
     }
-
-    /* console.log('ccc', this.isDesktop); */
-
-/*     if (window.screen.width > 450) {
-      this.rowHeight = "10vh";
-      this.cols = "8";
-    } else {
-      this.rowHeight = "60vh";
-      this.cols = "1";
-    } */
 
     this.sdk.getItemById(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
       this.nft_data = res;
@@ -69,6 +69,11 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
       this.sdk.getCollectionById(this.collection_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
         this.collection_data = res;
         console.log('Collection Data >>>', this.collection_data);
+      });
+
+      this.sdk.getItemsByCollection(this.collection_id, 9).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
+        this.collections_nft = res.items;
+        console.log('Collections NFT >>>', this.collections_nft);
       });
 
     });

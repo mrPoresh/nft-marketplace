@@ -44,7 +44,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { SwiperModule } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -95,7 +95,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         OverlayModule,
         PortalModule,
         ScrollingModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        SwiperModule,
     ],
 })
 export class SharedMaterialModule { }

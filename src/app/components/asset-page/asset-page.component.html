@@ -97,87 +97,23 @@
                     </mat-expansion-panel>
                 </mat-accordion>
             </div>
-        </div>
-        
 
-        <div class="item-more">
+            <div class="item-more">
+                <swiper [config]="config" class="item-swiper">
+                    <ng-template swiperSlide>
+                        <div><h1>Hello</h1></div>
+                    </ng-template>
 
+                    <ng-template swiperSlide>
+                        <div>Slide2</div>
+                    </ng-template>
+
+                    <ng-template swiperSlide>
+                        <div>Slide3</div>
+                    </ng-template>
+                </swiper>
+            </div>
         </div>
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="asset-full" fxLayout="column" fxLayoutAlign="start center">
-    <div class="asset-body" *ngIf="collection_data">
-        <mat-grid-list cols="8" rowHeight="1:1">   
-            <mat-grid-tile rowspan="4" colspan="4">
-                <img src="{{nft_data.meta.content[0].url}}">
-            </mat-grid-tile>
-
-            <mat-grid-tile class="a" rowspan="8" colspan="4">
-                <div class="sell-body" fxLayout="column" fxLayoutAlign="start center">
-                    <div class="sell-menu" fxLayout="column" fxLayoutAlign="start center">
-                        <div class="sell-head">
-                            <h3>{{collection_data.name}}</h3>
-                            <h2>{{nft_data.meta.name}}</h2>
-
-                        </div>
-
-                        <mat-card class="sell-action">
-                            <mat-card-content>
-                                <div class="sell-space" fxLayout="row" fxLayoutAlign="space-around center">
-                                    <div class="sell-info">
-                                        <p>Price</p>
-                                    </div>
-                                    <div class="sell-info">
-                                        <p>Highest Bid</p>
-                                    </div>
-                                </div>
-
-                                <mat-divider></mat-divider>
-
-                                <div class="buttons" fxLayout="column" fxLayoutAlign="start center">
-                                    <button mat-raised-button color="primary">Buy now</button>
-                                    <button mat-raised-button color="accent">Place Bid</button>
-                                </div>
-                            </mat-card-content>
-                        </mat-card>
-
-                    </div>
-                </div>
-            </mat-grid-tile> 
-
-            <mat-grid-tile rowspan="4" colspan="4">
-                3
-            </mat-grid-tile>
-
-            <mat-grid-tile rowspan="4" colspan="4">    
-                4
-            </mat-grid-tile>
-
-            <mat-grid-tile rowspan="4" colspan="8">    
-                5
-            </mat-grid-tile>
-        </mat-grid-list>
-    </div>
-</div> -->
