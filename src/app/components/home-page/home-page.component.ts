@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, fromEvent, Observable, Subscription, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { DetectDeviceService } from 'src/app/utils/detect-device.service';
@@ -29,6 +29,11 @@ export class HomePageComponent extends BasePageComponent implements OnInit {
   isExtend = false;
   isDesktop = false;
 
+  cols;
+  rowHeight;
+
+  itemsHeight = '2.5';
+
   constructor(
     public detectDeviceService: DetectDeviceService,
     public sdk: SDKMain,
@@ -36,9 +41,30 @@ export class HomePageComponent extends BasePageComponent implements OnInit {
   ) { super() }
 
   ngOnInit() {
-    if (window.screen.width > 450) {
-      this.isExtend = true;
+    if (window.innerWidth > 600) {
+      this.cols = 2;
+      this.rowHeight = '1:1';
+      this.itemsHeight = '2'
+    } else {
+      this.cols = 1;
+      this.rowHeight = '3:2';
+      this.itemsHeight = '4';
     }
+
+    window.addEventListener('resize', (event) => {
+      const w = event.target as Window; 
+
+      if (w.innerWidth > 600) {
+        this.cols = 2;
+        this.rowHeight = '1:1';
+        this.itemsHeight = '2'
+      } else {
+        this.cols = 1;
+        this.rowHeight = '3:2';
+        this.itemsHeight = '4';
+      }
+
+    });
 
     this.isDesktop = this.detectDeviceService.isDesktop();
 

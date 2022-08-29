@@ -1,6 +1,21 @@
-<div class="content-wrapper" fxLayout="column" fxLayoutAlign="start center" [ngClass]="(isDesktop) ? 'desktop': 'mobile'">
+<div class="home-wrapper" fxLayout="column" fxLayoutAlign="start center">    <!-- [ngClass]="(isDesktop) ? 'desktop': 'mobile'" -->
+    <div class="home-body">
+        <mat-grid-list [cols]="cols" [rowHeight]="rowHeight">
+            <mat-grid-tile>
+                <img class="banner" src="assets/banners/home_banner.png">
+            </mat-grid-tile>
 
-    <ng-container *ngIf="!isDesktop; else desktop">
+            <mat-grid-tile [rowspan]="itemsHeight">
+                <div class="section-body" fxLayout="column" fxLayoutAlign="start center">
+                    <app-cards-section *ngFor="let section of sections" [section]="section" (_data)="onClick($event)"></app-cards-section>
+                </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile>3</mat-grid-tile>
+        </mat-grid-list>
+    </div>
+
+<!--     <ng-container *ngIf="!isDesktop; else desktop">
         <div class="content-mobile" [ngClass]="(!isExtend) ? 'default': 'extend'">
 
             <ng-container *ngIf="!isExtend; else extend">
@@ -54,6 +69,6 @@
             <mat-grid-tile>3</mat-grid-tile>
         </mat-grid-list>
 
-    </ng-template>
+    </ng-template> -->
 
 </div>
