@@ -1,0 +1,118 @@
+$width: 100%;
+
+.user-wrapper {
+    width: 100%;
+
+    .banner-container {
+        display: inline-block;
+        position: relative;
+        width: $width;
+
+        #dummy {
+            margin-top: calc($width / 8 + 80px);
+        }
+
+        .banner {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: silver/* show me! */
+
+        }
+
+    }
+
+    mat-grid-list {
+
+        justify-content: center;
+
+        background-color: #ffffff;
+        
+        .user-address {
+            width: 90%;
+
+            /* align-self: center; */
+
+            margin: 20px;
+
+            h1 {
+                max-width: 500px;
+                width: 100%;
+
+                margin: 0;
+
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: left;
+
+                font-size: 30px;
+            }
+
+        }
+
+        mat-card {
+            max-width: 350px;
+            width: 90%;
+
+            align-self: center;
+
+            margin: 20px;
+
+            border-top: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px;
+
+            background-color: #cacaca;
+        }
+
+        .buttons {
+            width: 90%;
+
+            margin: 20px;
+
+            .options {
+                width: 100px;
+                height: 50px;
+
+                border-radius: 10px;
+
+            }
+
+        }
+
+    }
+
+}
+
+@media (max-width: 600px) {
+    .user-wrapper {
+        
+        mat-grid-list {
+    
+            .user-address {
+                align-self: center;
+
+                h1 {
+                    text-align: center;
+                }
+                
+            }
+
+            mat-card {
+                max-width: 600px;
+
+            }
+    
+        }
+        
+    }
+    
+}
+
+h2 {
+    margin: 0;
+
+    font-size: 14px;
+}

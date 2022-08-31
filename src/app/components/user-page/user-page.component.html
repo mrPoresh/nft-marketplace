@@ -1,0 +1,32 @@
+<div class="user-wrapper" >
+  <div class="banner-container">
+      <div id="dummy"></div>
+      <div class="banner" fxLayout="column" fxLayoutAlign="center center">
+        <!-- instead of <img> -->
+      </div>
+  </div>
+
+  
+  <mat-grid-list [cols]="cols" rowHeight="100px">
+    <mat-grid-tile>
+      <div class="user-address">
+        <h1>0x9876543345678909876</h1>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile [rowspan]="2">
+      <mat-card>
+        <mat-card-content>
+          <h3>Folowers</h3>
+          <h3>Following</h3>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class="buttons" fxLayout="row" fxLayoutAlign="start center">
+        <button class="options" mat-flat-button color="primary" ><h2>Edit profile</h2></button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

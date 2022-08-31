@@ -25,6 +25,7 @@ import { ExploreMenuButtonComponent } from './components/base-components/slide-m
 import { ExploreCollectionsComponent } from './components/explore-collections/explore-collections.component';
 import { CollectionPageComponent } from './components/collection-page/collection-page.component';
 import { AssetPageComponent } from './components/asset-page/asset-page.component';
+import { UserPageComponent } from './components/user-page/user-page.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { AssetPageComponent } from './components/asset-page/asset-page.component
     ExploreCollectionsComponent,
     CollectionPageComponent,
     AssetPageComponent,
+    UserPageComponent,
   ],
   imports: [
     BrowserModule,
