@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'token/:id', component: AssetPageComponent },
   { path: '', loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule) },
   { path: 'connect-wallet', loadChildren: () => import('./components/connect-wallet/connect-wallet.module').then(m => m.ConnectWalletModule) },
-  { path: 'account', component: UserPageComponent },
+  { path: 'account/:id', component: UserPageComponent },
   { path: '**', redirectTo: '/' },
 ];
 

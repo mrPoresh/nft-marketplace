@@ -17,32 +17,11 @@ import { CheckSessionService } from './services/auth/check-session/check-session
 })
 export class AppComponent extends BasePageComponent implements OnInit {
   title = 'nft-marketplace';
-  /* id = 'ETHEREUM:0x6ede7f3c26975aad32a475e1021d8f6f39c89d82:41256998051628345422135008486692978525895218265513029176440545919372353339397'; */
-
-  /* test values */
-
-  public collectionTestEthId = 'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544'  /* Azuki */
-  public nftAddressPlusId = 'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544:6322'; /* Azuki */
-  public lastOrder = 'ETHEREUM:0xe13f4f91d67a22abe62ec5dbb57062e1f64224ee6b23259a36751434b86ce122'; /* Azuki (h) */
-  public ownerOfnftAddressPlusId = 'ETHEREUM:0xe915bcc9bd87d92d442bde0d2390bff23485dde4';
-
-  public randomNFTboy = 'ETHEREUM:0xd9a3ea0acdb41a12e871482a8eef99a017e38bf4'
-
-  public arrayOfNFTs = [
-    'ETHEREUM:0xabefbc9fd2f806065b4f3c237d4b59d9a97bcac7:23221', 
-    'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544:6322', 
-    'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544:3703',
-    'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544:6094',
-    'ETHEREUM:0xed5af388653567af2f388e6224dc7c4b3241c544:3833',
-  ];
-
-  /* ---------- */
 
   public isExtend = false;
   public isDesktop = false;
 
-  public isLogged = false; /* test */
-  public accounts: any;
+  public isLogged = false;
 
   @Output() closeEvent = new EventEmitter();
 
@@ -64,7 +43,14 @@ export class AppComponent extends BasePageComponent implements OnInit {
     this.isDesktop = this.detectDeviceService.isDesktop();
     console.log('ccc', this.isDesktop);
 
-    this.checkSessionService.requestCheckUserInfo().subscribe((res) => console.log("App Comp", res));
+    this.checkSessionService.requestCheckUserInfo().subscribe((res) => {
+      console.log("App Comp", res);
+      if (res.isLogged == 1) {
+        this.isLogged = true;
+      } else {
+        this.isLogged = false;
+      }
+    });
     
   }
 

@@ -1,9 +1,15 @@
 import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs';
+
+import { CheckSessionService } from 'src/app/services/auth/check-session/check-session.service';
 
 import { BasePageComponentWithDialogs } from '../base-page/base-page.component';
 import { ExploreMenuAction } from './explore-menu/explore-menu-button/explore-menu-button.component';
+
+import { UserInfo } from 'src/app/services/auth/login/login.models';
 
 @Component({
   selector: 'app-slide-menu',
@@ -12,18 +18,23 @@ import { ExploreMenuAction } from './explore-menu/explore-menu-button/explore-me
 })
 export class SlideMenuComponent extends BasePageComponentWithDialogs implements OnInit {
 
+  User!: UserInfo;
+
   @Input() isExtend!: boolean;
-  @Input() isLogged!: boolean;
   @Output() closeEvent = new EventEmitter();
 
   @ViewChild('sidenavDeep') sidenavDeep!: MatSidenav;
 
   constructor(
     public errorDialog: MatDialog,
+    public checkSessionService: CheckSessionService,
+    public router: Router,
   ) { super(errorDialog) }
 
   ngOnInit() {
-    
+    this.checkSessionService.requestCheckUserInfo().subscribe((res) => {
+      this.User = res;
+    });
   }
 
   menuAction(value: ExploreMenuAction) {
@@ -45,6 +56,13 @@ export class SlideMenuComponent extends BasePageComponentWithDialogs implements 
     this.closeEvent.next("");
     this.sidenavDeep.close();
     console.log("close event")
+  }
+
+  navigateAccount() {
+    if (this.User.isLogged == 1) {
+      this.router.navigate(['account' + '/' + this.User.walletAddress]);
+    }
+  
   }
 
 }

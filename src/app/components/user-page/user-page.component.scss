@@ -24,6 +24,20 @@ $width: 100%;
 
     }
 
+    .user-avatar {
+        width: calc($width / 10);
+        min-width: 100px;
+        position: absolute;
+
+        left: 6%;
+        top: 29%;
+
+        z-index: 99;
+
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
     mat-grid-list {
 
         justify-content: center;
@@ -54,6 +68,7 @@ $width: 100%;
 
         mat-card {
             max-width: 350px;
+            min-height: 130px;
             width: 90%;
 
             align-self: center;
@@ -72,15 +87,46 @@ $width: 100%;
 
             margin: 20px;
 
-            .options {
+            .large {
                 width: 100px;
                 height: 50px;
 
+                margin: 5px;
+
                 border-radius: 10px;
+
+                h2 {
+                    font-size: 13px;
+                }
 
             }
 
+            .small {
+                width: 50px;
+                height: 50px;
+
+                margin: 5px;
+
+                border-radius: 10px;
+            }
+
         }
+
+    }
+
+    .tab-group-container {
+        width: 100%;
+
+        padding: 20px;
+
+        background-color: #ffffff;
+
+        mat-tab-group {
+            width: 100%;
+    
+            
+        }
+
 
     }
 
@@ -88,6 +134,11 @@ $width: 100%;
 
 @media (max-width: 600px) {
     .user-wrapper {
+
+        .user-avatar {
+            top: 15%;
+            left: 10%;
+        } 
         
         mat-grid-list {
     

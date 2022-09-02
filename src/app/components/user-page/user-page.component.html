@@ -1,4 +1,4 @@
-<div class="user-wrapper" >
+<div class="user-wrapper">
   <div class="banner-container">
       <div id="dummy"></div>
       <div class="banner" fxLayout="column" fxLayoutAlign="center center">
@@ -6,11 +6,12 @@
       </div>
   </div>
 
+  <img class="user-avatar" src="assets/test/user_avatar.png">
   
   <mat-grid-list [cols]="cols" rowHeight="100px">
     <mat-grid-tile>
       <div class="user-address">
-        <h1>0x9876543345678909876</h1>
+        <h1>{{address}}</h1>
       </div>
     </mat-grid-tile>
 
@@ -25,8 +26,22 @@
 
     <mat-grid-tile>
       <div class="buttons" fxLayout="row" fxLayoutAlign="start center">
-        <button class="options" mat-flat-button color="primary" ><h2>Edit profile</h2></button>
+        <button *ngIf="isOwner" class="large" mat-flat-button color="primary"><h2>Edit profile</h2></button>
+        <button *ngIf="!isOwner" class="large" mat-flat-button color="primary"><h2>Follow</h2></button>
+        <button *ngIf="!isOwner" class="large" mat-flat-button color="accent"><h2>Message</h2></button>
+        <button class="small" mat-flat-button color="primary"><mat-icon>share</mat-icon></button>
+        <button class="small" mat-flat-button color="primary"><mat-icon>more_horiz</mat-icon></button>
       </div>
     </mat-grid-tile>
   </mat-grid-list>
+
+  <div class="tab-group-container" fxLayout="column" fxLayoutAlign="start center" >
+    <mat-tab-group dynamicHeight mat-align-tabs="start">  <!-- change aligin by page resize? -->
+      <mat-tab label="Owned">Content 1</mat-tab>
+      <mat-tab label="On Sale">Content 2</mat-tab>
+      <mat-tab label="Created">Content 3</mat-tab>
+      <mat-tab label="Collections">Content 4</mat-tab>
+      <mat-tab label="Activity">Content 5</mat-tab>
+    </mat-tab-group>
+  </div>
 </div>
