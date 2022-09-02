@@ -12,6 +12,21 @@ $width: 100%;
             margin-top: calc($width / 8 + 80px);
         }
 
+        .user-avatar {
+            width: calc($width / 10);
+            min-width: 100px;
+            max-width: 170px;
+            position: absolute;
+    
+            left: 6%;
+            top: 50%;
+    
+            z-index: 99;
+    
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
         .banner {
             position: absolute;
             top: 0;
@@ -22,20 +37,6 @@ $width: 100%;
 
         }
 
-    }
-
-    .user-avatar {
-        width: calc($width / 10);
-        min-width: 100px;
-        position: absolute;
-
-        left: 6%;
-        top: 29%;
-
-        z-index: 99;
-
-        border-radius: 50%;
-        object-fit: cover;
     }
 
     mat-grid-list {
@@ -124,7 +125,22 @@ $width: 100%;
         mat-tab-group {
             width: 100%;
     
-            
+            .owned-body {
+                padding: 10px;
+
+                mat-card {
+                    border-radius: 5%;
+
+                    img {
+                        border-radius: 5%;
+                        object-fit: cover;
+
+                    }
+
+                }
+
+            }
+
         }
 
 

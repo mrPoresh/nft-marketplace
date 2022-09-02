@@ -19,6 +19,8 @@ export class UserPageComponent extends BasePageComponent implements OnInit {
   public address!: string;
   public isOwner: boolean = false;
 
+  public ownedItems: any = undefined;
+
   constructor(
     public route: ActivatedRoute,
     public sdk: SDKMain,
@@ -55,7 +57,10 @@ export class UserPageComponent extends BasePageComponent implements OnInit {
     });
 
 
-    this.sdk.getItemsByOwner('ETHEREUM:' + this.address).pipe(takeUntil(this.unsubscribe)).subscribe((res) => console.log("Items Owned", res));
+    this.sdk.getItemsByOwner('ETHEREUM:' + this.address).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
+      this.ownedItems = res.items;
+      console.log("Items Owned", this.ownedItems);
+    });
     this.sdk.getItemsByCreator('ETHEREUM:' + this.address).pipe(takeUntil(this.unsubscribe)).subscribe((res) => console.log("Items Created", res));
     this.sdk.getSellOrdersByMaker('ETHEREUM:' + this.address).pipe(takeUntil(this.unsubscribe)).subscribe((res) => console.log("Items on sale", res));
     
