@@ -11,6 +11,7 @@ import { Section } from '../../../home-page/home-page.component';
 export class CardsSectionComponent implements OnInit {
 
   @Input() section!: Section;
+  @Input() isFull!: boolean;
   @Output() _data = new EventEmitter<any>();
 
   constructor() { }

@@ -5,7 +5,7 @@ export interface NFTsOptions {
 }[];
 
 export const topCollections = [
-{ address: 'ETHEREUM:0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d', size: 6 },
-{ address: 'ETHEREUM:0x209e639a0ec166ac7a1a4ba41968fa967db30221', size: 6 },
-{ address: 'ETHEREUM:0x39ee2c7b3cb80254225884ca001f57118c8f21b6', size: 6 },
+{ address: 'ETHEREUM:0x27787755137863bb7f2387ed34942543c9f24efe', size: 6 },
+{ address: 'ETHEREUM:0xaadc2d4261199ce24a4b0a57370c4fcf43bb60aa', size: 6 },
+{ address: 'ETHEREUM:0xd1258db6ac08eb0e625b75b371c023da478e94a9', size: 6 },
 ];

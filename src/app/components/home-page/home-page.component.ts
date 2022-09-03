@@ -28,6 +28,7 @@ export class HomePageComponent extends BasePageComponent implements OnInit {
 
   isExtend = false;
   isDesktop = false;
+  isFull = false;
 
   cols;
   rowHeight;
@@ -44,7 +45,7 @@ export class HomePageComponent extends BasePageComponent implements OnInit {
     if (window.innerWidth > 600) {
       this.cols = 2;
       this.rowHeight = '1:1';
-      this.itemsHeight = '2'
+      this.itemsHeight = '3'
     } else {
       this.cols = 1;
       this.rowHeight = '3:2';

@@ -1,26 +1,28 @@
 mat-card {
-    padding: 0;
-    width: 100%;
 
-    align-self: center;
-
-    img {
-        width: 100%;
-        /* max-width: 150px; */
-
-        object-fit: cover;
-        margin: 0;
+    &.default {
 
         border-radius: 5%;
+        padding-bottom: 0;
+
+        img {
+            border-radius: 5%;
+            object-fit: cover;
+    
+        }
 
     }
 
-    mat-card-content {
-        width: 100%;
+    &.extend {
 
-        h3 {
-            font-size: 9px;
+        border-radius: 5%;
+
+        img {
+            border-radius: 5%;
+            object-fit: cover;
+    
         }
+
     }
 
 }

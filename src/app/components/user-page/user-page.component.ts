@@ -18,8 +18,11 @@ export class UserPageComponent extends BasePageComponent implements OnInit {
 
   public address!: string;
   public isOwner: boolean = false;
+  public isFull: boolean = true;
 
   public ownedItems: any = undefined;
+  public createdItems: any = undefined;
+  public saleItems: any = undefined;
 
   constructor(
     public route: ActivatedRoute,
@@ -61,9 +64,22 @@ export class UserPageComponent extends BasePageComponent implements OnInit {
       this.ownedItems = res.items;
       console.log("Items Owned", this.ownedItems);
     });
-    this.sdk.getItemsByCreator('ETHEREUM:' + this.address).pipe(takeUntil(this.unsubscribe)).subscribe((res) => console.log("Items Created", res));
-    this.sdk.getSellOrdersByMaker('ETHEREUM:' + this.address).pipe(takeUntil(this.unsubscribe)).subscribe((res) => console.log("Items on sale", res));
+
+    this.sdk.getItemsByCreator('ETHEREUM:' + this.address).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
+      this.createdItems = res.items;
+      console.log("Items Created", this.createdItems);
+    });
+
+    this.sdk.getSellOrdersByMaker('ETHEREUM:' + this.address).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
+      this.saleItems = res.orders;
+      console.log("Items on sale", this.saleItems);
+    });
     
+  }
+
+  onClick(data: any) {
+    console.log('Choosed nft >>>', data);
+    /* this.router.navigate(['token' + '/' + data.id]); */
   }
 
 }

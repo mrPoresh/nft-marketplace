@@ -1,6 +1,12 @@
-<mat-card fxLayout="column" fxLayoutAlign="start center" (click)="onClick(data)">
-    <img src="{{data.meta.content[0].url}}">
-<!--     <mat-card-content>
-        <h3>{{data.meta.name}}</h3>
-    </mat-card-content> -->
+<mat-card class="mat-elevation-z4" [ngClass]="(!isFull) ? 'default': 'extend'" (click)="onClick(data)">
+    <img mat-card-image src="{{data.meta.content[0].url}}">
+    <mat-card-content *ngIf="isFull">
+      <p>
+        {{data.meta.name}}
+      </p>
+    </mat-card-content>
+<!--     <mat-card-actions *ngIf="isFull">
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions> -->
 </mat-card>

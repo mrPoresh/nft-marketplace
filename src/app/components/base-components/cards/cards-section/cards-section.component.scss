@@ -1,33 +1,33 @@
-/* .section-wrapper {
-    width: 100%;
-    height: 100%;
+.section-wrapper {
+    padding-top: 20px;
 
     h1 {
+        width: 100%;
+
         text-align: left;
         font-size: 24px;
 
         margin: 0;
     }
 
-    app-card {
-        width: 100%;
+    .box {
+        padding-top: 10px;
     }
 
     .more-button {
-        height: 16px;
+        /* height: 16px; */
 
-        left: 80%;
+        margin: 20px;
+
         color: #3C71CE;
+        background-color: #fafafa;
         text-transform: uppercase;
         font-size: 14px;
     }
 
-} */
+    mat-divider {
+        width: 100%;
+        padding-bottom: 20px;
+    }
 
-.section-card {
-    width: 100%;
-    height: 100%;
-
-    padding: 0;
-    margin-bottom: 20px;
 }
