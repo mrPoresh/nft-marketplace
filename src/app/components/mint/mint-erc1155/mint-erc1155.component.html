@@ -1,1 +1,32 @@
-<p>mint-erc1155 works!</p>
+<div class="mint-wrapper" fxLayout="column" fxLayoutAlign="start center">
+    <div class="mint-body">
+        <span class="head" fxFlex="15%" fxLayout="column" fxLayoutAlign="space-evenly start">
+            <h1>Create New NFT</h1>
+            <h2>Multiple edition on Ethereum</h2>
+        </span>
+
+        <div class="wallet-box" fxFlex="20%" fxLayout="column" fxLayoutAlign="space-evenly start">
+            <h3>Choose wallet</h3>
+            <mat-card fxLayout="row" fxLayoutAlign="start center">
+                <img src="assets/test/eth_L.svg">
+                <span fxLayout="column" fxLayoutAlign="start center">
+                    <h3>0x45678987654e34567</h3>
+                    <p>eth</p>
+                </span>
+              </mat-card>
+        </div>
+
+        <div class="file-box" fxFlex="40%">
+            <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+
+            <div class="file-upload">
+                <img *ngIf="pre_nft" src="{{pre_nft.src}}">
+             
+                 <button mat-mini-fab color="primary" class="upload-btn"
+                   (click)="fileUpload.click()">
+                     <mat-icon>attach_file</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

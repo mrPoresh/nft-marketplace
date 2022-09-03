@@ -48,6 +48,12 @@
                     </div>
                 </button>
 
+                <button *ngIf="User.isLogged == 1" mat-flat-button class="item-button" (click)="navigateCreate()">
+                    <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                        <mat-icon class="icon">rowing</mat-icon><span class="space"></span><h3>Create</h3>
+                    </div>
+                </button>
+
             </div>
 
             <button class="connect-wallet-button" routerLink="/connect-wallet" mat-stroked-button>CONNECT WALLET</button>

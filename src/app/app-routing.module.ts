@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule) },
   { path: 'connect-wallet', loadChildren: () => import('./components/connect-wallet/connect-wallet.module').then(m => m.ConnectWalletModule) },
   { path: 'account/:id', component: UserPageComponent },
+  { path: 'create', loadChildren: () => import('./components/mint/mint.module').then(m => m.MintModule) },  //
   { path: '**', redirectTo: '/' },
 ];
 

@@ -1,0 +1,131 @@
+.mint-wrapper {
+    width: 100%;
+
+    .mint-body {
+        max-width: 700px;
+        width: 80%;
+
+        padding: 20px;
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+        /* background-color: #fafafa; */
+
+        .head {
+            min-height: 100px;
+            width: 100%;
+        }
+
+        .wallet-box {
+            min-height: 140px;
+            height: 100%;
+            width: 100%;
+
+            mat-card {
+                width: 100%;
+
+                border-radius: 5px;
+                background-color: #fafafa;
+
+                img {
+                    object-fit: cover;
+                    width: 40px;
+                }
+
+                span {
+                    padding-left: 20px;
+                }
+
+            }
+
+        }
+
+        .file-box {
+            min-height: 250px;
+            max-height: 400px;
+
+            .file-input {
+                display: none;
+            }
+
+            .file-upload {
+                width: 100%;
+
+                img {
+                    width: 100%;
+
+                    object-fit: cover;
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+h1 {
+    margin: 0;
+
+    font-size: 46px;
+    font-weight: 500;
+
+}
+
+h2 {
+    margin: 0;
+
+    font-size: 24px;
+    font-weight: 450;
+    color: #808080;
+
+}
+
+h3 {
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: 550px;
+}
+
+@media (max-width: 1200px) {
+
+    h1 {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+    
+}
+
+@media (max-width: 700px) {
+
+    .mint-wrapper {
+    
+        .mint-body {
+            max-width: none;
+            width: 100%;
+    
+    
+        }
+    
+    }
+    
+}
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+    
+}

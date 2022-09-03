@@ -1,1 +1,22 @@
-<p>mint-eth works!</p>
+<div class="mint-wrapper" fxLayout="column" fxLayoutAlign="center center">
+    <div class="mint-body">
+        <h1>Choose Type</h1>
+
+        <p>Choose “Single” for one of a kind or “Multiple” if you want to sell one collectible multiple times.
+        </p>
+
+        <div class="owned-body">
+          <div fxLayout="row wrap" fxLayoutGap="20px grid">
+            <div fxFlex.xl="50%" fxFlex.lg="50%" fxFlex.md="50%" fxFlex.sm="100%" fxFlex.xs="100%" *ngFor="let item of chainOptions">
+              <mat-card (click)="navigate(item)" fxLayout="row" fxLayoutAlign="center center" >
+                <img src="{{item.icon}}">
+                <span fxLayout="column" fxLayoutAlign="start center">
+                    <h2>{{item.name}}</h2>
+                    <p>{{item.des}}</p>
+                </span>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

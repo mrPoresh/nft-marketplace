@@ -65,4 +65,11 @@ export class SlideMenuComponent extends BasePageComponentWithDialogs implements 
   
   }
 
+  navigateCreate() {
+    if (this.User.isLogged == 1) {
+      this.router.navigate(['create']);
+    }
+
+  }
+
 }
