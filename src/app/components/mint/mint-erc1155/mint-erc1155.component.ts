@@ -14,6 +14,7 @@ class ImageSnippet {
 export class MintErc1155Component extends BasePageComponent implements OnInit {
 
   public pre_nft: ImageSnippet | null  = null;
+  public isSale = false;
 
   constructor() { 
     super()
@@ -38,6 +39,10 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
 
     }
 
+  }
+
+  toggle(event) {
+    this.isSale = event.checked;
   }
 
 }

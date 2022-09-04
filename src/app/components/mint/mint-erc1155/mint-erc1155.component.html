@@ -16,16 +16,44 @@
               </mat-card>
         </div>
 
-        <div class="file-box" fxFlex="40%">
+        <div class="file-box" fxFlex="40%" fxLayout="column" fxLayoutAlign="space-evenly start">
+            <h3>Upload file</h3>
+
             <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
 
             <div class="file-upload">
-                <img *ngIf="pre_nft" src="{{pre_nft.src}}">
-             
-                 <button mat-mini-fab color="primary" class="upload-btn"
-                   (click)="fileUpload.click()">
-                     <mat-icon>attach_file</mat-icon>
-                </button>
+                <mat-card fxLayout="column" fxLayoutAlign="center center">
+                    <div *ngIf="!pre_nft" fxLayout="column" fxLayoutAlign="center center">
+                        <h2>PNG, GIF, WEBP, MP4 or MP3.</h2>
+                        <button mat-flat-button color="primary" class="upload-btn" (click)="fileUpload.click()">
+                            Choose File
+                        </button> 
+                    </div>
+
+                    <img *ngIf="pre_nft" src="{{pre_nft.src}}">
+
+                </mat-card>
+            </div>
+        </div>
+
+        <div class="sell-opt" fxFlex="15%" fxLayout="column" fxLayoutAlign="start center">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxLayout="column" fxLayoutAlign="space-evenly start">
+                    <h3>Put on marketplace</h3>
+                    <h4>Put your new NFT on Rarible's marketplace</h4>
+                </div>
+    
+                <mat-slide-toggle (change)="toggle($event)"></mat-slide-toggle>
+            </div>
+
+            <div class="sell-body" *ngIf="isSale" fxLayout="column" fxLayoutAlign="start center">   <!-- here -->
+                <div fxLayoutGap="10px grid">
+                    <div fxFlex="33%">
+                        <div style="width: 100%;">1</div>
+                        <div style="width: 100%;">1</div>
+                        <div style="width: 100%;">1</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
