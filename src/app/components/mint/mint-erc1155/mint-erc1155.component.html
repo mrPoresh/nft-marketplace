@@ -47,12 +47,23 @@
             </div>
 
             <div class="sell-body" *ngIf="isSale" fxLayout="column" fxLayoutAlign="start center">   <!-- here -->
-                <div fxLayoutGap="10px grid">
-                    <div fxFlex="33%">
-                        <div style="width: 100%;">1</div>
-                        <div style="width: 100%;">1</div>
-                        <div style="width: 100%;">1</div>
-                    </div>
+                <div fxLayout="row">
+                    <mat-card fxFlex="33%" class="opt" (click)="createCollection()"><h3>Fixed Price</h3></mat-card>
+                    <mat-card fxFlex="33%" class="opt"><h3>Open For bids</h3></mat-card>
+                    <mat-card fxFlex="33%" class="opt"><h3>Timed auction</h3></mat-card>
+                </div>
+
+                <div class="price-box" fxLayout="row" fxLayoutAlign="center center">
+                    <mat-form-field fxFlex="80%" appearance="legacy">
+                        <mat-label>Enter price for one piece</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="20%" appearance="legacy">
+                        <mat-select>
+                            <mat-option value="ETH">ETH</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
             </div>
         </div>

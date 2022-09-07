@@ -6,7 +6,7 @@ import { SDKMain } from './sdk-main.service';
 import { Web3Ethereum } from "@rarible/web3-ethereum";
 import { EthereumWallet } from "@rarible/sdk-wallet";
 
-import { Connector, InjectedWeb3ConnectionProvider, DappType, IConnectorStateProvider } from "@rarible/connector"
+import { Connector, InjectedWeb3ConnectionProvider, DappType, IConnectorStateProvider, AbstractConnectionProvider, EthereumProviderConnectionResult, ConnectionProvider } from "@rarible/connector"
 import { WalletConnectConnectionProvider } from "@rarible/connector-walletconnect"
 import { mapEthereumWallet, mapFlowWallet, mapTezosWallet } from "@rarible/connector-helper"
 import { BehaviorSubject, from, Observable } from 'rxjs';

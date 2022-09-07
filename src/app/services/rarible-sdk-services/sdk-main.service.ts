@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, from, Observable, map } from 'rxjs';
 
-import Web3 from "web3"
 import { createRaribleSdk } from "@rarible/sdk"
 
 import { toUnionAddress } from "@rarible/types"
@@ -23,9 +22,11 @@ import type {
   GetSellOrdersByItemRequest,
   GetSellOrdersByMakerRequest,
 } from "@rarible/api-client/build/apis"
-import type { RestrictionCheckForm } from "@rarible/api-client/build/models";
+
 import { Blockchain, OrderStatus } from "@rarible/api-client/build/models";
 import { IRaribleSdk } from '@rarible/sdk/build/domain';
+
+import { CreateCollectionRequest } from '@rarible/sdk/build/types/nft/deploy/domain';
 
 import { WindowProviderService } from 'src/app/utils/window-provider.service';
 
@@ -36,7 +37,7 @@ import { WindowProviderService } from 'src/app/utils/window-provider.service';
 })
 export class SDKMain {
 
-  public raribleSdk: IRaribleSdk; 
+  public raribleSdk!: IRaribleSdk; 
 
 
   constructor(
@@ -47,8 +48,9 @@ export class SDKMain {
   }
 
   initSDKwithProvider(provider: any) {
+    console.log('Init Provider', provider)
     this.raribleSdk = createRaribleSdk(provider, "prod");
-    console.log("Connecting SDK with provider");
+    console.log("Connecting SDK with provider", this.raribleSdk);
   }
 
   /* ++++++++++ Collection Flow ++++++++++ */
@@ -77,13 +79,6 @@ export class SDKMain {
     }
     return from(this.raribleSdk.apis.collection.getCollectionsByOwner(options));
   }
-
-/*   refreshCollectionMetaData(address: any) {
-    const options: RefreshCollectionMetaRequest = {
-      collection: address,
-    }
-    return from(this.raribleSdk.apis.collection.refreshCollectionMeta(options))
-  } */
 
   /* ++++++++++ Item Flow ++++++++++ */
 
@@ -215,5 +210,17 @@ export class SDKMain {
     return from(this.raribleSdk.balances.getBalance(toUnionAddress(owner), {"@type": "ETH"}));
   }
 
+  /* Create Collection */
+
+  createCollection(asset) {
+    const collectionReq: CreateCollectionRequest = {
+      blockchain: Blockchain.ETHEREUM,
+      asset: asset,
+    };
+    console.log("Here", this.raribleSdk)
+    return from(this.raribleSdk.nft.createCollection(collectionReq).then((res) => {
+      return res.tx.wait()
+    }));
+  }
   
 }
