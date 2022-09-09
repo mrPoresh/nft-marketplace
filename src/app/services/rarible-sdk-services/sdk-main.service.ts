@@ -41,16 +41,20 @@ export class SDKMain {
 
 
   constructor(
-    public winRef: WindowProviderService,
+
   ) {
-    this.raribleSdk = createRaribleSdk(undefined, "prod");
-    console.log("Connecting SDK without provider");
+    
   }
+  
 
   initSDKwithProvider(provider: any) {
-    console.log('Init Provider', provider)
     this.raribleSdk = createRaribleSdk(provider, "prod");
     console.log("Connecting SDK with provider", this.raribleSdk);
+  }
+
+  initSDKwiithOutProvider() {
+    this.raribleSdk = createRaribleSdk(undefined, "prod");
+    console.log("Connecting SDK without provider");
   }
 
   /* ++++++++++ Collection Flow ++++++++++ */

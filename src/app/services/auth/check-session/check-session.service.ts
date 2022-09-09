@@ -16,8 +16,8 @@ export class CheckSessionService {
     private sdkLoginService: SdkLoginService,
   ) { }
 
-  requestCheckUserInfo(): Observable<UserInfo> {
-    return this.sdkLoginService.connector.connection.pipe(
+  requestCheckUserInfo()/* : Observable<UserInfo> */ {
+/*     return this.sdkLoginService.connector.connection.pipe(
       switchMap((res: any) => {
         this.loginStatusService.updateUserInfo({
           isLogged: res.status === "connected" ? LoggedStatus.logged : LoggedStatus.notLogged,
@@ -26,7 +26,7 @@ export class CheckSessionService {
         });
         return this.loginStatusService.getLoginStatus()
       }),
-    );
+    ); */
   }
 
 }

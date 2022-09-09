@@ -7,6 +7,8 @@ import { SharedMaterialModule } from 'src/app/modules/shared-material.module';
 import { ConnectWalletMainComponent } from './connect-wallet-main/connect-wallet-main.component';
 import { ConnectWalletDialogComponent, ConnectWalletDialogRouteComponent } from './connect-wallet-dialog/connect-wallet-dialog.component';
 import { ConnectWalletComponent } from './connect-wallet/connect-wallet.component';
+import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
+import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
 
 
 @NgModule({
@@ -20,6 +22,10 @@ import { ConnectWalletComponent } from './connect-wallet/connect-wallet.componen
     CommonModule,
     ConnectWalletRoutingModule,
     SharedMaterialModule,
+  ],
+  providers: [
+    SDKMain,
+    SdkLoginService,
   ]
 })
 export class ConnectWalletModule { }

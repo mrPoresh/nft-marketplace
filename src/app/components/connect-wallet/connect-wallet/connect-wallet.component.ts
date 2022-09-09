@@ -18,13 +18,16 @@ export class ConnectWalletComponent implements OnInit {
   constructor(
     public detectDeviceService: DetectDeviceService,
     public winRef: WindowProviderService,
-    public loginSDK: SdkLoginService,
+    public loginService: SdkLoginService,
   ) { }
 
   ngOnInit() {
     this.isDesktop = this.detectDeviceService.isDesktop();
 
-    this.loginSDK.getConenctionOptions().subscribe((res) => {
+    this.loginService.createConnector();
+    console.log("Connector in Wallet-Module", this.loginService.getConnector());
+
+    this.loginService.getConenctionOptions().subscribe((res) => {
       this.options = res;
     });
     
@@ -36,7 +39,7 @@ export class ConnectWalletComponent implements OnInit {
     });
 
     if (option) {
-      this.loginSDK.loginWithWallet(option);
+      this.loginService.loginWithWallet(option);
     } else {
       this.winRef.window.alert("Please Install Metamask");
     }
@@ -49,7 +52,7 @@ export class ConnectWalletComponent implements OnInit {
     });
 
     if (option) {
-      this.loginSDK.loginWithWallet(option);
+      this.loginService.loginWithWallet(option);
     } else {
       this.winRef.window.alert("Bad Way");
     }
@@ -57,7 +60,7 @@ export class ConnectWalletComponent implements OnInit {
   }
 
   disconect() {
-    this.loginSDK.logOut()
+    this.loginService.logOut();
   }
 
 }

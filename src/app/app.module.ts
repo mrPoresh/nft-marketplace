@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedMaterialModule } from './modules/shared-material.module';
 
 import { WindowProviderService } from './utils/window-provider.service';  /*  */
-/* import { SDKMain } from './services/rarible-sdk-services/sdk-main.service'; */
+import { SDKMain } from './services/rarible-sdk-services/sdk-main.service';
 
 import { AppComponent } from './app.component';
 import { BaseComponent } from './components/base-components/base/base.component';
@@ -58,7 +58,7 @@ import { UserPageComponent } from './components/user-page/user-page.component';
   ],
   providers: [
     WindowProviderService,
-
+    SDKMain,
   ],
   bootstrap: [AppComponent]
 })

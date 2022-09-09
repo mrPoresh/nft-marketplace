@@ -77,6 +77,8 @@ export class HomePageComponent extends BasePageComponent implements OnInit {
       console.log("Home Page NFT's >>>", this.sections);
 
     });
+
+    console.log("SDK 1", this.sdk.raribleSdk);
     
   }
 

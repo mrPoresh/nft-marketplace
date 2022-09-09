@@ -42,13 +42,13 @@
                     </div>
                 </button>
 
-                <button *ngIf="User.isLogged == 1" mat-flat-button class="item-button" (click)="navigateAccount()">
+                <button  mat-flat-button class="item-button" (click)="navigateAccount()">   <!-- *ngIf="User.isLogged == 1" -->
                     <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
                         <mat-icon class="icon">rowing</mat-icon><span class="space"></span><h3>Profile</h3>
                     </div>
                 </button>
 
-                <button *ngIf="User.isLogged == 1" mat-flat-button class="item-button" (click)="navigateCreate()">
+                <button  mat-flat-button class="item-button" (click)="navigateCreate()">    <!-- *ngIf="User.isLogged == 1" -->
                     <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
                         <mat-icon class="icon">rowing</mat-icon><span class="space"></span><h3>Create</h3>
                     </div>

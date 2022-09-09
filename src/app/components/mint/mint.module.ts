@@ -9,6 +9,9 @@ import { MintErc721Component } from './mint-erc721/mint-erc721.component';
 
 import { SharedMaterialModule } from 'src/app/modules/shared-material.module';
 
+import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
+import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +24,10 @@ import { SharedMaterialModule } from 'src/app/modules/shared-material.module';
     CommonModule,
     MintRoutingModule,
     SharedMaterialModule,
+  ], 
+  providers : [
+    SDKMain,
+    SdkLoginService,
   ]
 })
 export class MintModule { }

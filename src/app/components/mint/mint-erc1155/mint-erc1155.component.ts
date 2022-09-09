@@ -14,6 +14,7 @@ import { Web3Ethereum } from '@rarible/web3-ethereum';
 import { mapEthereumWallet } from '@rarible/connector-helper';
 import { EthereumWallet } from "@rarible/sdk-wallet"
 import { createRaribleSdk } from '@rarible/sdk';
+import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
 
 class ImageSnippet {
   constructor(public src: string | ArrayBuffer, public file: File) {}
@@ -33,6 +34,7 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
   constructor(
     public router: Router,
     public sdk: SDKMain,
+    public loginService: SdkLoginService,
     public loginStatusService: LoginStatusService,
   ) { 
     super()
@@ -49,6 +51,18 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
         }
       }),
     ).subscribe((res) => console.log('collections', res));
+
+    this.loginService.getState().subscribe((res) => console.log("State", res));
+    
+    this.loginService.createConnector();
+    console.log("Connector", this.loginService.getConnector());
+
+    this.loginService.getConnection().subscribe((res) => {
+      if (res.status === 'connected') {
+        console.log('kkkkk', res.connection.wallet)
+        this.sdk.initSDKwithProvider(res.connection.wallet);
+      }
+    });
   }
 
   onFileSelected(event) {
@@ -83,7 +97,6 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
       },
     };
     this.sdk.createCollection(asset).pipe(takeUntil(this.unsubscribe)).subscribe((res) => console.log('Created Collection', res))
-    console.log("????", this.sdk.raribleSdk)
   }
 
 }

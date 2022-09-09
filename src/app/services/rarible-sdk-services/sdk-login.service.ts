@@ -6,6 +6,7 @@ import { SDKMain } from './sdk-main.service';
 import { Web3Ethereum } from "@rarible/web3-ethereum";
 import { EthereumWallet } from "@rarible/sdk-wallet";
 
+import Web3 from 'web3';
 import { Connector, InjectedWeb3ConnectionProvider, DappType, IConnectorStateProvider, AbstractConnectionProvider, EthereumProviderConnectionResult, ConnectionProvider } from "@rarible/connector"
 import { WalletConnectConnectionProvider } from "@rarible/connector-walletconnect"
 import { mapEthereumWallet, mapFlowWallet, mapTezosWallet } from "@rarible/connector-helper"
@@ -16,7 +17,81 @@ import { BehaviorSubject, from, Observable } from 'rxjs';
 })
 export class SdkLoginService extends SDKMain {
 
-  public connector; /*  */
+  private connector;
+
+  private state: IConnectorStateProvider = {
+    async getValue(): Promise<string | undefined> {
+      const value = localStorage.getItem("saved_provider");
+      return value ? value : undefined;
+    },
+    async setValue(value: string | undefined): Promise<void> {
+      localStorage.setItem("saved_provider", value || "")
+    },
+  }
+
+  constructor() { 
+    super();
+  }
+
+  getState(): Observable<string | undefined> {
+    return from(this.state.getValue());
+  }
+
+  getConnector() {
+    return this.connector;
+  }
+
+  getConenctionOptions(): Observable<any> {
+    return from(this.connector.getOptions());
+  }
+
+  metamaskInstance() {
+    return mapEthereumWallet(new InjectedWeb3ConnectionProvider());
+  }
+
+  walletConnectInstance() {
+    return mapEthereumWallet(new WalletConnectConnectionProvider({
+      rpc: {
+        1: "https://node-mainnet.rarible.com"
+      },
+      chainId: 1
+    }));
+  }
+
+  mapEthereumWallet<O>(provider: AbstractConnectionProvider<O, EthereumProviderConnectionResult>) {
+    return provider.map(state => ({
+        wallet: new EthereumWallet<any>(new Web3Ethereum({ web3: new Web3(state.provider), from: state.address })),   // problem here
+        address: state.address
+    }))
+  }
+
+  createConnector() {
+    this.connector = Connector.create(this.metamaskInstance(), this.state).add(this.walletConnectInstance());
+  }
+
+  getConnection() {
+    return this.connector.connection
+  }
+
+  async loginWithWallet(option: any) {
+    this.state.setValue(this.connector.provider);
+    await this.connector.connect(option);
+  }
+
+  logOut() {
+    this.state.setValue(undefined);
+    this.connector.connection.subscribe((con) => {
+      if (con.status === "connected") {
+        con.disconnect();
+      }
+    });
+  }
+
+}
+
+/* export class SdkLoginService extends SDKMain {
+
+  public connector;
 
   public state: IConnectorStateProvider = {
     async getValue(): Promise<string | undefined> {
@@ -33,16 +108,15 @@ export class SdkLoginService extends SDKMain {
   ) { 
     super(winRef);
 
-    /* Create Provders For Connection */
-    const injected = mapEthereumWallet(new InjectedWeb3ConnectionProvider());       /* Metamask */
-    const walletConnect = mapEthereumWallet(new WalletConnectConnectionProvider({   /* Wallet Connect */
+
+    const injected = mapEthereumWallet(new InjectedWeb3ConnectionProvider());
+    const walletConnect = mapEthereumWallet(new WalletConnectConnectionProvider({
       rpc: {
         1: "https://node-mainnet.rarible.com"
       },
       chainId: 1
     }));
 
-    /* Create Connection which contains all connection info */
     this.connector = Connector.create(injected, this.state).add(walletConnect);
 
     this.connector.connection.subscribe((con) => {
@@ -54,11 +128,13 @@ export class SdkLoginService extends SDKMain {
 
   }
 
+  getState() {
+    return from(this.state.getValue())
+  }
+
   getConenctionOptions(): Observable<any> {
     return from(this.connector.getOptions());
   }
-
-  /* auth */
 
   async loginWithWallet(option: any) {
     this.state.setValue(this.connector.provider);
@@ -75,6 +151,4 @@ export class SdkLoginService extends SDKMain {
     });
   }
 
-  /*  */
-
-}
+} */

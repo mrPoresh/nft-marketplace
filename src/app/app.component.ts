@@ -41,16 +41,15 @@ export class AppComponent extends BasePageComponent implements OnInit {
     }
 
     this.isDesktop = this.detectDeviceService.isDesktop();
-    console.log('ccc', this.isDesktop);
 
-    this.checkSessionService.requestCheckUserInfo().subscribe((res) => {
+/*     this.checkSessionService.requestCheckUserInfo().subscribe((res) => {
       console.log("App Comp", res);
       if (res.isLogged == 1) {
         this.isLogged = true;
       } else {
         this.isLogged = false;
       }
-    });
+    }); */
     
   }
 
