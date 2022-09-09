@@ -203,7 +203,7 @@ export class SDKMain {
 
   getSellOrdersByMaker(address: string) {
     const options: GetSellOrdersByMakerRequest = {
-      maker: address,
+      maker: [address],
     }
     return from(this.raribleSdk.apis.order.getSellOrdersByMaker(options));
   }

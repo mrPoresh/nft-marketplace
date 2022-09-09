@@ -46,11 +46,11 @@ export class SdkLoginService extends SDKMain {
   }
 
   metamaskInstance() {
-    return mapEthereumWallet(new InjectedWeb3ConnectionProvider());
+    return this.mapEthereumWallet(new InjectedWeb3ConnectionProvider());
   }
 
   walletConnectInstance() {
-    return mapEthereumWallet(new WalletConnectConnectionProvider({
+    return this.mapEthereumWallet(new WalletConnectConnectionProvider({
       rpc: {
         1: "https://node-mainnet.rarible.com"
       },
@@ -60,7 +60,7 @@ export class SdkLoginService extends SDKMain {
 
   mapEthereumWallet<O>(provider: AbstractConnectionProvider<O, EthereumProviderConnectionResult>) {
     return provider.map(state => ({
-        wallet: new EthereumWallet<any>(new Web3Ethereum({ web3: new Web3(state.provider), from: state.address })),   // problem here
+        wallet: new EthereumWallet(new Web3Ethereum({ web3: new Web3(state.provider), from: state.address })),   // problem here
         address: state.address
     }))
   }

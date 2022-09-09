@@ -58,10 +58,9 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
     console.log("Connector", this.loginService.getConnector());
 
     this.loginService.getConnection().subscribe((res) => {
-      if (res.status === 'connected') {
-        console.log('kkkkk', res.connection.wallet)
+        console.log('kkkkk', res.connection)
         this.sdk.initSDKwithProvider(res.connection.wallet);
-      }
+      
     });
   }
 
@@ -93,6 +92,7 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
         name: "Cats live style",
         symbol: "CHEW",
         contractURI: "https://ipfs.moralis.io:2053/ipfs/QmX9hZ6tGASkCs4bappwUJ3sRsf6V2VXMrg3iPmw6t5RR1",
+        baseURI: "https://ipfs.rarible.com",
         isUserToken: false,
       },
     };
