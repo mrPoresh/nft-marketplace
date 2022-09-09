@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 
-import { Section } from '../../../home-page/home-page.component';
+import { Section } from 'src/app/components/main/home-page/home-page.component';
 
 @Component({
   selector: 'app-cards-section',

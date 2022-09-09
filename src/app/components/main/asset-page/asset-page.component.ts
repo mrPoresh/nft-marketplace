@@ -6,7 +6,7 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
 import { DetectDeviceService } from 'src/app/utils/detect-device.service';
 
-import { BasePageComponent } from '../base-components/base-page/base-page.component';
+import { BasePageComponent } from '../../base-components/base-page/base-page.component';
 import { NFTsOptions } from 'src/app/services/rarible-sdk-services/sdk-models.models';
 
 @Component({

@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs';
 import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
 import { LoginStatusService } from 'src/app/services/auth/login/login-status.service';
 
-import { BasePageComponent } from '../base-components/base-page/base-page.component';
+import { BasePageComponent } from '../../base-components/base-page/base-page.component';
 
 @Component({
   selector: 'app-user-page',

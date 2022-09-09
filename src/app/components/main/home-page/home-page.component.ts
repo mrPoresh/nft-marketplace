@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { DetectDeviceService } from 'src/app/utils/detect-device.service';
 import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
 
-import { BasePageComponent } from '../base-components/base-page/base-page.component';
+import { BasePageComponent } from '../../base-components/base-page/base-page.component';
 import { topCollections } from 'src/app/services/rarible-sdk-services/sdk-models.models';
 
 export interface Section {

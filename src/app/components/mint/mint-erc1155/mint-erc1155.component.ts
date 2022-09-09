@@ -26,8 +26,10 @@ class ImageSnippet {
   styleUrls: ['./mint-erc1155.component.scss']
 })
 export class MintErc1155Component extends BasePageComponent implements OnInit {
+
   public pre_nft: ImageSnippet | null = null;
   public isSale = false;
+  public saleOption = 0;
 
   public collections;
 
@@ -41,7 +43,9 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginStatusService.getLoginStatus().pipe(
+    this.sdk.initSDKwiithOutProvider();
+    
+    this.loginStatusService.getLoginStatus().pipe(  //  load list of users collections
       takeUntil(this.unsubscribe),
       switchMap((res) => {
         if (res.walletAddress) {
@@ -52,16 +56,15 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
       }),
     ).subscribe((res) => console.log('collections', res));
 
-    this.loginService.getState().subscribe((res) => console.log("State", res));
-    
-    this.loginService.createConnector();
-    console.log("Connector", this.loginService.getConnector());
-
     this.loginService.getConnection().subscribe((res) => {
-        console.log('kkkkk', res.connection)
+      if (res.status === "connected") {
+        console.log("Init Provider with Wallet", res)
         this.sdk.initSDKwithProvider(res.connection.wallet);
-      
+      } else {
+        console.log("Wait Connection", res);
+      }
     });
+
   }
 
   onFileSelected(event) {
@@ -81,12 +84,17 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
 
   }
 
+  changeSaleOption(value: number) {
+    this.saleOption = value;
+    console.log("saleOption", this.saleOption);
+  }
+
   toggle(event) {
     this.isSale = event.checked;
   }
 
   createCollection() {
-    const asset = {
+/*     const asset = {
       assetType: "ERC1155",
       arguments: {
         name: "Cats live style",
@@ -96,7 +104,7 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
         isUserToken: false,
       },
     };
-    this.sdk.createCollection(asset).pipe(takeUntil(this.unsubscribe)).subscribe((res) => console.log('Created Collection', res))
+    this.sdk.createCollection(asset).pipe(takeUntil(this.unsubscribe)).subscribe((res) => console.log('Created Collection', res)) */
   }
 
 }

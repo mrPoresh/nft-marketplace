@@ -31,6 +31,8 @@ export class SdkLoginService extends SDKMain {
 
   constructor() { 
     super();
+
+    this.createConnector();
   }
 
   getState(): Observable<string | undefined> {
@@ -74,11 +76,13 @@ export class SdkLoginService extends SDKMain {
   }
 
   async loginWithWallet(option: any) {
+    console.log("Connect by Wallet");
     this.state.setValue(this.connector.provider);
-    await this.connector.connect(option);
+    await this.connector.connect(option).then(() => console.log("Connected", this.connector));
   }
 
   logOut() {
+    console.log("Disconect")
     this.state.setValue(undefined);
     this.connector.connection.subscribe((con) => {
       if (con.status === "connected") {

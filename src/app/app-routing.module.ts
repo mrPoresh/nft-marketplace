@@ -1,25 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomePageComponent } from './components/home-page/home-page.component';
-import { AssetPageComponent } from './components/asset-page/asset-page.component';
-import { CollectionPageComponent } from './components/collection-page/collection-page.component';
-import { ExploreCollectionsComponent } from './components/explore-collections/explore-collections.component';
-import { UserPageComponent } from './components/user-page/user-page.component';
-
 /* const authRoute = {
   path: '', loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
 } */
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
-  { path: 'explore-collections', component: ExploreCollectionsComponent },
-  { path: 'collection/:name/:address', component: CollectionPageComponent },
-  { path: 'token/:id', component: AssetPageComponent },
-  { path: '', loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule) },
-  { path: 'connect-wallet', loadChildren: () => import('./components/connect-wallet/connect-wallet.module').then(m => m.ConnectWalletModule) },
-  { path: 'account/:id', component: UserPageComponent },
-  { path: 'create', loadChildren: () => import('./components/mint/mint.module').then(m => m.MintModule) },  //
+
+  { path: '', loadChildren: () => import('./components/main/main.module').then(m => m.MainModule)},   // main
+
+  { path: '', loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule) },  //  auth
+  { path: 'connect-wallet', loadChildren: () => import('./components/connect-wallet/connect-wallet.module').then(m => m.ConnectWalletModule) }, //  wallet
+  { path: 'account/:id', loadChildren: () => import('./components/user/user.module').then(m => m.UserModule) }, //  user
+  { path: 'create', loadChildren: () => import('./components/mint/mint.module').then(m => m.MintModule) },  //  mint
+
   { path: '**', redirectTo: '/' },
 ];
 

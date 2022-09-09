@@ -5,12 +5,14 @@ import { DetectDeviceService } from 'src/app/utils/detect-device.service';
 import { WindowProviderService } from 'src/app/utils/window-provider.service';
 import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
 
+import { BasePageComponent } from '../../base-components/base-page/base-page.component';
+
 @Component({
   selector: 'app-connect-wallet',
   templateUrl: './connect-wallet.component.html',
   styleUrls: ['./connect-wallet.component.scss']
 })
-export class ConnectWalletComponent implements OnInit {
+export class ConnectWalletComponent extends BasePageComponent implements OnInit {
 
   isDesktop = false;
   options!: any[];
@@ -19,7 +21,7 @@ export class ConnectWalletComponent implements OnInit {
     public detectDeviceService: DetectDeviceService,
     public winRef: WindowProviderService,
     public loginService: SdkLoginService,
-  ) { }
+  ) { super() }
 
   ngOnInit() {
     this.isDesktop = this.detectDeviceService.isDesktop();

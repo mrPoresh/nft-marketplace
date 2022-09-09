@@ -32,9 +32,9 @@ export class SlideMenuComponent extends BasePageComponentWithDialogs implements 
   ) { super(errorDialog) }
 
   ngOnInit() {
-/*     this.checkSessionService.requestCheckUserInfo().subscribe((res) => {
+    this.checkSessionService.requestCheckUserInfo().subscribe((res) => {
       this.User = res;
-    }); */
+    });
   }
 
   menuAction(value: ExploreMenuAction) {
