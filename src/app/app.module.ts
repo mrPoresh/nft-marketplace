@@ -21,6 +21,9 @@ import { SlideMenuButtonComponent } from './components/base-components/slide-men
 import { ExploreMenuComponent } from './components/base-components/slide-menu/explore-menu/explore-menu.component';
 import { ExploreMenuButtonComponent } from './components/base-components/slide-menu/explore-menu/explore-menu-button/explore-menu-button.component';
 import { LoginStatusService } from './services/auth/login/login-status.service';
+import { HttpClientModule } from '@angular/common/http';
+import { SdkLoginService } from './services/rarible-sdk-services/sdk-login.service';
+import { CheckSessionService } from './services/auth/check-session/check-session.service';
 
 
 @NgModule({
@@ -44,11 +47,14 @@ import { LoginStatusService } from './services/auth/login/login-status.service';
     BrowserAnimationsModule,
     SharedMaterialModule,
     SharedComponentsModule,
+    HttpClientModule
   ],
   providers: [
     WindowProviderService,
     LoginStatusService,
+    CheckSessionService,
     SDKMain,
+    SdkLoginService,
   ],
   bootstrap: [AppComponent]
 })

@@ -24,7 +24,6 @@ import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login
     SharedMaterialModule,
   ],
   providers: [
-    SdkLoginService,
   ]
 })
 export class ConnectWalletModule { }

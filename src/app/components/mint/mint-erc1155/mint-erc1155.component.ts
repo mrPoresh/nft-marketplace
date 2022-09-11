@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { switchMap, takeUntil } from 'rxjs';
+import { switchMap, takeUntil, map } from 'rxjs';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { BasePageComponent } from '../../base-components/base-page/base-page.component';
 import { UserWalletAddress } from 'src/app/services/auth/login/login.models';
@@ -9,8 +10,12 @@ import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service'
 import { LoginStatusService } from 'src/app/services/auth/login/login-status.service';
 import { WindowProviderService } from 'src/app/utils/window-provider.service';
 import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
-import { IpfsDaemonService } from 'src/app/services/ipfs/ipfs-deamon.service';
-import { ipfsToken } from 'src/app/services/ipfs/ipfs.service';
+import { PinataService } from 'src/app/services/ipfs/pinata.service';
+
+import { PreprocessMetaRequest } from '@rarible/sdk/build/types/nft/mint/preprocess-meta';
+import { CommonTokenMetadata } from '@rarible/sdk/build/types/nft/mint/preprocess-meta';
+import { Blockchain } from "@rarible/api-client/build/models";
+import { TokenMetadataAttribute } from '@rarible/sdk/build/types/nft/mint/preprocess-meta';
 
 class ImageSnippet {
   constructor(public src: string | ArrayBuffer, public file: File) {}
@@ -23,6 +28,15 @@ class ImageSnippet {
 })
 export class MintErc1155Component extends BasePageComponent implements OnInit {
 
+  public metadataForm = this.formBuilder.group({
+    nftname: ['', [Validators.required]],
+    description: ['', Validators.required],
+    file: [null],
+    fileName: [''],
+  });
+
+  public user_address = '';
+
   public pre_nft: ImageSnippet | null = null;
   public isSale = false;
   public saleOption = 0;
@@ -34,13 +48,13 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
     public sdk: SDKMain,
     public loginService: SdkLoginService,
     public loginStatusService: LoginStatusService,
-    @Inject(ipfsToken) private ipfs,
+    public ipfs: PinataService,
+    public formBuilder: FormBuilder,
   ) { 
     super()
   }
 
   ngOnInit() {
-    this.sdk.initSDKwiithOutProvider();
     
     this.loginStatusService.getLoginStatus().pipe(  //  load list of users collections
       takeUntil(this.unsubscribe),
@@ -51,7 +65,16 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
           return ''
         }
       }),
-    ).subscribe((res) => console.log('collections', res));
+    ).subscribe((res) => {
+      console.log('collections', res);
+    });
+
+    this.loginStatusService.getLoginStatus().subscribe((res) => {   /* rebuild */
+      if (res.walletAddress) {
+        this.user_address = 'ETHEREUM:' + res.walletAddress;
+        console.log('adr', this.user_address)
+      }
+    });
 
     this.loginService.getConnection().subscribe((res) => {
       if (res.status === "connected") {
@@ -65,21 +88,28 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
   }
 
   onFileSelected(event) {
-    const file = event.target.files[0];
+    const file = (event.target as HTMLInputElement).files![0];
 
-    console.log('File', file)
+    this.metadataForm.patchValue({
+      fileName: file.name
+    })
+
+    this.metadataForm.patchValue({
+      file: file
+    })
 
     if (file) {
       const reader = new FileReader();
+
       reader.addEventListener('load', (event) => {
         if ((event.target != null) && (event.target.result != (undefined || null))) {
           this.pre_nft = new ImageSnippet(event.target.result, file);
+
         }
+
       });
 
       reader.readAsDataURL(file);
-
-      //this.ipfs.addFile(file);
 
     }
 
@@ -94,18 +124,25 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
     this.isSale = event.checked;
   }
 
-  createCollection() {
-/*     const asset = {
-      assetType: "ERC1155",
-      arguments: {
-        name: "Cats live style",
-        symbol: "CHEW",
-        contractURI: "https://ipfs.moralis.io:2053/ipfs/QmX9hZ6tGASkCs4bappwUJ3sRsf6V2VXMrg3iPmw6t5RR1",
-        baseURI: "https://ipfs.rarible.com",
-        isUserToken: false,
-      },
-    };
-    this.sdk.createCollection(asset).pipe(takeUntil(this.unsubscribe)).subscribe((res) => console.log('Created Collection', res)) */
+  onSubmit(metadataForm) {
+    this.ipfs.postImage(metadataForm).pipe(
+      map((res: any) => 'ipfs://' + res.IpfsHash),
+      switchMap((res: any) => this.ipfs.postFile(res, this.metadataForm)),
+      switchMap((res: any) => this.sdk.mintOffChain('ipfs://' + res.IpfsHash, this.user_address))
+    ).subscribe((res) => console.log("Final", res));
+  }
+
+  createMetatdata(metadataForm) {
+/*     const meta: PreprocessMetaRequest = {
+      blockchain: Blockchain.ETHEREUM,
+      name: metadataForm.value.nftname,
+      description: metadataForm.value.description,
+      image: metadataForm.value.file,
+      animation: undefined,
+      external: undefined,
+      attributes: [],
+    }
+    return this.sdk.raribleSdk.nft.preprocessMeta(meta) */
   }
 
 }

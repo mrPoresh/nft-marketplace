@@ -10,6 +10,7 @@ import { BasePageComponentWithDialogs } from '../base-page/base-page.component';
 import { ExploreMenuAction } from './explore-menu/explore-menu-button/explore-menu-button.component';
 
 import { UserInfo } from 'src/app/services/auth/login/login.models';
+import { LoginStatusService } from 'src/app/services/auth/login/login-status.service';
 
 @Component({
   selector: 'app-slide-menu',
@@ -28,13 +29,14 @@ export class SlideMenuComponent extends BasePageComponentWithDialogs implements 
   constructor(
     public errorDialog: MatDialog,
     public checkSessionService: CheckSessionService,
+    public loginStatusService: LoginStatusService,
     public router: Router,
   ) { super(errorDialog) }
 
   ngOnInit() {
-/*     this.checkSessionService.requestCheckUserInfo().subscribe((res) => {
+     this.checkSessionService.requestCheckUserInfo().subscribe((res) => {
       this.User = res;
-    }); */
+    });
   }
 
   menuAction(value: ExploreMenuAction) {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 
 import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
@@ -26,6 +26,7 @@ export class UserPageComponent extends BasePageComponent implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
+    public router: Router,
     public sdk: SDKMain,
     public loginStatusService: LoginStatusService,
   ) {
@@ -79,7 +80,7 @@ export class UserPageComponent extends BasePageComponent implements OnInit {
 
   onClick(data: any) {
     console.log('Choosed nft >>>', data);
-    /* this.router.navigate(['token' + '/' + data.id]); */
+    this.router.navigate(['token' + '/' + data.id]);
   }
 
 }

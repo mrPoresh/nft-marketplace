@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IpfsDeamonService } from './ipfs-deamon.service';
+import { PinataService } from './pinata.service';
 
-describe('IpfsDeamonService', () => {
-  let service: IpfsDeamonService;
+describe('PinataService', () => {
+  let service: PinataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(IpfsDeamonService);
+    service = TestBed.inject(PinataService);
   });
 
   it('should be created', () => {

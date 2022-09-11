@@ -1,5 +1,5 @@
 <div class="mint-wrapper" fxLayout="column" fxLayoutAlign="start center">
-    <div class="mint-body">
+    <form class="mint-body" [formGroup]="metadataForm">
         <span class="head" fxFlex="15%" fxLayout="column" fxLayoutAlign="space-evenly start">
             <h1>Create New NFT</h1>
             <h2>Multiple edition on Ethereum</h2>
@@ -13,7 +13,7 @@
                     <h3>0x45678987654e34567</h3>
                     <p>eth</p>
                 </span>
-              </mat-card>
+            </mat-card>
         </div>
 
         <div class="file-box" fxFlex="40%" fxLayout="column" fxLayoutAlign="space-evenly start">
@@ -82,13 +82,13 @@
             <h3>Name</h3>
             <mat-form-field appearance="legacy">
                 <mat-label>e. g. &quot;Redeemable T-Shirt with logo&quot;</mat-label>
-                <input matInput>
+                <input matInput formControlName="nftname">
             </mat-form-field>
 
             <h3>Description (optional)</h3>
             <mat-form-field appearance="legacy">
                 <mat-label>e. g. &quot;After purchasing you'll be able to get the real T-Shirt&quot;</mat-label>
-                <input matInput>
+                <input matInput formControlName="description">
             </mat-form-field>
 
             <div fxLayout="row" fxLayoutAlign="center start">
@@ -112,6 +112,6 @@
             </div>
         </div>
 
-        <button mat-flat-button color="primary">Create</button>
-    </div>
+        <button mat-flat-button color="primary" type="submit" (click)="onSubmit(metadataForm)">Create</button>
+    </form>
 </div>

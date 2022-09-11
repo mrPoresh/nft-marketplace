@@ -7,6 +7,7 @@ import { LoginStatusService } from './services/auth/login/login-status.service';
 
 import { topMenuAction } from './components/base-components/slide-menu/slide-menu-button/slide-menu-button.component';
 import { BasePageComponent } from './components/base-components/base-page/base-page.component';
+import { SDKMain } from './services/rarible-sdk-services/sdk-main.service';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class AppComponent extends BasePageComponent implements OnInit {
   constructor(
     public detectDeviceService: DetectDeviceService,
     public loginStatusService: LoginStatusService,
+    public sdk: SDKMain,
   ) {
     super()
   }
@@ -41,6 +43,8 @@ export class AppComponent extends BasePageComponent implements OnInit {
     this.isDesktop = this.detectDeviceService.isDesktop();
 
     this.loginStatusService.getLoginStatus().subscribe((res) => console.log("User Status", res));
+
+    this.sdk.initSDKwiithOutProvider()
     
   }
 

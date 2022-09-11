@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { forkJoin, from, Observable, map } from 'rxjs';
+import { forkJoin, from, Observable, map, switchMap } from 'rxjs';
 
 import { createRaribleSdk } from "@rarible/sdk"
 
-import { toUnionAddress } from "@rarible/types"
 import type { 
   GetCollectionByIdRequest, 
   GetAllCollectionsRequest, 
@@ -23,12 +22,15 @@ import type {
   GetSellOrdersByMakerRequest,
 } from "@rarible/api-client/build/apis"
 
+import { toCollectionId, toUnionAddress } from "@rarible/types"
 import { Blockchain, OrderStatus } from "@rarible/api-client/build/models";
 import { IRaribleSdk } from '@rarible/sdk/build/domain';
 
 import { CreateCollectionRequest } from '@rarible/sdk/build/types/nft/deploy/domain';
+import { EthEthereumAssetType } from '@rarible/api-client/build/models/AssetType';
 
 import { WindowProviderService } from 'src/app/utils/window-provider.service';
+import { RARIBLE_ERC_1155 } from './sdk-models.models';
 
 /* Root Service for: Initial SDK with or without provider's */
 
@@ -226,5 +228,39 @@ export class SDKMain {
       return res.tx.wait()
     }));
   }
+
+  /* mint */
+
+  mintOffChain(uri: string, user_address: string) {
+    console.log("uri", uri);
+    console.log("owner", user_address);
+    return from(this.raribleSdk.nft.mintAndSell({collectionId: toCollectionId(RARIBLE_ERC_1155)})).pipe(
+      switchMap((res) => res.submit({
+        uri: uri,
+        royalties: [{                           // For marketplace
+          account: toUnionAddress(user_address),
+          value: 1000, //1%
+        }],
+        creators: [{
+          account: toUnionAddress(user_address),
+          value: 10000,
+        }],
+        lazyMint: false,   //
+        supply: 1,  // amount
+        price: "0.000000000000000001",
+        currency: {
+          "@type": "ETH",
+          blockchain: Blockchain.ETHEREUM
+        }
+      }))
+    );
+  }
   
 }
+
+
+/* 
+itemId: "ETHEREUM:0xb66a603f4cfe17e3d27b87a8bfcad319856518b8:32732219796309672973343588065663301492452635763346005025400213295116463374337"
+orderId: "ETHEREUM:0xd88924233df89abfb2524c9dbade975263efde49a371ce184c33648ee771c589"
+type: "off-chain" 
+*/
