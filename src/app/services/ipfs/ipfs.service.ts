@@ -1,11 +1,11 @@
 import { InjectionToken } from '@angular/core';
 import IpfsHttpClient from 'ipfs-http-client';
 
-export const IPFS = new InjectionToken('The IPFS Token', {
+export const ipfsToken = new InjectionToken('The IPFS Token', {
   providedIn: 'root',
   factory: () => {
     let contextClass : any = IpfsHttpClient;
-    let context: IpfsHttpClient.IPFSHTTPClient = new contextClass('ipfs.infura.io', '5001', {
+    let context: IpfsHttpClient.IPFSHTTPClient = new contextClass.create('ipfs.infura.io', '5001', {
         protocol: 'https'
       });
 

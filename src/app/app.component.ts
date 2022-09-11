@@ -7,7 +7,6 @@ import { LoginStatusService } from './services/auth/login/login-status.service';
 
 import { topMenuAction } from './components/base-components/slide-menu/slide-menu-button/slide-menu-button.component';
 import { BasePageComponent } from './components/base-components/base-page/base-page.component';
-import { CheckSessionService } from './services/auth/check-session/check-session.service';
 
 
 @Component({
@@ -30,7 +29,6 @@ export class AppComponent extends BasePageComponent implements OnInit {
   constructor(
     public detectDeviceService: DetectDeviceService,
     public loginStatusService: LoginStatusService,
-    public checkSessionService: CheckSessionService,
   ) {
     super()
   }
@@ -42,14 +40,7 @@ export class AppComponent extends BasePageComponent implements OnInit {
 
     this.isDesktop = this.detectDeviceService.isDesktop();
 
-/*     this.checkSessionService.requestCheckUserInfo().subscribe((res) => {
-      console.log("App Comp", res);
-      if (res.isLogged == 1) {
-        this.isLogged = true;
-      } else {
-        this.isLogged = false;
-      }
-    }); */
+    this.loginStatusService.getLoginStatus().subscribe((res) => console.log("User Status", res));
     
   }
 

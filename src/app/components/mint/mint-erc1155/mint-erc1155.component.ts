@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { switchMap, takeUntil } from 'rxjs';
 
@@ -8,13 +8,9 @@ import { UserWalletAddress } from 'src/app/services/auth/login/login.models';
 import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
 import { LoginStatusService } from 'src/app/services/auth/login/login-status.service';
 import { WindowProviderService } from 'src/app/utils/window-provider.service';
-
-import Web3 from 'web3';
-import { Web3Ethereum } from '@rarible/web3-ethereum';
-import { mapEthereumWallet } from '@rarible/connector-helper';
-import { EthereumWallet } from "@rarible/sdk-wallet"
-import { createRaribleSdk } from '@rarible/sdk';
 import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
+import { IpfsDaemonService } from 'src/app/services/ipfs/ipfs-deamon.service';
+import { ipfsToken } from 'src/app/services/ipfs/ipfs.service';
 
 class ImageSnippet {
   constructor(public src: string | ArrayBuffer, public file: File) {}
@@ -38,6 +34,7 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
     public sdk: SDKMain,
     public loginService: SdkLoginService,
     public loginStatusService: LoginStatusService,
+    @Inject(ipfsToken) private ipfs,
   ) { 
     super()
   }
@@ -70,6 +67,8 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
   onFileSelected(event) {
     const file = event.target.files[0];
 
+    console.log('File', file)
+
     if (file) {
       const reader = new FileReader();
       reader.addEventListener('load', (event) => {
@@ -79,6 +78,8 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
       });
 
       reader.readAsDataURL(file);
+
+      //this.ipfs.addFile(file);
 
     }
 

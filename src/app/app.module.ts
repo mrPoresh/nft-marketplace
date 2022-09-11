@@ -20,6 +20,7 @@ import { SlideMenuComponent } from './components/base-components/slide-menu/slid
 import { SlideMenuButtonComponent } from './components/base-components/slide-menu/slide-menu-button/slide-menu-button.component';
 import { ExploreMenuComponent } from './components/base-components/slide-menu/explore-menu/explore-menu.component';
 import { ExploreMenuButtonComponent } from './components/base-components/slide-menu/explore-menu/explore-menu-button/explore-menu-button.component';
+import { LoginStatusService } from './services/auth/login/login-status.service';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { ExploreMenuButtonComponent } from './components/base-components/slide-m
   ],
   providers: [
     WindowProviderService,
+    LoginStatusService,
     SDKMain,
   ],
   bootstrap: [AppComponent]

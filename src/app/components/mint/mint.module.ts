@@ -11,6 +11,7 @@ import { SharedMaterialModule } from 'src/app/modules/shared-material.module';
 
 import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
 import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
+import { IpfsDaemonService } from 'src/app/services/ipfs/ipfs-deamon.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login
     SharedMaterialModule,
   ], 
   providers : [
-    SDKMain,
+    //SDKMain,
     SdkLoginService,
   ]
 })

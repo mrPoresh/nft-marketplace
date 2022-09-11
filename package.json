@@ -40,7 +40,7 @@
     "fs": "^0.0.1-security",
     "https-browserify": "^1.0.0",
     "ipfs": "^0.63.5",
-    "ipfs-http-client": "^57.0.3",
+    "ipfs-http-client": "^52.0.4-rc.4",
     "net": "^1.0.2",
     "ngx-cookie-service": "^13.2.1",
     "ngx-device-detector": "^3.0.0",

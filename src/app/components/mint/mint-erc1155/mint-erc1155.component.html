@@ -48,9 +48,9 @@
 
             <div class="sell-body" *ngIf="isSale" fxLayout="column" fxLayoutAlign="start center">   <!-- here -->
                 <div fxLayout="row">
-                    <mat-card fxFlex="33%" class="opt" (click)="changeSaleOption(0)"><h3>Fixed Price</h3></mat-card>
-                    <mat-card fxFlex="33%" class="opt" (click)="changeSaleOption(1)"><h3>Open For bids</h3></mat-card>
-                    <mat-card fxFlex="33%" class="opt" (click)="changeSaleOption(2)"><h3>Timed auction</h3></mat-card>
+                    <mat-card fxFlex="30%" class="opt" (click)="changeSaleOption(0)"><h3>Fixed Price</h3></mat-card>
+                    <mat-card fxFlex="30%" class="opt" (click)="changeSaleOption(1)"><h3>Open For bids</h3></mat-card>
+                    <mat-card fxFlex="30%" class="opt" (click)="changeSaleOption(2)"><h3>Timed auction</h3></mat-card>
                 </div>
 
                 <div class="price-box" *ngIf="saleOption == 0" fxLayout="row" fxLayoutAlign="center center">
@@ -67,5 +67,51 @@
                 </div>
             </div>
         </div>
+
+        <div class="collection-opt" fxLayout="column" fxLayoutAlign="start start">
+            <h3>Choose collection</h3>
+
+            <div class="collections" fxLayout="row">
+                <mat-card fxFlex="30%" class="opt"><h3>Create</h3></mat-card>
+                <mat-card fxFlex="30%" class="opt"><h3>Rarible</h3></mat-card>
+                <!-- <mat-card></mat-card> -->  <!-- For each user collection add card -->
+            </div>
+        </div>
+
+        <div class="metadata-opt" fxLayout="column" fxLayoutAlign="start start">
+            <h3>Name</h3>
+            <mat-form-field appearance="legacy">
+                <mat-label>e. g. &quot;Redeemable T-Shirt with logo&quot;</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <h3>Description (optional)</h3>
+            <mat-form-field appearance="legacy">
+                <mat-label>e. g. &quot;After purchasing you'll be able to get the real T-Shirt&quot;</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="center start">
+                <span>
+                    <h3>Royalties</h3>
+
+                    <mat-form-field appearance="legacy">
+                        <mat-label>%</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                </span>
+
+                <span>
+                    <h3>Number of copies</h3>
+
+                    <mat-form-field appearance="legacy">
+                        <mat-label>e. g. 10</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                </span>
+            </div>
+        </div>
+
+        <button mat-flat-button color="primary">Create</button>
     </div>
 </div>
