@@ -288,6 +288,14 @@ export class SDKMain {
     );
   }
 
+/*   bidUpdate() {
+    return from(this.raribleSdk.order.bidUpdate)
+  } */
+
+/*   cancel() {
+    return from(this.raribleSdk.order.cancel)
+  } */
+
   sellOrder(item_id: string) {    /* work */
     return from(this.raribleSdk.order.sell({itemId: toItemId(item_id)})).pipe(
       switchMap((res) => res.submit({
@@ -302,13 +310,32 @@ export class SDKMain {
     );
   }
 
-  batchBuy(order_Id: any, item_id: string) {
+/*   sellUpdate() {
+    return from(this.raribleSdk.order.sellUpdate)
+  } */
+
+  /* accept sell order */
+
+  buy(order_Id: any, item_id: string) {
+    return from(this.raribleSdk.order.buy({orderId: toOrderId(order_Id)})).pipe(
+      switchMap((res) => res.submit({
+        amount: 1,                                  // originFees: [{}] comision
+        itemId: toItemId(item_id),                  // payouts: [{}] for users etc.
+        maxFeesBasePoint: 0.00000001, // ?
+        unwrap: false,
+      }))
+    );
+  }
+
+  /* buy array of nfts */
+
+  batchBuy(order_Id: any, item_id: string) {  //  work
     return from(this.raribleSdk.order.batchBuy([{orderId: toOrderId(order_Id)}])).pipe(
       switchMap((res) => res.submit([
         {
           orderId: toOrderId(order_Id),
-          amount: 1,                                  /* originFees: [{}] comision */
-          itemId: toItemId(item_id),                 /* payouts: [{}] for users etc. */
+          amount: 1,                                  // originFees: [{}] comision
+          itemId: toItemId(item_id),                  // payouts: [{}] for users etc.
           maxFeesBasePoint: 0.00000001, // ?
           unwrap: false,
         }

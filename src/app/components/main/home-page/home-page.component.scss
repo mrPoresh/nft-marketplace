@@ -1,55 +1,84 @@
 .home-wrapper {
     width: 100%;
-    
+
     .home-body {
-        width: 100%;
+        width: 90%;
         max-width: 1280px;
+        padding-top: 20px;
 
-        .banner {
-            width: 90%;
-            max-width: 550px;
+        display: grid;
 
-            margin: 20px;
+        grid-template-columns: 50% 50%;
+        grid-template-areas: 
+        'top right'
+        'left right'
+        'left right'
+        'bottom right';
 
-            align-self: flex-start;
+        .banner-box {
+            grid-area: top;
 
-            object-fit: cover;
-            border-radius: 5%;
-        }
+            display: flex;
 
-        .section-body {
-            width: 90%;
+            padding: 10px;
 
-            margin: 20px;
-
-            align-self: flex-start;
-
-            app-cards-section {
+            .banner {
                 width: 100%;
-                height: 30%;
+                max-width: 550px;
+    
+                object-fit: cover;
+                border-radius: 5%;
             }
 
         }
 
+        .items-box {
+            grid-area: right;
+
+            padding: 10px;
+
+        }
+
+        .full-item-box {
+            grid-area: left;
+
+            padding: 10px;
+
+            mat-card {
+                max-width: 518px;
+            
+                border-radius: 5%;
+                padding-bottom: 0;
+        
+                img {
+                    border-radius: 5%;
+                    object-fit: cover;
+            
+                }
+        
+            }
+        }
+        
     }
-    
+
 }
 
 @media (max-width: 600px) {
     .home-wrapper {
-        
+
         .home-body {
-    
-            .banner {
-                align-self: center;
-            }
-    
-            .section-body {
-                align-self: center;
-            }
-    
+            grid-template-columns: 100%;
+            grid-template-areas: 
+            'top'
+            'top'
+            'right'
+            'right'
+            'right'
+            'left'
+            'left';
+
         }
-        
+
     }
     
 }

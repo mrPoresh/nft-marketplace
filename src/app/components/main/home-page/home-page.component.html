@@ -1,74 +1,23 @@
-<div class="home-wrapper" fxLayout="column" fxLayoutAlign="start center">    <!-- [ngClass]="(isDesktop) ? 'desktop': 'mobile'" -->
+<div class="home-wrapper" fxLayout="column" fxLayoutAlign="start center">
     <div class="home-body">
-        <mat-grid-list [cols]="cols" [rowHeight]="rowHeight">
-            <mat-grid-tile>
-                <img class="banner" src="assets/banners/home_banner.png">
-            </mat-grid-tile>
-
-            <mat-grid-tile [rowspan]="itemsHeight">
-                <div class="section-body" fxLayout="column" fxLayoutAlign="start center">
-                    <app-cards-section *ngFor="let section of sections" [isFull]="isFull" [section]="section" (_data)="onClick($event)"></app-cards-section>
-                </div>
-            </mat-grid-tile>
-
-            <mat-grid-tile>3</mat-grid-tile>
-        </mat-grid-list>
-    </div>
-
-<!--     <ng-container *ngIf="!isDesktop; else desktop">
-        <div class="content-mobile" [ngClass]="(!isExtend) ? 'default': 'extend'">
-
-            <ng-container *ngIf="!isExtend; else extend">
-                 <mat-grid-list cols="1" rowHeight="220px">
-                    <mat-grid-tile>
-                        <img src="assets/banners/home_banner.png">
-                    </mat-grid-tile>
-                </mat-grid-list>
- 
-                <mat-grid-list cols="1" rowHeight="450px">
-                    <mat-grid-tile *ngFor="let section of sections" [colspan]="1" [rowspan]="1">
-                        <app-cards-section [section]="section" (_data)="onClick($event)"></app-cards-section>
-                    </mat-grid-tile>
-                </mat-grid-list>
-
-            </ng-container>
-
-            <ng-template #extend>
-                 <mat-grid-list class="content-sections" cols="2" rowHeight="330px">
-                    <mat-grid-tile>
-                        <div class="banner">
-                            <img src="assets/banners/home_banner.png">
-                        </div>
-                    </mat-grid-tile>
-
-                    <mat-grid-tile rowspan="3">
-                        <div class="content-section">
-                            <mat-grid-list cols="1" rowHeight="330px">
-                                <mat-grid-tile *ngFor="let section of sections">
-                                    <div class="content-section">
-                                        <app-cards-section [section]="section"></app-cards-section>
-                                    </div>
-                                </mat-grid-tile>
-                            </mat-grid-list>
-                        </div>
-                    </mat-grid-tile>
-
-                    <mat-grid-tile>3</mat-grid-tile>
-                </mat-grid-list>
-            </ng-template>
-
+        <div class="banner-box" fxLayout="column" fxLayoutAlign="center center">
+            <img class="banner" src="assets/banners/home_banner.png">
         </div>
-    </ng-container>
 
-    <ng-template #desktop>
-        <p>PC</p>
+        <div class="items-box" fxLayout="column" fxLayoutAlign="start center">
+                <app-cards-section *ngFor="let section of sections" [isFull]="isFull" [section]="section" (_data)="onClick($event)"></app-cards-section>
+        </div>
 
-        <mat-grid-list class="test" cols="2" rowHeight="315px">
-            <mat-grid-tile>1</mat-grid-tile>
-            <mat-grid-tile rowspan="2">2</mat-grid-tile>
-            <mat-grid-tile>3</mat-grid-tile>
-        </mat-grid-list>
+        <div class="full-item-box" fxLayout="column" fxLayoutAlign="start center">
+            <mat-card *ngIf="_promotedNFT" class="mat-elevation-z4" (click)="onClick(_promotedNFT)">
+                <mat-card-header>
+                    <mat-card-title>{{_promotedNFT.meta.name}}</mat-card-title>
+                  </mat-card-header>
+                <img mat-card-image src="{{_promotedNFT.meta.content[0].url}}">
+                <mat-card-content>
 
-    </ng-template> -->
-
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
 </div>

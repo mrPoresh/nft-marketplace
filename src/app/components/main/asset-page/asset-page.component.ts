@@ -77,7 +77,7 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
 
     this.sdk.getItemById(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
       this.nft_data = res;
-      this.collection_id = res.collection;
+      this.collection_id = res.collection;    // remove collection
 
       console.log('NFT Data >>>', this.nft_data);
 

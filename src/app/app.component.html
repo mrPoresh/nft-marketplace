@@ -1,5 +1,5 @@
 <div class="body-wrapper">
-    <mat-sidenav-container >    <!-- (backDropClick)="backDrop()" ?-->
+    <mat-sidenav-container [hasBackdrop]="false">    <!-- (backDropClick)="backDrop()" ?-->
         <mat-sidenav class="nav-menu" [ngClass]="(!isExtend) ? 'default': 'extend'" #sidenav> <!-- found way to change action with backdrop -->
             <app-slide-menu [isExtend]="isExtend" (closeEvent)="close()"></app-slide-menu>
         </mat-sidenav>
