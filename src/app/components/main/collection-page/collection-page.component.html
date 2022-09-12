@@ -1,1 +1,50 @@
-<p>collection-page works!</p>
+<div class="collection-wrapper">
+    <div class="banner-container">
+        <div id="dummy"></div>
+        <img class="collection-avatar" src="assets/test/user_avatar.png">
+        <div class="banner" fxLayout="column" fxLayoutAlign="center center">
+          <!-- instead of <img> -->
+        </div>
+    </div>
+
+    <div *ngIf="collection_data" class="info-container">
+        <div class="collection-address">
+            <h1>{{collection_data.name}}</h1>
+        </div>
+
+        <mat-card>
+            <mat-card-content>
+              <h3>Content</h3>
+              <h3>Content</h3>
+            </mat-card-content>
+        </mat-card>
+
+        <div class="buttons" fxLayout="row" fxLayoutAlign="start center">
+            <button class="small" mat-flat-button color="primary"><mat-icon>share</mat-icon></button>
+            <button class="small" mat-flat-button color="primary"><mat-icon>more_horiz</mat-icon></button>
+        </div>
+
+    </div>
+  
+    <div class="tab-group-container" fxLayout="column" fxLayoutAlign="start center" >
+      <mat-tab-group dynamicHeight mat-align-tabs="start">
+        <mat-tab label="Items">
+            <div *ngIf="collection_items" class="owned-body">
+                <div fxLayout="row wrap" fxLayoutGap="10px grid">
+                    <div fxFlex.xl="20%" fxFlex.lg="25%" fxFlex.md="33%" fxFlex.sm="50%" fxFlex.xs="100%" *ngFor="let item of collection_items">
+                        <app-card [data]="item" (_data)="onClick($event)"></app-card>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+  
+        <mat-tab label="Activity">
+            content
+        </mat-tab>
+  
+
+  
+      </mat-tab-group>
+    </div>
+</div>
+  

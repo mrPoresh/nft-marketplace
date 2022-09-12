@@ -9,7 +9,7 @@ import { ExploreCollectionsComponent } from './explore-collections/explore-colle
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'explore-collections', component: ExploreCollectionsComponent },
-  { path: 'collection/:name/:address', component: CollectionPageComponent },
+  { path: 'collection/:id', component: CollectionPageComponent },
   { path: 'token/:id', component: AssetPageComponent },
 ];
 

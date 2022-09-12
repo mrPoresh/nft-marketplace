@@ -40,7 +40,7 @@
         <div *ngIf="ownedItems" class="owned-body">
           <div fxLayout="row wrap" fxLayoutGap="10px grid">
             <div fxFlex.xl="20%" fxFlex.lg="25%" fxFlex.md="33%" fxFlex.sm="50%" fxFlex.xs="100%" *ngFor="let item of ownedItems">
-              <app-card [isFull]="isFull" [data]="item" (_data)="onClick($event)"></app-card>
+              <app-card [data]="item" (_data)="onClick($event)"></app-card>
             </div>
           </div>
         </div>
@@ -50,14 +50,14 @@
         <div *ngIf="createdItems" class="owned-body">
           <div fxLayout="row wrap" fxLayoutGap="10px grid">
             <div fxFlex.xl="20%" fxFlex.lg="25%" fxFlex.md="33%" fxFlex.sm="50%" fxFlex.xs="100%" *ngFor="let item of createdItems">
-              <app-card [isFull]="isFull" [data]="item" (_data)="onClick($event)"></app-card>
+              <app-card [data]="item" (_data)="onClick($event)"></app-card>
             </div>
           </div>
         </div>
       </mat-tab>
 
       <mat-tab label="On Sail">
-        On Sail
+        On Sale
         <!-- <div *ngIf="saleItems" class="owned-body">
           <div fxLayout="row wrap" fxLayoutGap="10px grid">
             <div fxFlex.xl="20%" fxFlex.lg="25%" fxFlex.md="33%" fxFlex.sm="50%" fxFlex.xs="100%" *ngFor="let item of saleItems">

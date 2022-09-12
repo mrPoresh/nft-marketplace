@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 import { Section } from 'src/app/components/main/home-page/home-page.component';
@@ -11,15 +12,28 @@ import { Section } from 'src/app/components/main/home-page/home-page.component';
 export class CardsSectionComponent implements OnInit {
 
   @Input() section!: Section;
-  @Input() isFull!: boolean;
   @Output() _data = new EventEmitter<any>();
 
-  constructor() { }
+  collection_id: string | undefined = undefined;
 
-  ngOnInit() { }
+  constructor(
+    private router: Router,
+  ) { 
+
+  }
+
+  ngOnInit() { 
+    
+  }
 
   onClick(data: any) {
     this._data.emit(data);
+  }
+
+  navigateCollection() {
+    if (this.section.data) {
+      this.router.navigate(['collection' + '/' + this.section.data[0].collection]);
+    }
   }
 
 }

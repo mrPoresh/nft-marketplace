@@ -8,7 +8,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input() data!: any;
-  @Input() isFull!: boolean;
   @Output() _data = new EventEmitter<any>();
 
   constructor() { }

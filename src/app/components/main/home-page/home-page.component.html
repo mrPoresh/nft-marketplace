@@ -5,7 +5,7 @@
         </div>
 
         <div class="items-box" fxLayout="column" fxLayoutAlign="start center">
-                <app-cards-section *ngFor="let section of sections" [isFull]="isFull" [section]="section" (_data)="onClick($event)"></app-cards-section>
+                <app-cards-section *ngFor="let section of sections" [section]="section" (_data)="onClick($event)"></app-cards-section>
         </div>
 
         <div class="full-item-box" fxLayout="column" fxLayoutAlign="start center">

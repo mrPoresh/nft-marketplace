@@ -1,27 +1,11 @@
 mat-card {
 
-    &.default {
+    border-radius: 10px;
+    padding-bottom: 0;
 
-        border-radius: 5%;
-        padding-bottom: 0;
-
-        img {
-            border-radius: 5%;
-            object-fit: cover;
-    
-        }
-
-    }
-
-    &.extend {
-
-        border-radius: 5%;
-
-        img {
-            border-radius: 5%;
-            object-fit: cover;
-    
-        }
+    img {
+        border-radius: 10px;
+        object-fit: cover;
 
     }
 

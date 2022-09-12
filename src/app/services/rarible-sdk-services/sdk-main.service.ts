@@ -128,7 +128,7 @@ export class SDKMain {
     return from(this.raribleSdk.apis.item.getItemRoyaltiesById(options));
   }
 
-  getItemsByCollection(address: string, size: number) {
+  getItemsByCollection(address: string, size: number | undefined) {
     const options: GetItemsByCollectionRequest = {
       collection: address,
       size: size,

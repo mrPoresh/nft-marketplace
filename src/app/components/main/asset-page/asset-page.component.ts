@@ -31,8 +31,6 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
   public sell_orders!: any[];
   public bid_orders!: any[];
 
-  public isExtend = false;
-  public isDesktop = false;
   public isOwner = false;   //
 
   constructor(
@@ -58,12 +56,6 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
   }
 
   ngOnInit() { 
-
-    this.isDesktop = this.detectDeviceService.isDesktop();
-
-    if (window.screen.width > 450) {
-      this.isExtend = true;
-    }
 
     this.loginService.getConnection().subscribe((res) => {
       if (res.status === "connected") {

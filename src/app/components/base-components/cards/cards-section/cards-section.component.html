@@ -2,11 +2,11 @@
     <h1>{{section.tag}}</h1>
     <div class="box" fxLayout="row wrap" fxLayoutGap="10px grid">
         <div fxFlex="33%" *ngFor="let data of section.data">
-            <app-card [isFull]="isFull" [data]="data" (_data)="onClick($event)"></app-card>
+            <app-card [data]="data" (_data)="onClick($event)"></app-card>
         </div>
     </div>
 
-    <button mat-flat-button class="more-button">more</button>
+    <button mat-flat-button class="more-button" (click)="navigateCollection()">more</button>
 
     <mat-divider></mat-divider>
 </div>

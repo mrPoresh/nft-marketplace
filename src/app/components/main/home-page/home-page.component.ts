@@ -9,7 +9,7 @@ import { topCollections, promotedNFT } from 'src/app/services/rarible-sdk-servic
 
 export interface Section {
   tag: string,
-  data?: any[]
+  data?: any[],
 };
 
 @Component({
@@ -20,9 +20,9 @@ export interface Section {
 export class HomePageComponent extends BasePageComponent implements OnInit {
 
   sections: Section[] = [
-    { tag: 'New', data: undefined },
-    { tag: 'Top', data: undefined },
-    { tag: 'Art', data: undefined },
+    { tag: 'New' },
+    { tag: 'Top' },
+    { tag: 'Art' },
   ];
 
   _promotedNFT: any | undefined = undefined;
@@ -41,19 +41,15 @@ export class HomePageComponent extends BasePageComponent implements OnInit {
         this.sections[index].data = item;
       });
 
-      console.log("Home Page NFT's >>>", this.sections);
-
     });
 
     this.sdk.getItemById(promotedNFT.address).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
       this._promotedNFT = res;
-      console.log("pr", this._promotedNFT)
     });
     
   }
 
   onClick(data: any) {
-    console.log('Choosed nft >>>', data);
     this.router.navigate(['token' + '/' + data.id]);
   }
 
