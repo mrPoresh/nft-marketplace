@@ -8,6 +8,7 @@ import { DetectDeviceService } from 'src/app/utils/detect-device.service';
 
 import { BasePageComponent } from '../../base-components/base-page/base-page.component';
 import { NFTsOptions } from 'src/app/services/rarible-sdk-services/sdk-models.models';
+import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
 
 @Component({
   selector: 'app-asset-page',
@@ -27,14 +28,18 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
   public nft_data!: any;
   public collection_data!: any;
   public collections_nft!: any;
+  public sell_orders!: any[];
+  public bid_orders!: any[];
 
   public isExtend = false;
   public isDesktop = false;
+  public isOwner = false;   //
 
   constructor(
     public route: ActivatedRoute,
     public detectDeviceService: DetectDeviceService, 
     public sdk: SDKMain,
+    public loginService: SdkLoginService,
   ) { 
     super();
 
@@ -60,6 +65,16 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
       this.isExtend = true;
     }
 
+    this.loginService.getConnection().subscribe((res) => {
+      if (res.status === "connected") {
+        console.log("Init Provider with Wallet", res)
+        this.sdk.initSDKwithProvider(res.connection.wallet);
+      } else {
+        console.log("Wait Connection", res);
+      }
+
+    });
+
     this.sdk.getItemById(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
       this.nft_data = res;
       this.collection_id = res.collection;
@@ -78,14 +93,37 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
 
     });
 
-    this.sdk.getOrderBidsByItem(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
-      console.log('Orders Bids >>>', res);
+    this.sdk.getOrderBidsByItem(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res: any) => {
+      this.bid_orders = res.orders;
+      console.log('Orders Bids >>>', this.bid_orders);
     });
 
-    this.sdk.getSellOrdersByItem(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
-      console.log('Sell Orders >>>', res);
+    this.sdk.getSellOrdersByItem(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res: any) => {
+      this.sell_orders = res.orders;
+      console.log('Sell Orders >>>', this.sell_orders);
     });
 
+  }
+
+  makeBid() {
+    this.sdk.makeBid(this.token_id).subscribe((res) => console.log('created bid', res));
+  }
+
+  acceptBid() {
+    if (this.bid_orders.length > 0) {  // todo: searching highest bid
+      this.sdk.acceptBid(this.bid_orders[0].id, this.token_id).subscribe((res) => console.log('accept bid', res));
+    }
+
+  }
+
+  sellOrder() {
+    this.sdk.sellOrder(this.token_id).subscribe((res) => console.log('sell order', res));
+  }
+
+  batchBuy() {
+    if (this.sell_orders.length > 0) {
+      this.sdk.batchBuy(this.sell_orders[0].id, this.token_id).subscribe((res) => console.log('Batch Buy', res));
+    }
   }
 
 }

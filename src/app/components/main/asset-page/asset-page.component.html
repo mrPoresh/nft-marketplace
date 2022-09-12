@@ -11,20 +11,22 @@
                 <mat-card class="buy-card">
                     <mat-card-content>
                         <div class="price-box" fxLayout="row" fxLayoutAlign="space-between center">
-                            <div class="box">
+                            <div *ngIf="sell_orders" class="box">
                                 <h3>Price</h3>
-                                <h2>101 ETH</h2>
+                                <!-- <h2>{{sell_orders[0].makePrice}} ETH</h2> -->
                             </div>
 
-                            <div class="box">
+                            <div *ngIf="bid_orders" class="box">
                                 <h3>Floor bid</h3>
-                                <h2>5 ETH</h2>
+                                <!-- <h2>{{bid_orders[0].makeStock}} ETH</h2> -->
                             </div>
                         </div>
 
                         <div class="buttons-box" fxLayout="column" fxLayoutAlign="start center">
-                                <button mat-raised-button color="primary">Buy now</button>
-                                <button mat-raised-button color="accent">Place Bid</button>
+                            <button mat-raised-button color="primary" (click)="batchBuy()">Buy now (any)</button>
+                            <button mat-raised-button color="accent" (click)="makeBid()">Place Bid (any)</button>
+                            <button mat-raised-button color="accent" (click)="acceptBid()">Accept Highest Bid (owner)</button>
+                            <button mat-raised-button color="accent" (click)="sellOrder()">Sell Order (owner)</button>
                         </div>
                     </mat-card-content>
                 </mat-card>

@@ -22,9 +22,12 @@ import type {
   GetSellOrdersByMakerRequest,
 } from "@rarible/api-client/build/apis"
 
-import { toCollectionId, toUnionAddress } from "@rarible/types"
+import { toCollectionId, toUnionAddress, toItemId, toOrderId, toContractAddress } from "@rarible/types"
 import { Blockchain, OrderStatus } from "@rarible/api-client/build/models";
 import { IRaribleSdk } from '@rarible/sdk/build/domain';
+
+import { FillRequest } from '@rarible/sdk/build/types/order/fill/domain';
+import { BatchFillRequest } from '@rarible/sdk/build/types/order/fill/domain';
 
 import { CreateCollectionRequest } from '@rarible/sdk/build/types/nft/deploy/domain';
 import { EthEthereumAssetType } from '@rarible/api-client/build/models/AssetType';
@@ -229,7 +232,7 @@ export class SDKMain {
     }));
   }
 
-  /* mint */
+  /* mint and sell */   /* work */
 
   mintOffChain(uri: string, user_address: string) {
     console.log("uri", uri);
@@ -245,7 +248,7 @@ export class SDKMain {
           account: toUnionAddress(user_address),
           value: 10000,
         }],
-        lazyMint: false,   //
+        lazyMint: false,   // 
         supply: 1,  // amount
         price: "0.000000000000000001",
         currency: {
@@ -253,6 +256,63 @@ export class SDKMain {
           blockchain: Blockchain.ETHEREUM
         }
       }))
+    );
+  }
+
+  /* make bid */  ////
+
+  makeBid(item_id: string) {    /* problem */
+    return from(this.raribleSdk.order.bid({itemId: toItemId(item_id)})).pipe(
+      switchMap((res) => res.submit({
+        amount: 1,
+        price: 0.0009,
+        currency: {
+          "@type": "ETH",
+          blockchain: Blockchain.ETHEREUM,
+        },
+        expirationDate: new Date(Date.now() + 60 * 60 * 1000), // 1h
+      }))
+    );
+  }
+
+  /* For Owner */
+
+  acceptBid(order_id: any, item_id: string) {   /* work */
+    return from(this.raribleSdk.order.acceptBid({orderId: toOrderId(order_id)})).pipe(
+      switchMap((res) => res.submit({
+        amount: 1,                                  /* originFees: [{}] comision */
+        itemId: toItemId(item_id),                 /* payouts: [{}] for users etc. */
+        maxFeesBasePoint: 0.00000001, // ?
+        unwrap: false,
+      }))
+    );
+  }
+
+  sellOrder(item_id: string) {    /* work */
+    return from(this.raribleSdk.order.sell({itemId: toItemId(item_id)})).pipe(
+      switchMap((res) => res.submit({
+        amount: 1,
+        price: 0.0003,
+        currency: {
+          "@type": "ETH",
+          blockchain: Blockchain.ETHEREUM,
+        },
+        expirationDate: new Date(Date.now() + 60 * 60 * 1000), // 1h
+      }))
+    );
+  }
+
+  batchBuy(order_Id: any, item_id: string) {
+    return from(this.raribleSdk.order.batchBuy([{orderId: toOrderId(order_Id)}])).pipe(
+      switchMap((res) => res.submit([
+        {
+          orderId: toOrderId(order_Id),
+          amount: 1,                                  /* originFees: [{}] comision */
+          itemId: toItemId(item_id),                 /* payouts: [{}] for users etc. */
+          maxFeesBasePoint: 0.00000001, // ?
+          unwrap: false,
+        }
+      ]))      
     );
   }
   
@@ -264,3 +324,5 @@ itemId: "ETHEREUM:0xb66a603f4cfe17e3d27b87a8bfcad319856518b8:3273221979630967297
 orderId: "ETHEREUM:0xd88924233df89abfb2524c9dbade975263efde49a371ce184c33648ee771c589"
 type: "off-chain" 
 */
+
+/* 0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619 - wETH contract adr */
