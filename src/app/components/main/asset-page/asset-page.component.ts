@@ -4,11 +4,12 @@ import { takeUntil, map, BehaviorSubject } from 'rxjs';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
-import { DetectDeviceService } from 'src/app/utils/detect-device.service';
 
 import { BasePageComponent } from '../../base-components/base-page/base-page.component';
 import { NFTsOptions } from 'src/app/services/rarible-sdk-services/sdk-models.models';
 import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
+import { LoginStatusService } from 'src/app/services/auth/login/login-status.service';
+import { UserInfo } from 'src/app/services/auth/login/login.models';
 
 @Component({
   selector: 'app-asset-page',
@@ -17,13 +18,13 @@ import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login
 })
 export class AssetPageComponent extends BasePageComponent implements OnInit {
 
-  public rowHeight!: string;
-  public cols!: string;
+  public User!: UserInfo
 
   panelOpenState = false;
 
   public token_id!: any;
   public collection_id!: any;
+  public owner_id = '';
 
   public nft_data!: any;
   public collection_data!: any;
@@ -35,9 +36,9 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
-    public detectDeviceService: DetectDeviceService, 
-    public sdk: SDKMain,
-    public loginService: SdkLoginService,
+    private sdk: SDKMain,
+    private loginService: SdkLoginService,
+    private loginStatusService: LoginStatusService,
   ) { 
     super();
 
@@ -67,9 +68,26 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
 
     });
 
+    this.loginStatusService.getLoginStatus().pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
+      this.User = res;
+
+      if(this.User.isLogged == 1) {
+        if ('ETHEREUM:' + this.User.walletAddress === this.owner_id) {
+          this.isOwner = true;
+        } else {
+          this.isOwner = false;
+        }
+
+      } else {
+        this.isOwner = false;
+      }
+
+      console.log('isOwner', this.isOwner);
+    });
+
     this.sdk.getItemById(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
       this.nft_data = res;
-      this.collection_id = res.collection;    // remove collection
+      this.collection_id = res.collection;
 
       console.log('NFT Data >>>', this.nft_data);
 
@@ -93,6 +111,11 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
     this.sdk.getSellOrdersByItem(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res: any) => {
       this.sell_orders = res.orders;
       console.log('Sell Orders >>>', this.sell_orders);
+    });
+
+    this.sdk.getOwner(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
+      this.owner_id = res.ownerships[0].owner;
+      console.log('owner_id', this.owner_id);
     });
 
   }

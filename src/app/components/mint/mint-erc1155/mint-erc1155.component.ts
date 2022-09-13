@@ -33,6 +33,8 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
     description: ['', Validators.required],
     file: [null],
     fileName: [''],
+    price: [''],
+    royalties: []
   });
 
   public user_address = '';
@@ -128,7 +130,7 @@ export class MintErc1155Component extends BasePageComponent implements OnInit {
     this.ipfs.postImage(metadataForm).pipe(
       map((res: any) => 'ipfs://' + res.IpfsHash),
       switchMap((res: any) => this.ipfs.postFile(res, this.metadataForm)),
-      switchMap((res: any) => this.sdk.mintOffChain('ipfs://' + res.IpfsHash, this.user_address))
+      switchMap((res: any) => this.sdk.mintOffChain('ipfs://' + res.IpfsHash, this.user_address, metadataForm.value.price))
     ).subscribe((res) => console.log("Final", res));
   }
 

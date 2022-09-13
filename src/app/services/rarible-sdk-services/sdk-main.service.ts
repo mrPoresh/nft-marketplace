@@ -20,6 +20,7 @@ import type {
   GetSellOrdersRequest,
   GetSellOrdersByItemRequest,
   GetSellOrdersByMakerRequest,
+  GetOwnershipsByItemRequest,
 } from "@rarible/api-client/build/apis"
 
 import { toCollectionId, toUnionAddress, toItemId, toOrderId, toContractAddress } from "@rarible/types"
@@ -213,6 +214,15 @@ export class SDKMain {
     return from(this.raribleSdk.apis.order.getSellOrdersByMaker(options));
   }
 
+  /* ownership */
+
+  getOwner(address: string) {
+    const options: GetOwnershipsByItemRequest = {
+      itemId: address,
+    };
+    return from(this.raribleSdk.apis.ownership.getOwnershipsByItem(options))
+  }
+
   /* Get Balance */
 
   getBalance(owner: any) {
@@ -234,7 +244,7 @@ export class SDKMain {
 
   /* mint and sell */   /* work */
 
-  mintOffChain(uri: string, user_address: string) {
+  mintOffChain(uri: string, user_address: string, _price: string) {
     console.log("uri", uri);
     console.log("owner", user_address);
     return from(this.raribleSdk.nft.mintAndSell({collectionId: toCollectionId(RARIBLE_ERC_1155)})).pipe(
