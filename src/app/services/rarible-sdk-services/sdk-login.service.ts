@@ -94,11 +94,19 @@ export class SdkLoginService extends SDKMain {
     }));
   }
 
-  mapEthereumWalletWithMessage<O>(provider: AbstractConnectionProvider<O, EthereumProviderConnectionResult>) {
+/*   mapEthereumWalletWithMessage<O>(provider: AbstractConnectionProvider<O, EthereumProviderConnectionResult>) {
     return provider.map(state => ({
       wallet: new EthereumWallet(new Web3Ethereum({ web3: new Web3(state.provider), from: state.address })).signPersonalMessage('It is just like example'),
       address: state.address
     }))
+  } */
+
+  mapEthereumWalletWithMessage<O>(provider: AbstractConnectionProvider<O, EthereumProviderConnectionResult>) {
+    return provider.map((state) => {
+      const _wallet = new EthereumWallet(new Web3Ethereum({ web3: new Web3(state.provider), from: state.address }));
+      _wallet.signPersonalMessage('It is just like example');
+      return {wallet: _wallet, address: state.address}
+    })
   }
 
   createConnectorWithMessage() {

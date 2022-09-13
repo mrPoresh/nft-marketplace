@@ -10,7 +10,9 @@ import { BasePageComponentWithDialogs } from '../base-page/base-page.component';
 import { ExploreMenuAction } from './explore-menu/explore-menu-button/explore-menu-button.component';
 
 import { UserInfo } from 'src/app/services/auth/login/login.models';
+
 import { LoginStatusService } from 'src/app/services/auth/login/login-status.service';
+import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
 
 @Component({
   selector: 'app-slide-menu',
@@ -21,7 +23,8 @@ export class SlideMenuComponent extends BasePageComponentWithDialogs implements 
 
   User!: UserInfo;
 
-  @Input() isExtend!: boolean;
+  public isLogged = false;
+
   @Output() closeEvent = new EventEmitter();
 
   @ViewChild('sidenavDeep') sidenavDeep!: MatSidenav;
@@ -30,12 +33,20 @@ export class SlideMenuComponent extends BasePageComponentWithDialogs implements 
     public errorDialog: MatDialog,
     public checkSessionService: CheckSessionService,
     public loginStatusService: LoginStatusService,
+    public loginService: SdkLoginService,
     public router: Router,
   ) { super(errorDialog) }
 
   ngOnInit() {
     this.checkSessionService.getState().subscribe((res: any) => {
       this.User = res;
+
+      if(this.User.isLogged == 1) {
+        this.isLogged = true;
+      } else {
+        this.isLogged = false;
+      }
+
     });
   }
 
@@ -56,7 +67,9 @@ export class SlideMenuComponent extends BasePageComponentWithDialogs implements 
 
   callLinkClickedParent() {
     this.closeEvent.next("");
-    this.sidenavDeep.close();
+    if (this.isLogged == false) {
+      this.sidenavDeep.close();
+    }
   }
 
   navigateAccount() {
@@ -71,6 +84,10 @@ export class SlideMenuComponent extends BasePageComponentWithDialogs implements 
       this.router.navigate(['create']);
     }
 
+  }
+
+  logOut() {
+    this.loginService.logOut();
   }
 
 }

@@ -48,8 +48,7 @@ export class ConnectWalletDialogComponent implements OnInit {
 
   public redirectUrl: string = "../"
 
-  closeDialog(redirectUrl: string): void {
-    this.redirectUrl = redirectUrl;
+  closeDialog(): void {
     this.dialogRef.close();
   }
 

@@ -32,10 +32,10 @@ import { CheckSessionService } from './services/auth/check-session/check-session
     BaseComponent,
     BasePageComponent,
     BasePageComponentWithDialogs,
-    CloseDialogButtonComponent,
-    ConfirmDialogComponent,
-    ErrorDialogComponent,
-    SuccessDialogComponent,
+/*     CloseDialogButtonComponent, */
+/*     ConfirmDialogComponent, */
+/*     ErrorDialogComponent, */
+/*     SuccessDialogComponent, */
     SlideMenuComponent,
     SlideMenuButtonComponent,
     ExploreMenuComponent,

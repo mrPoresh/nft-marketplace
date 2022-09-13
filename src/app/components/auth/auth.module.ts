@@ -17,6 +17,7 @@ import { SignupStepThreeComponent } from './signup/signup-step-three/signup-step
 import { LostPasswordMainComponent } from './lost-password/lost-password-main/lost-password-main.component';
 import { LostPasswordDialogComponent, LostPasswordDialogRouteComponent } from './lost-password/lost-password-dialog/lost-password-dialog.component';
 import { LostPasswordComponent } from './lost-password/lost-password/lost-password.component';
+import { SharedComponentsModule } from 'src/app/modules/shared-components/shared-components.module';
 
 
 
@@ -43,6 +44,7 @@ import { LostPasswordComponent } from './lost-password/lost-password/lost-passwo
     CommonModule,
     AuthRoutingModule,
     SharedMaterialModule,
+    SharedComponentsModule,
     FormsModule,
     ReactiveFormsModule,
   ]

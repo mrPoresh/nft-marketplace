@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -18,6 +18,8 @@ export class ConnectWalletComponent extends BasePageComponent implements OnInit 
 
   isDesktop = false;
   options!: any[];
+
+  @Output() closeEvent = new EventEmitter<string>();
 
   constructor(
     public detectDeviceService: DetectDeviceService,
@@ -89,7 +91,9 @@ export class ConnectWalletComponent extends BasePageComponent implements OnInit 
               isLoggedWallet: res.status === "connected" ? LoggedStatus.logged : LoggedStatus.notLogged,
               walletAddress: res.status === "connected" ? res.connection.address : undefined,
             });
+
           });
+          
         });
       } else {
         this.winRef.window.alert("Please Install Metamask");
@@ -101,6 +105,10 @@ export class ConnectWalletComponent extends BasePageComponent implements OnInit 
 
   disconect() {
     this.loginService.logOut();
+  }
+
+  callLinkClickedParent() {
+    this.closeEvent.next("../");
   }
 
 }

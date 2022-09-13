@@ -8,6 +8,7 @@ import { ConnectWalletMainComponent } from './connect-wallet-main/connect-wallet
 import { ConnectWalletDialogComponent, ConnectWalletDialogRouteComponent } from './connect-wallet-dialog/connect-wallet-dialog.component';
 import { ConnectWalletComponent } from './connect-wallet/connect-wallet.component';
 import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login.service';
+import { SharedComponentsModule } from 'src/app/modules/shared-components/shared-components.module';
 //import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
 
 
@@ -22,6 +23,7 @@ import { SdkLoginService } from 'src/app/services/rarible-sdk-services/sdk-login
     CommonModule,
     ConnectWalletRoutingModule,
     SharedMaterialModule,
+    SharedComponentsModule
   ],
   providers: [
   ]

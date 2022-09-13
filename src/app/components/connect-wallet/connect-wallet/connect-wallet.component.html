@@ -1,9 +1,9 @@
 <div class="connect-wallet-body" fxLayout="column" fxLayoutAlign="start center">
-    <button class="header-button" mat-flat-button>
-        <div class="button-space"  fxLayout="row" fxLayoutAlign="start center" routerLink="/">
+<!--     <button class="header-button" mat-flat-button>
+        <div class="button-space"  fxLayout="row" fxLayoutAlign="start center" routerLink="/login">
             <mat-icon>keyboard_backspace</mat-icon><span class="space"></span><h4>My Wallet</h4>
         </div>
-    </button>
+    </button> -->
 
     <img class="logo" src="assets/icons/wallet.png">
 
@@ -29,7 +29,7 @@
 
     <ng-template #desktop>
         <div class="buttons" fxLayout="column" fxLayoutAlign="start center">    <!-- a little bit incorrect icons, :( -->
-            <button class="option-button" (click)="connectMetamask()" mat-flat-button>
+            <button class="option-button" (click)="connectMetamask()" (click)="callLinkClickedParent()" mat-flat-button>
                 <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
                     <img class="icon" src="assets/icons/metamask_small.png"><span class="space"></span><h4>Metamask</h4>
                 </div>

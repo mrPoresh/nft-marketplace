@@ -5,42 +5,72 @@
         <app-slide-menu-button (clicked)="callLinkClickedParent()"></app-slide-menu-button>
     </mat-toolbar>
 
-    <!-- <ng-container *ngIf="!isLogged; else logged">
+    <mat-divider></mat-divider>
 
+    <ng-container *ngIf="!isLogged; else logged">
+        <mat-sidenav-container>
+            <mat-sidenav #sidenavDeep>
+                <app-explore-menu fxLayout="column" fxLayoutAlign="start center" (closeEvent)="close()"></app-explore-menu>
+            </mat-sidenav>
+    
+            <mat-sidenav-content fxLayout="column" fxLayoutAlign="space-between center">
+                <div class="items-list" fxLayout="column" fxLayoutAlign="start center">
+                    <button mat-flat-button class="item-button" (click)="callLinkClickedParent()" routerLink="/">     <!-- (click)="callLinkClickedParent()" -->
+                        <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="icon">home</mat-icon><span class="space"></span><h3>Home</h3>
+                        </div>
+                    </button>
+            
+                    <app-explore-menu-button fxLayout="column" fxLayoutAlign="center center" (clicked)="menuAction($event)"></app-explore-menu-button>
+            
+                    <button mat-flat-button class="item-button">
+                        <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="icon">supervised_user_circle</mat-icon><span class="space"></span><h3>FAQ</h3>
+                        </div>
+                    </button>
+            
+                    <button mat-flat-button class="item-button">
+                        <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="icon">rowing</mat-icon><span class="space"></span><h3>Support</h3>
+                        </div>
+                    </button>
+                </div>
+    
+                <button class="connect-wallet-button" routerLink="/connect-wallet" mat-stroked-button>CONNECT WALLET</button>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
     </ng-container>
 
     <ng-template #logged>
-        
-    </ng-template>   -->
-
-    <mat-divider></mat-divider>
-
-    <mat-sidenav-container>
-        <mat-sidenav #sidenavDeep>
-            <app-explore-menu fxLayout="column" fxLayoutAlign="start center" (closeEvent)="close()"></app-explore-menu>
-        </mat-sidenav>
-
-        <mat-sidenav-content fxLayout="column" fxLayoutAlign="space-between center">
-            <div class="items-list" fxLayout="column" fxLayoutAlign="start center">
-                <button mat-flat-button class="item-button" (click)="callLinkClickedParent()" routerLink="/">     <!-- (click)="callLinkClickedParent()" -->
-                    <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon class="icon">home</mat-icon><span class="space"></span><h3>Home</h3>
+        <div class="logged-body" fxLayout="column" fxLayoutAlign="space-between center">
+            <div class="logged-content" fxLayout="column" fxLayoutAlign="start center">
+                <div class="banner-container">
+                    <div id="dummy"></div>
+                    <img class="user-avatar" src="assets/test/user_avatar.png">
+                    <div class="banner" fxLayout="column" fxLayoutAlign="center center">
+                      <!-- instead of <img> -->
                     </div>
-                </button>
-        
-                <app-explore-menu-button fxLayout="column" fxLayoutAlign="center center" (clicked)="menuAction($event)"></app-explore-menu-button>
-        
-                <button mat-flat-button class="item-button">
-                    <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon class="icon">supervised_user_circle</mat-icon><span class="space"></span><h3>FAQ</h3>
-                    </div>
-                </button>
-        
-                <button mat-flat-button class="item-button">
-                    <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon class="icon">rowing</mat-icon><span class="space"></span><h3>Support</h3>
-                    </div>
-                </button>
+                </div>
+
+                <div class="options-box">
+                    <button mat-flat-button class="item-button" (click)="navigateAccount()">
+                        <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="icon">rowing</mat-icon><span class="space"></span><h3>Profile</h3>
+                        </div>
+                    </button>
+    
+                    <button mat-flat-button class="item-button" (click)="navigateCreate()">
+                        <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="icon">rowing</mat-icon><span class="space"></span><h3>Create</h3>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <button class="log-out-button" mat-stroked-button (click)="logOut()">LOG OUT</button>
+        </div>
+    </ng-template>
+</div>
 
 <!--                 <button *ngIf="User.isLogged == 1" mat-flat-button class="item-button" (click)="navigateAccount()">
                     <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
@@ -53,10 +83,3 @@
                         <mat-icon class="icon">rowing</mat-icon><span class="space"></span><h3>Create</h3>
                     </div>
                 </button> -->
-
-            </div>
-
-            <button class="connect-wallet-button" routerLink="/connect-wallet" mat-stroked-button>CONNECT WALLET</button>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
-</div>
