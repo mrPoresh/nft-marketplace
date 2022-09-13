@@ -53,4 +53,12 @@ export class HomePageComponent extends BasePageComponent implements OnInit {
     this.router.navigate(['token' + '/' + data.id]);
   }
 
+  navigateCreate() {
+    this.router.navigate(['create']);
+  }
+
+  navigateExplore() {
+    this.router.navigate(['explore/items']);
+  }
+
 }

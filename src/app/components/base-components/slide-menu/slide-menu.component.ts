@@ -34,7 +34,7 @@ export class SlideMenuComponent extends BasePageComponentWithDialogs implements 
   ) { super(errorDialog) }
 
   ngOnInit() {
-     this.checkSessionService.requestCheckUserInfo().subscribe((res) => {
+    this.checkSessionService.getState().subscribe((res: any) => {
       this.User = res;
     });
   }
@@ -57,7 +57,6 @@ export class SlideMenuComponent extends BasePageComponentWithDialogs implements 
   callLinkClickedParent() {
     this.closeEvent.next("");
     this.sidenavDeep.close();
-    console.log("close event")
   }
 
   navigateAccount() {

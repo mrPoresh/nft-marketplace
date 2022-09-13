@@ -7,16 +7,20 @@ import { SharedMaterialModule } from 'src/app/modules/shared-material.module';
 
 import { AssetPageComponent } from './asset-page/asset-page.component';
 import { CollectionPageComponent } from './collection-page/collection-page.component';
-import { ExploreCollectionsComponent } from './explore-collections/explore-collections.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ExploreComponent } from './explore/explore.component';
+import { AssetsComponent } from './explore/assets/assets.component';
+import { CollectionsComponent } from './explore/collections/collections.component';
 
 
 @NgModule({
   declarations: [
     AssetPageComponent,
     CollectionPageComponent,
-    ExploreCollectionsComponent,
     HomePageComponent,
+    ExploreComponent,
+    AssetsComponent,
+    CollectionsComponent,
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, switchMap } from 'rxjs';
+import { from, map, Observable, switchMap } from 'rxjs';
 
 import { SdkLoginService } from '../../rarible-sdk-services/sdk-login.service';
 import { LoginStatusService } from '../login/login-status.service';
@@ -16,16 +16,32 @@ export class CheckSessionService {
     private sdkLoginService: SdkLoginService,
   ) { }
 
-  requestCheckUserInfo(): Observable<UserInfo> {
-    return this.sdkLoginService.getConnection().pipe(
-      switchMap((res: any) => {
+  getState() {
+    return this.sdkLoginService.getState().pipe(
+      switchMap((res) => {
+      if (res) {
+        this.sdkLoginService.createConnector();
+        return this.sdkLoginService.getConnection().pipe(
+          switchMap((res: any) => {
+            this.loginStatusService.updateUserInfo({
+              isLogged: res.status === "connected" ? LoggedStatus.logged : LoggedStatus.notLogged,
+              isLoggedWallet: res.status === "connected" ? LoggedStatus.logged : LoggedStatus.notLogged,
+              walletAddress: res.status === "connected" ? res.connection.address : undefined,
+            });
+            return this.loginStatusService.getLoginStatus()
+          }),
+        );
+
+      } else {
         this.loginStatusService.updateUserInfo({
-          isLogged: res.status === "connected" ? LoggedStatus.logged : LoggedStatus.notLogged,
-          isLoggedWallet: res.status === "connected" ? LoggedStatus.logged : LoggedStatus.notLogged,
-          walletAddress: res.status === "connected" ? res.connection.address : undefined,
+          isLogged: LoggedStatus.notLogged,
+          isLoggedWallet: LoggedStatus.notLogged,
+          walletAddres: undefined,
         });
+
         return this.loginStatusService.getLoginStatus()
-      }),
+      }
+     })
     );
   }
 

@@ -32,8 +32,10 @@ export class SdkLoginService extends SDKMain {
   constructor() { 
     super();
 
-    this.createConnector();
+    /* this.createConnector(); */
   }
+
+  /* --------------------------------------------------------------- */
 
   getState(): Observable<string | undefined> {
     return from(this.state.getValue());
@@ -46,6 +48,12 @@ export class SdkLoginService extends SDKMain {
   getConenctionOptions(): Observable<any> {
     return from(this.connector.getOptions());
   }
+
+  getConnection() {
+    return this.connector.connection
+  }
+
+  /* --------------------------------------------------------------- */
 
   metamaskInstance() {
     return this.mapEthereumWallet(new InjectedWeb3ConnectionProvider());
@@ -62,8 +70,8 @@ export class SdkLoginService extends SDKMain {
 
   mapEthereumWallet<O>(provider: AbstractConnectionProvider<O, EthereumProviderConnectionResult>) {
     return provider.map(state => ({
-        wallet: new EthereumWallet(new Web3Ethereum({ web3: new Web3(state.provider), from: state.address })),   // problem here
-        address: state.address
+      wallet: new EthereumWallet(new Web3Ethereum({ web3: new Web3(state.provider), from: state.address })),
+      address: state.address
     }))
   }
 
@@ -71,14 +79,38 @@ export class SdkLoginService extends SDKMain {
     this.connector = Connector.create(this.metamaskInstance(), this.state).add(this.walletConnectInstance());
   }
 
-  getConnection() {
-    return this.connector.connection
+  /* --------------------------------------------------------------- */
+
+  metamaskInstanceWithMessage() {
+    return this.mapEthereumWalletWithMessage(new InjectedWeb3ConnectionProvider());
   }
+
+  walletConnectInstanceWithMessage() {
+    return this.mapEthereumWalletWithMessage(new WalletConnectConnectionProvider({
+      rpc: {
+        1: "https://node-mainnet.rarible.com"
+      },
+      chainId: 1
+    }));
+  }
+
+  mapEthereumWalletWithMessage<O>(provider: AbstractConnectionProvider<O, EthereumProviderConnectionResult>) {
+    return provider.map(state => ({
+      wallet: new EthereumWallet(new Web3Ethereum({ web3: new Web3(state.provider), from: state.address })).signPersonalMessage('It is just like example'),
+      address: state.address
+    }))
+  }
+
+  createConnectorWithMessage() {
+    this.connector = Connector.create(this.metamaskInstanceWithMessage(), this.state).add(this.walletConnectInstanceWithMessage());
+  }
+
+  /* --------------------------------------------------------------- */
 
   async loginWithWallet(option: any) {
     console.log("Connect by Wallet");
     this.state.setValue(this.connector.provider);
-    await this.connector.connect(option).then(() => console.log("Connected", this.connector));
+    await this.connector.connect(option)
   }
 
   logOut() {

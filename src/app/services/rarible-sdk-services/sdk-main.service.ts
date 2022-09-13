@@ -95,7 +95,7 @@ export class SDKMain {
     const options: GetAllItemsRequest = {
       blockchains: [Blockchain.ETHEREUM],
       continuation: undefined,
-      size: 100,
+      size: 75,
       showDeleted: false,
       lastUpdatedFrom: undefined,
       lastUpdatedTo: undefined,
