@@ -244,15 +244,16 @@ export class SDKMain {
 
   /* mint and sell */   /* work */
 
-  mintOffChain(uri: string, user_address: string, _price: string) {
+  mintAndSell(uri: string, user_address: string, _price: number) {
     console.log("uri", uri);
     console.log("owner", user_address);
+    console.log("price", _price)
     return from(this.raribleSdk.nft.mintAndSell({collectionId: toCollectionId(RARIBLE_ERC_1155)})).pipe(
       switchMap((res) => res.submit({
         uri: uri,
         royalties: [{                           // For marketplace
           account: toUnionAddress(user_address),
-          value: 1000, //1%
+          value: 1000, //10%
         }],
         creators: [{
           account: toUnionAddress(user_address),
@@ -260,7 +261,7 @@ export class SDKMain {
         }],
         lazyMint: false,   // 
         supply: 1,  // amount
-        price: "0.000000000000000001",
+        price: _price,
         currency: {
           "@type": "ETH",
           blockchain: Blockchain.ETHEREUM
@@ -310,7 +311,7 @@ export class SDKMain {
     return from(this.raribleSdk.order.sell({itemId: toItemId(item_id)})).pipe(
       switchMap((res) => res.submit({
         amount: 1,
-        price: 0.0003,
+        price: 0.003,
         currency: {
           "@type": "ETH",
           blockchain: Blockchain.ETHEREUM,
