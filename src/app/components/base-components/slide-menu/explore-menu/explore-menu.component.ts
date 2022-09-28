@@ -23,7 +23,7 @@ export class ExploreMenuComponent implements OnInit {
   }
 
   exploreCollections() {
-    this.router.navigate(['explore-collections']);
+    this.router.navigate(['explore/items']);
   }
 
 }

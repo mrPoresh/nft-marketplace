@@ -2,7 +2,7 @@
     <app-explore-menu-button (clicked)="callLinkClickedParent()"></app-explore-menu-button>
 
     <div class="button-list" fxLayout="column" fxLayoutAlign="start center">
-        <button mat-flat-button>
+        <button mat-flat-button (click)="exploreCollections()">
             <div class="button-space" fxLayout="row" fxLayoutAlign="start center">
                 <img src="assets/icons/menu/view_compact.png"><span class="space"></span><h3>All NFT</h3>
             </div>

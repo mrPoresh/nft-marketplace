@@ -70,19 +70,6 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
 
     this.loginStatusService.getLoginStatus().pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
       this.User = res;
-
-      if(this.User.isLogged == 1) {
-        if ('ETHEREUM:' + this.User.walletAddress === this.owner_id) {
-          this.isOwner = true;
-        } else {
-          this.isOwner = false;
-        }
-
-      } else {
-        this.isOwner = false;
-      }
-
-      console.log('isOwner', this.isOwner);
     });
 
     this.sdk.getItemById(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
@@ -116,6 +103,19 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
     this.sdk.getOwner(this.token_id).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
       this.owner_id = res.ownerships[0].owner;
       console.log('owner_id', this.owner_id);
+
+      if(this.User.isLogged == 1) {
+        if ('ETHEREUM:' + this.User.walletAddress === this.owner_id) {
+          this.isOwner = true;
+        } else {
+          this.isOwner = false;
+        }
+
+      } else {
+        this.isOwner = false;
+      }
+
+      console.log('isOwner', this.isOwner);
     });
 
   }
