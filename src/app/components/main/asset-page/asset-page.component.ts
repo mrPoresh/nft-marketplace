@@ -59,13 +59,14 @@ export class AssetPageComponent extends BasePageComponent implements OnInit {
   ngOnInit() { 
 
     this.loginService.getConnection().subscribe((res) => {
-      if (res.status === "connected") {
-        console.log("Init Provider with Wallet", res)
-        this.sdk.initSDKwithProvider(res.connection.wallet);
-      } else {
-        console.log("Wait Connection", res);
+      if (res) {
+        if (res.status === "connected") {
+          console.log("Init Provider with Wallet", res)
+          this.sdk.initSDKwithProvider(res.connection.wallet);
+        } else {
+          console.log("Wait Connection", res);
+        }
       }
-
     });
 
     this.loginStatusService.getLoginStatus().pipe(takeUntil(this.unsubscribe)).subscribe((res) => {

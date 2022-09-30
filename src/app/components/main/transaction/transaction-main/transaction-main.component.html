@@ -1,0 +1,9 @@
+<div class="transaction-wrapper">
+    <ng-container *ngIf="!isExtend; else extend">
+        <app-transaction-page></app-transaction-page>
+    </ng-container>
+
+    <ng-template #extend>
+        <app-transaction-dialog-route></app-transaction-dialog-route>
+    </ng-template>
+</div>

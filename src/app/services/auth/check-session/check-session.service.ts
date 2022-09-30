@@ -33,6 +33,7 @@ export class CheckSessionService {
         );
 
       } else {
+        this.sdkLoginService.createConnector();
         this.loginStatusService.updateUserInfo({
           isLogged: LoggedStatus.notLogged,
           isLoggedWallet: LoggedStatus.notLogged,

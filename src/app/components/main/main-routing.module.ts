@@ -7,6 +7,7 @@ import { CollectionPageComponent } from './collection-page/collection-page.compo
 import { ExploreComponent } from './explore/explore.component';
 import { AssetsComponent } from './explore/assets/assets.component';
 import { CollectionsComponent } from './explore/collections/collections.component';
+import { TransactionMainComponent } from './transaction/transaction-main/transaction-main.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'collections', component: CollectionsComponent },
     ]
   },
+  { path: 'transaction/:contract/:id', component: TransactionMainComponent },
 ];
 
 @NgModule({

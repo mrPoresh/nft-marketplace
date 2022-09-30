@@ -11,6 +11,9 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ExploreComponent } from './explore/explore.component';
 import { AssetsComponent } from './explore/assets/assets.component';
 import { CollectionsComponent } from './explore/collections/collections.component';
+import { TransactionMainComponent } from './transaction/transaction-main/transaction-main.component';
+import { TransactionPageComponent } from './transaction/transaction-page/transaction-page.component';
+import { TransactionDialogComponent, TransactionDialogRouteComponent } from './transaction/transaction-dialog/transaction-dialog.component';
 
 
 @NgModule({
@@ -21,6 +24,10 @@ import { CollectionsComponent } from './explore/collections/collections.componen
     ExploreComponent,
     AssetsComponent,
     CollectionsComponent,
+    TransactionMainComponent,
+    TransactionPageComponent,
+    TransactionDialogComponent,
+    TransactionDialogRouteComponent
   ],
   imports: [
     CommonModule,

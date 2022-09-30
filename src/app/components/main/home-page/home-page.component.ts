@@ -45,6 +45,7 @@ export class HomePageComponent extends BasePageComponent implements OnInit {
 
     this.sdk.getItemById(promotedNFT.address).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
       this._promotedNFT = res;
+      console.log('promoted nft', this._promotedNFT)
     });
     
   }
