@@ -15,6 +15,8 @@ import { TransactionMainComponent } from './transaction/transaction-main/transac
 import { TransactionPageComponent } from './transaction/transaction-page/transaction-page.component';
 import { TransactionDialogComponent, TransactionDialogRouteComponent } from './transaction/transaction-dialog/transaction-dialog.component';
 
+import { TokenAddressKeeperService } from 'src/app/utils/token-address-keeper.service';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +36,9 @@ import { TransactionDialogComponent, TransactionDialogRouteComponent } from './t
     MainRoutingModule,
     SharedComponentsModule,
     SharedMaterialModule,
+  ],
+  providers: [
+    TokenAddressKeeperService,
   ]
 })
 export class MainModule { }

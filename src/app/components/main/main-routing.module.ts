@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: 'collections', component: CollectionsComponent },
     ]
   },
-  { path: 'transaction/:contract/:id', component: TransactionMainComponent },
+  { path: 'transaction/:chain/:contract/:id', component: TransactionMainComponent },
 ];
 
 @NgModule({
