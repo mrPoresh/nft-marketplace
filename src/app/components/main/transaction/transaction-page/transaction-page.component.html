@@ -2,7 +2,7 @@
     <div class="body" fxLayout="column" fxLayoutAlign="space-between center">
         <h1>Success!</h1>
 
-        <div *ngIf="token_data" class="card-box" fxLayout="column" fxLayoutAlign="start center">
+        <div *ngIf="token_data && trans_data" class="card-box" fxLayout="column" fxLayoutAlign="start center">
             <h2>{{token_data.meta.name}}</h2>
 
             <mat-card class="mat-elevation-z4">
@@ -10,6 +10,8 @@
             </mat-card>
 
             <h3>{{token_data.meta.description}}</h3>
+            <h3>Price: {{trans_data.price}}</h3>
+            <h3>Wallet: {{trans_data.destination_wallet}}</h3>
 
             <button mat-flat-button color="accent" (click)="goHome()">Accept</button>
 

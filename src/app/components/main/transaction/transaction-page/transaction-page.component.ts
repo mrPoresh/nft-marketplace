@@ -5,7 +5,8 @@ import { takeUntil } from 'rxjs';
 import { BasePageComponent } from 'src/app/components/base-components/base-page/base-page.component';
 
 import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
-import { TokenAddressKeeperService } from 'src/app/utils/token-address-keeper.service';
+import { TokenAddressKeeperService, UrlData } from 'src/app/utils/token-address-keeper.service';
+import { BaseHttpService, TEST_TRANS_API, GET_TRANS } from 'src/app/services/http/base-http.service';
 
 @Component({
   selector: 'app-transaction-page',
@@ -14,13 +15,15 @@ import { TokenAddressKeeperService } from 'src/app/utils/token-address-keeper.se
 })
 export class TransactionPageComponent extends BasePageComponent implements OnInit {
 
-  token_address = '';
-  token_data: any;  //
+  token_data: any;
+  trans_data: any;
+  token_address!: UrlData;
 
   constructor(
     private router: Router,
     addressKeeper: TokenAddressKeeperService,
     private sdk: SDKMain,
+    private http: BaseHttpService,
   ) { 
     super();
     
@@ -29,9 +32,14 @@ export class TransactionPageComponent extends BasePageComponent implements OnIni
   }
 
   ngOnInit() {
-    this.sdk.getItemById(this.token_address).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
-      console.log('data', res);
+    this.sdk.getItemById(this.token_address.token_adr).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
+      console.log('token data', res);
       this.token_data = res;
+    });
+
+    this.http.getRequestParam<any>(GET_TRANS, 'id', this.token_address.token_id).subscribe((res) => {
+      console.log('trans data', res);
+      this.trans_data = res
     });
   }
 
