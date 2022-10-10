@@ -1,0 +1,19 @@
+<div class="wrapper" fxLayout="column" fxLayoutAlign="start center">
+    <div class="body" fxLayout="column" fxLayoutAlign="space-between center">
+        <h1>Confirm Transaction</h1>
+
+        <div *ngIf="trans_data" class="trans-body" fxLayout="column" fxLayoutAlign="space-between start">
+            <mat-form-field appearance="legacy">
+                <mat-label>BliK Code</mat-label>
+                <input matInput placeholder="045354">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+
+            <h2>Transaction Details</h2>
+            <h3>Price: {{trans_data.price}}</h3>
+            <h3>Wallet: {{trans_data.destination_wallet}}</h3>
+        </div>
+
+        <button mat-flat-button color="accent" (click)="confirmPayment()">Confirm</button>
+    </div>
+</div>

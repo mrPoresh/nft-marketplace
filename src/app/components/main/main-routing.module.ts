@@ -8,6 +8,7 @@ import { ExploreComponent } from './explore/explore.component';
 import { AssetsComponent } from './explore/assets/assets.component';
 import { CollectionsComponent } from './explore/collections/collections.component';
 import { TransactionMainComponent } from './transaction/transaction-main/transaction-main.component';
+import { PaymentMainComponent } from './payment-page/payment-main/payment-main.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
     ]
   },
   { path: 'transaction/:chain/:contract/:id', component: TransactionMainComponent },
+  { path: 'payment/:contract/:id', component: PaymentMainComponent },
 ];
 
 @NgModule({

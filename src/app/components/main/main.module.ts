@@ -16,6 +16,9 @@ import { TransactionPageComponent } from './transaction/transaction-page/transac
 import { TransactionDialogComponent, TransactionDialogRouteComponent } from './transaction/transaction-dialog/transaction-dialog.component';
 
 import { TokenAddressKeeperService } from 'src/app/utils/token-address-keeper.service';
+import { PaymentPageComponent } from './payment-page/payment-page/payment-page.component';
+import { PaymentMainComponent } from './payment-page/payment-main/payment-main.component';
+import { PaymentDialogComponent, PaymentDialogRouteComponent } from './payment-page/payment-dialog/payment-dialog.component';
 
 
 @NgModule({
@@ -29,7 +32,11 @@ import { TokenAddressKeeperService } from 'src/app/utils/token-address-keeper.se
     TransactionMainComponent,
     TransactionPageComponent,
     TransactionDialogComponent,
-    TransactionDialogRouteComponent
+    TransactionDialogRouteComponent,
+    PaymentPageComponent,
+    PaymentMainComponent,
+    PaymentDialogComponent,
+    PaymentDialogRouteComponent
   ],
   imports: [
     CommonModule,

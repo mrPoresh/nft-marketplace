@@ -1,19 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { takeUntil } from 'rxjs';
+import { map, switchMap, takeUntil, throwError } from 'rxjs';
 
 import { BasePageComponent } from 'src/app/components/base-components/base-page/base-page.component';
 
 import { SDKMain } from 'src/app/services/rarible-sdk-services/sdk-main.service';
 import { TokenAddressKeeperService, UrlData } from 'src/app/utils/token-address-keeper.service';
-import { BaseHttpService, TEST_TRANS_API, GET_TRANS } from 'src/app/services/http/base-http.service';
+import { BaseHttpService, TEST_TRANS_API, GET_TRANS, UPDATE_TRANS } from 'src/app/services/http/base-http.service';
+import { BaseTransService } from 'src/app/services/http/base-trans.service';
 
 @Component({
-  selector: 'app-transaction-page',
-  templateUrl: './transaction-page.component.html',
-  styleUrls: ['./transaction-page.component.scss']
+  selector: 'app-payment-page',
+  templateUrl: './payment-page.component.html',
+  styleUrls: ['./payment-page.component.scss']
 })
-export class TransactionPageComponent extends BasePageComponent implements OnInit {
+export class PaymentPageComponent extends BasePageComponent implements OnInit {
 
   token_data: any;
   trans_data: any;
@@ -22,7 +23,6 @@ export class TransactionPageComponent extends BasePageComponent implements OnIni
   constructor(
     private router: Router,
     addressKeeper: TokenAddressKeeperService,
-    private sdk: SDKMain,
     private http: BaseHttpService,
   ) { 
     super();
@@ -32,19 +32,19 @@ export class TransactionPageComponent extends BasePageComponent implements OnIni
   }
 
   ngOnInit() {
-    this.sdk.getItemById(this.token_address.token_adr).pipe(takeUntil(this.unsubscribe)).subscribe((res) => {
-      console.log('token data', res);
-      this.token_data = res;
-    });
-
     this.http.getRequestParam<any>(GET_TRANS, [{'id': this.token_address.token_id}]).subscribe((res) => {
-      console.log('trans data', res);
+      console.log('init trans data', res);
       this.trans_data = res
     });
   }
 
-  accept() {
-    this.router.navigate(['/payment/' + this.token_address.contract_adr + '/' + this.token_address.token_id])
+  confirmPayment() {
+    let params = [{'id': this.token_address.token_id}, {'status': 'CONFIRM'}];
+
+    this.http.getRequestParam<any>(UPDATE_TRANS, params).subscribe((res) => {
+      console.log('updated trans data', res);
+      this.trans_data = res;
+    });
   }
 
 }
