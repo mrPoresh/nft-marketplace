@@ -1,16 +1,31 @@
 {
-  "hosting": {
-    "public": "dist/nft-marketplace",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
+  "hosting": [
+    {
+      "public": "dist/nft-marketplace",
+      "target": "nft-marketplace",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "nft-api",
+      "rewrites": [
+        {
+          "source": "**",
+          "run": {
+            "serviceId": "nft-api",
+            "region": "europe-west3"
+          }
+        }
+      ]
+    }
+  ]
 }

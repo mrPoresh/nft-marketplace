@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "nft-neoleo"
+  },
+  "targets": {
+    "nft-neoleo": {
+      "hosting": {
+        "nft-api": [
+          "api-nft-neoleo"
+        ],
+        "nft-marketplace": [
+          "nft-neoleo"
+        ]
+      }
+    }
   }
 }
